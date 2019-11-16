@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://dctewi.github.io/</id>
+    <title>冻葱Tewi</title>
+    <updated>2019-11-16T14:59:22.313Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://dctewi.github.io/"/>
+    <link rel="self" href="https://dctewi.github.io//atom.xml"/>
+    <subtitle>一个蒟蒻的博客。</subtitle>
+    <logo>https://dctewi.github.io//images/avatar.png</logo>
+    <icon>https://dctewi.github.io//favicon.ico</icon>
+    <rights>All rights reserved 2019, 冻葱Tewi</rights>
+    <entry>
+        <title type="html"><![CDATA[Hello?]]></title>
+        <id>https://dctewi.github.io//post/hello</id>
+        <link href="https://dctewi.github.io//post/hello">
+        </link>
+        <updated>2019-11-16T14:59:00.000Z</updated>
+    </entry>
+</feed>
