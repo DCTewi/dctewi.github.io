@@ -27698,6 +27698,9 @@ body {
 }
 
       .yue code {
-    font-family: Cascadia Code,Menlo,Monaco,Consolas,Courier New,monospace
+    font-family: Cascadia Code,Menlo,Monaco,Consolas,Courier New,monospace;
+}
+.menu-container .menu {
+    margin: 2px 0;
 }
     
