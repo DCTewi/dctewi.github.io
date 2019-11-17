@@ -1,0 +1,409 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>冻葱Tewi</title>
+<meta name="description" content="一个蒟蒻的博客。" />
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1573979352582">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://blog.dctewi.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="冻葱Tewi - Atom Feed" href="https://blog.dctewi.com/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152707655-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://blog.dctewi.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1573979352582" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0">算法概述</a></li>
+<li><a href="#%E4%B8%BB%E8%A6%81%E6%A6%82%E5%BF%B5">主要概念</a>
+<ul>
+<li><a href="#%E5%A4%B1%E9%85%8D">失配</a></li>
+<li><a href="#next%E6%95%B0%E7%BB%84">next数组</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8E%A8%E5%AF%BC%E6%80%9D%E8%B7%AF">推导思路</a>
+<ul>
+<li><a href="#%E6%9C%B4%E7%B4%A0%E6%89%AB%E6%8F%8F">朴素扫描</a></li>
+<li><a href="#kmp%E7%AE%97%E6%B3%95">kmp算法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0">具体实现</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/goal" class="menu" style="animation-delay: 0.2s">
+          目标
+        </a>
+      
+    
+      
+        <a href="/post/board" class="menu" style="animation-delay: 0.4s">
+          留言
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.6000000000000001s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.8s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/post/links" class="menu" style="animation-delay: 1s">
+          友链
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 1.2000000000000002s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700"><div style="color:#66ccff">夢に僕らで帆を張って、<br />来るべき日のために夜を越え。</div><br />Copyright © 2017 <a style="color:#66ccff">DCTewi</a><br />本站点采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA-4.0 国际许可协议</a>。</div>
+    <a class="rss" href="https://blog.dctewi.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">【算法】KMP学习小结</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-02-16 / 6 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s2.ax1x.com/2019/02/16/kr553d.jpg" alt="">
+        
+        <div class="post-content yue">
+          <p>学习kmp算法后的一些总结。本来没打算熬夜的结果搞到零点多。</p>
+<!-- more -->
+<blockquote>
+<p>在计算机科学中，<strong>Knuth-Morris-Pratt字符串查找算法</strong>（简称为KMP算法）可以在一个主文本字符串<code>S</code>内查找一个词<code>w</code>的出现位置。此算法通过运用对这个词在不匹配时本身旧包含足够的信息来确定下一个匹配将在哪里开始的发现，从而避免重新检查先前匹配的字符。</p>
+<p>——Wikipedia。</p>
+</blockquote>
+<h2 id="算法概述">算法概述</h2>
+<p>简单来说，KMP算法就是用来解决字符串匹配问题的算法，即在一个主要字符串（称为<strong>主串</strong>）中寻找另一个字符串（称为<strong>模式串</strong>）是否存在的问题。</p>
+<h2 id="主要概念">主要概念</h2>
+<p>学习KMP算法之前，首先要了解这个算法的一些重要概念。</p>
+<h3 id="失配">失配</h3>
+<p>即“失去匹配”。指对于从<code>l</code>开始匹配模式串时，模式串第<code>i</code>位和主串第<code>l + i</code>位不相同，则称第<code>i</code>位失配。</p>
+<h3 id="next数组">next数组</h3>
+<p>在kmp算法中，预处理出的一个数组。<code>next[i]</code>表示第<code>0</code>位~第<code>i - 1</code>位中，<strong>前缀与后缀相同的部分</strong>最长长度(而不是回文)。同时，<code>next[i]</code>也表示着当模式串在第<code>i</code>位失配时，当前位置要跳转到哪一位才<strong>有可能</strong>重新匹配成功。</p>
+<p>出于我的习惯，把数据从下标0开始放：则，<code>next[i] = -1</code>指从第<code>0</code>位~第<code>i - 1</code>位的子字符串的相同前后缀不存在（即前后缀长度是0）。<code>next[i]</code>代表从第<code>0</code>位~第<code>i - 1</code>位最大相同前后缀的长度 - 1，同样表示失配指针下标。</p>
+<h2 id="推导思路">推导思路</h2>
+<p>在思考kmp算法之前，先来模拟一下朴素的扫描式字符串匹配算法：</p>
+<h3 id="朴素扫描">朴素扫描</h3>
+<p>即模式串从前向后每次移动一个单位，每次移动后从前往后检查模式串和主串相应位置的字符是否相同，如果完全相同则匹配完成，失配则继续移动。</p>
+<p>这种匹配方法的复杂度为<code>O(nm)</code>，显然，这种朴素算法有丶过于暴力了。我们需要优化它。</p>
+<p>下面举出一个扫描过程的例子：</p>
+<pre><code>01234567890
+ABCABABCABD &lt;-主串
+ABCABD &lt;-模式串
+------ 1
+ABCABABCABD
+ ABCABD
+------ 2
+ABCABABCABD
+  ABCABD
+------ 3
+ABCABABCABD
+   ABCABD
+------ 4
+ABCABABCABD
+    ABCABD
+------ 5
+ABCABABCABD
+     ABCABD
+</code></pre>
+<p>这五次移动中，中间的许多步骤是多余的。</p>
+<p>再观察属于<code>ABCABD</code>的<code>next[]</code>:</p>
+<pre><code class="language-cpp">int nxt[] = {-1, -1, -1, 0, 1, -1};
+</code></pre>
+<p>因为既然在第一步当中，D和A失配。那么他前方（不包括它本身）的子字符串与主串匹配。可以直接将当前位置跳转到next[5]，即0（-1表示触顶）的位置。则直接跳转到了最后一步，接着就可以匹配成功了。</p>
+<p>虽然kmp算法不可能每次都准确地跳过所有地无用步骤，但是它的复杂度<code>O(n + m)</code>还是要比朴素算法优秀了不少。</p>
+<h3 id="kmp算法">kmp算法</h3>
+<p>通过上边的推导，可以发现：kmp算法的核心就是预处理出next数组。我们通过模式串自我比对来获取next数组。</p>
+<p>通过巧妙地设置匹配游标k，可以快速地获取指定模式串的next[]数组。而实际上，预处理过程和正式的kmp过程思路和代码几乎完全一样。</p>
+<h2 id="具体实现">具体实现</h2>
+<p>首先是预处理next数组的代码：</p>
+<pre><code class="language-cpp">typedef long long ll;
+const int MAXN = 1e6 + 5;
+ll nxt[MAXN];
+
+void getNext(string s)
+{
+	nxt[0] = -1; // -1 表示前后缀不存在
+	int k = -1; // 模式串的匹配游标
+	for (int i = 1; i &lt; s.size(); i++)
+	{
+        //下一个数失配则更新本位的失配指针，k == -1则触顶
+		while (k != -1 &amp;&amp; s[k + 1] != s[i]) k = nxt[k];
+		if (s[k + 1] == s[i]) k++; // 如果游标后可以继续得到相同的前后缀
+		nxt[i] = k; // 更新next[]数组
+	}
+}
+
+</code></pre>
+<p>可以通过上边部分使用过的模式串<code>ABCABD</code>来简单模拟一下这个过程。这个过程实际上是寻找相同前后缀长度的过程，同时正得到了我们需要的next[]数组。</p>
+<p>然后是kmp的过程：</p>
+<pre><code class="language-cpp">void kmp(string s, string p)
+{
+	int k = -1;
+	for (int i = 0; i &lt; s.size(); i++)
+	{
+        // 下一位失配则移动游标 &lt;=&gt; 移动模式串
+		while (k != -1 &amp;&amp; p[k + 1] != s[i]) k = nxt[k];
+		if (p[k + 1] == s[i]) k++; // 匹配成功，后移游标
+		if (k == p.size() - 1)
+		{
+			// 找到某个匹配结果
+			k = nxt[k]; // 继续向后匹配
+			/// &lt;custom_code&gt;
+				cout&lt;&lt;i - p.size() + 2&lt;&lt;endl; // 输出模式串开始位置
+				// +2分别是位置坐标补正和减法补正:wq
+			/// &lt;/custom_code&gt;
+		}
+	}
+}
+
+</code></pre>
+<p>其中<code>&lt;custom_code&gt;</code>中间是自定义的代码。一般的kmp题目输出要求可以再这里实现，这里输出的是每一个匹配成功的主串起始位置的下标。</p>
+<h2 id="总结">总结</h2>
+<p>简单来讲，kmp算法就是模式串先自己和自己搞一遍，在和主串搞一遍（不）。</p>
+<p>在纸上模拟之后就可以发现这个next数组的真正用途，接着就可以豁然开朗，从而理解这个过程。</p>
+<p>kmp算法是AC自动机的基础知识点。AC自动机本质上是kmp算法思想和tire树结构的一种结合（但是对我这种菜鸡来说还是难炸了。</p>
+<p>以上就是冻葱Tewi的kmp算法学习小结！</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/JMJy7kpVJ">
+            <span class="flex-auto">KMP</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ZXzFglJ4P">
+            <span class="flex-auto">算法</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ZrLL7yP_C">
+            <span class="flex-auto">旧文归档</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://blog.dctewi.com/post/number-theory-base">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  【算法】数论基础小结
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://blog.dctewi.com/post/segment-tree-base">
+                <h3 class="post-title">
+                  【数据结构】线段树基础小结
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c67700c58e8784319e25',
+    clientSecret: 'b8a2eb7ab6706e02a413e80dac295ef5365662fe',
+    repo: 'dctewi.github.io',
+    owner: 'DCTewi',
+    admin: ['DCTewi'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://blog.dctewi.com/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

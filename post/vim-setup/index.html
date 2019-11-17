@@ -1,0 +1,392 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>冻葱Tewi</title>
+<meta name="description" content="一个蒟蒻的博客。" />
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1573979352582">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://blog.dctewi.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="冻葱Tewi - Atom Feed" href="https://blog.dctewi.com/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152707655-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://blog.dctewi.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1573979352582" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BA%8C-ubuntu%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE">二、Ubuntu的安装及简单配置</a></li>
+<li><a href="#%E4%B8%89-codeblocks%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE">三、Code::blocks的安装及简单配置</a></li>
+<li><a href="#%E5%9B%9B-vim%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E5%90%88gcc%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8">四、vim的安装及配合gcc的简单应用。</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/goal" class="menu" style="animation-delay: 0.2s">
+          目标
+        </a>
+      
+    
+      
+        <a href="/post/board" class="menu" style="animation-delay: 0.4s">
+          留言
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.6000000000000001s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.8s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/post/links" class="menu" style="animation-delay: 1s">
+          友链
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 1.2000000000000002s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700"><div style="color:#66ccff">夢に僕らで帆を張って、<br />来るべき日のために夜を越え。</div><br />Copyright © 2017 <a style="color:#66ccff">DCTewi</a><br />本站点采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA-4.0 国际许可协议</a>。</div>
+    <a class="rss" href="https://blog.dctewi.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">【捣鼓】Ubuntu及vim、gcc配置笔记</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2018-12-08 / 8 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s2.ax1x.com/2019/11/17/MrFjrF.jpg" alt="">
+        
+        <div class="post-content yue">
+          <p>最近突然发觉ICPC比赛中的机器都是Ubuntu环境，而我却从来都没有用过Linux操作系统。所以便打算在实验室的电脑上捣鼓一番，熟悉一下比赛中使用的环境。</p>
+<!--more-->
+<h2 id="二-ubuntu的安装及简单配置">二、Ubuntu的安装及简单配置</h2>
+<p>我选择的操作系统是Ubuntu 18.04.1 LTS。从Ubuntu的官网下载系统iso文件之后，用Rufus刻录到一个新买的优盘当作启动盘（其实2G就足够了，但是学校京东竟然已经没有这么小的优盘了）。然后在开机时进入BIOS选择从U盘启动，选择直接覆盖安装Ubuntu，接着就是一顿傻瓜式安装引导，Ubuntu的安装就完成了。</p>
+<p>在设置里稍微设置了一下可以自定义的选项。值得一提的是，18.04版本的Ubuntu在安装的时候如果选择了中文，那么他会将/home/下的文件夹也建立成中文的，这会在终端使用过程中导致一系列问题。要解决这个问题，需要在区域与语言设置里，先将系统语言设置成中文并重启，在开机完成后会提示是否要替换成英文文件夹。替换成英文文件夹后再换成中文环境并重启，这次重启后选择保留原样即可保留英文文件夹名称。</p>
+<h2 id="三-codeblocks的安装及简单配置">三、Code::blocks的安装及简单配置</h2>
+<p>一开始我是想继续使用code::blocks这样的IDE。但是code::blocks在半个小时之内崩溃了三次让我身心俱疲，于是就进入了vim的大坑。这里还是简单地记录一下code::blocks的安装方法:</p>
+<p>（以下安装过程在终端中完成）</p>
+<pre><code class="language-shell">sudo apt-get install build-essential
+	//build-essential是一些基础的编译环境的集成包，GCC等工具都被包含在内
+sudo apt-get install codeblocks
+	//安装codeblocks的基础包
+sudo apt-get install codeblocks codeblocks-contrib
+	//安装codeblocks的插件包（自动补全、自动对齐、自动缩进等）
+</code></pre>
+<p>CB默认将Xterm作为调试终端，如果想要美化一下，使用Ubuntu的Gnome终端的话，则只需要在CB的环境设置里将Terminal to launch console programs选项栏填写成：<code>gnome-terminal-t $TITLE -x</code>即可。</p>
+<p>到此，CB已经基本安装完成，简单设置之后就可以使用辽。但可能是由于兼容性还是什么的问题，我在Ubuntu上使用codeblocks的半小时内codeblocks崩溃了三次。让我十分恐惧，所以就想到用另一个据说会用之后十分好用的编译套装：<code>vim + gcc + gdb</code>。</p>
+<h2 id="四-vim的安装及配合gcc的简单应用">四、vim的安装及配合gcc的简单应用。</h2>
+<p>很早就听说vim是一个会用之后运笔如飞的文本编辑器，今天终于有机会来使用一波这个广受好评（？）的文本编辑器辽。</p>
+<p>vim 的安装与其他软件包无异,没有安装 vim 的机器在终端键入 <code>sudo apt-get install vim</code> 再 y一下即可完成安装。安装完成后,键入 vim ,就可以看到 vim 的主页面 (?) 辽:</p>
+<p>在 Linux 中, Ctrl + C 可以强制中断进程, Ctrl + Z 可以将进程挂起。当在 vim 里出不去的时候可以用这两个快捷键找出出路(大雾)。</p>
+<p><strong>vim 有三种模式:命令模式,输入模式和底线命令模式。</strong></p>
+<p>命令模式就是刚启动 vim 的模式。此时的键盘操作会被 vim 识别为命令而不是字符。大小写的i , a , o 分别可以以不同的光标位置进入编辑模式。<br>
+输入模式则是编辑文件的模式。此时的键盘操作是正常的操作文件。 Esc 键可以退出到命令模式。<br>
+底线命令模式,是在命令模式下输入英文冒号 : 后进入的模式。此模式下,可以使用单个或者多字符命令的模式，可用的命令非常多。 Enter 输入命令后或者 Esc 键可以返回命令模式。</p>
+<p><strong>要用 vim 舒服的编辑 cpp 文件,则需要简单的配置一下:</strong></p>
+<p>在终端输入 <code>vim ~/.vimrc</code> 就会进入 vim 的配置文件。如果是去参加比赛，不适合仔仔细细地一个一个配置，所以简单地撰写以下内容基本就可以很舒服的写代码了:</p>
+<pre><code class="language-vimrc">syntax on # 语法高亮
+set mouse=a # 允许鼠标点击
+set cindent # 使用 C 缩进
+set tabstep=4 # 一个 tab 是 4 个空格(也可以写成 set ts=4 )
+set shiftwidth=4 # 自动缩进是 4 个空格(也可以写成 set sw=4 )
+set nu # 显示行号(没想明白为啥是 nu 这两个字母)
+</code></pre>
+<p><strong>vim 常用的快捷键很多,但是比赛时需要用到的命令其实也没有太多:</strong></p>
+<pre><code class="language-vimrc">i 从当前光标进入编辑模式
+I 从当前行第一个非空格进入编辑模式
+a 从当前光标的下一个字符进入编辑模式
+A 从当前行最后一个字符处进入编辑模式
+o 在当前行下方另起一行进入编辑模式
+O 从当前行上方另起一行进入编辑模式
+x 删除光标处的字符
+X 删除光标前的字符
+
+dd 删除( delete )当前行( 5dd 删除当前行向下 5 行)
+yy 复制( yank )当前行( 5yy 复制当前行向下 5 行)
+p 粘贴( paste )到当前行下
+P 粘贴( paste )到当前行上
+u 撤销( undo )
+Ctrl + r 重做( redo )
+. (英文句号)继续做上次操作
+
+j k 上下移动光标
+h l 左右移动光标
+
+:w 写入( write )即保存
+:q 退出( quit )
+:q! 强制退出
+:wq 保存并退出
+  另外, :w 可以在后边加入文件名参数来另存为
+/word 查找当前光标下的第一个 word
+?word 查找当前光标上的第一个 word
+:%s/oldword/newword/g 将文件中的所有 oldword 替换成 newword
+:%s/oldword/newword/gc 将文件中的所有 oldword 替换成 newword ,在替代前让用户确认
+:a,bs/oldword/newword/g 将 a 到 b 行中的所有 oldword 替换成 newword ,当然也有对应的 gc 版本,其中若 b 为 $ 则表示文件末尾。
+n 正向重复上次搜寻
+N 反向重复上次搜寻
+</code></pre>
+<p><strong>编写、编译运行一个 cpp 文件的一般流程一般是这样的:</strong></p>
+<pre><code class="language-shell">1. 用终端进入想要存放代码的位置( cd 或者直接在指定文件夹打开终端)。
+
+2. 使用 vim filename.cpp 命令来打开一个 cpp 文件(若不存在则创建)。
+
+3. 编写代码。
+
+4.1 在本终端窗口编译代码, :wq 保存并退出 vim 就可以进行操作 5 。
+4.2 Ctrl + Shift + N 新建终端窗口编译代码,需要 :w 保存后新建终端窗口执行操作 5 。
+
+5. 终端中键入 g++ filename.cpp -o filename -std=c++11 -O2 来编译可执行文件。
+上句命令即为 g++ 的编译指令,
+第一个参数是代码文件名, 
+-o 制定目标名称为 flename (缺省值为 filename.out ),
+-std=c++11 来指定 c++11 标准, 
+-O2 开启氧气优化。
+若要使用 gdb 调试,则最好加上 -g 编译选项来更好地支持调试功能。
+
+6.1 可以使用 ./filename 来直接运行编译出的可执行文件。
+6.2.1 也可以使用 gdb 工具: gdb filename 来进行 gdb 调试:
+6.2.2 r 运行程序。
+更多的调试命令可以查看紫书 ( 刘汝佳 著《算法竞赛入门经典 第 2 版》 )P463 附表。
+</code></pre>
+<p>到此,在 Ubuntu 上的编译环境已经基本配置完成,然后就可以在 ICPC 中徜 pa 徉 xing 了。本文为冻葱 Tewi 记录回顾之用,若能够对你的学习工作进程有所帮助,不胜荣幸。</p>
+<p>以上。</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/BzIxC8D8s">
+            <span class="flex-auto">折腾</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/-zzRF13bvq">
+            <span class="flex-auto">笔记</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ZrLL7yP_C">
+            <span class="flex-auto">旧文归档</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://blog.dctewi.com/post/theme-changing-note">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  【旧文归档/捣鼓】更换主题小记
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://blog.dctewi.com/post/record-201808">
+                <h3 class="post-title">
+                  【旧文归档/停更】冻葱的月记 - 201808
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c67700c58e8784319e25',
+    clientSecret: 'b8a2eb7ab6706e02a413e80dac295ef5365662fe',
+    repo: 'dctewi.github.io',
+    owner: 'DCTewi',
+    admin: ['DCTewi'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://blog.dctewi.com/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

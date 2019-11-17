@@ -1,0 +1,629 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>冻葱Tewi</title>
+<meta name="description" content="一个蒟蒻的博客。" />
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1573979352582">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://blog.dctewi.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="冻葱Tewi - Atom Feed" href="https://blog.dctewi.com/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152707655-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://blog.dctewi.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1573979352582" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#mvc%E6%9E%B6%E6%9E%84">MVC架构</a></li>
+<li><a href="#%E7%B1%BBmvc%E6%9E%B6%E6%9E%84">类MVC架构</a></li>
+<li><a href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0">具体实现</a>
+<ul>
+<li><a href="#%E6%8E%A5%E5%8F%A3-igamemanager">接口 IGameManager</a></li>
+<li><a href="#%E7%AE%A1%E7%90%86%E7%B1%BB-managers">管理类 Managers</a></li>
+<li><a href="#%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E5%99%A8-playermanager">玩家管理器 PlayerManager</a></li>
+<li><a href="#%E8%83%8C%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8-inventorymanager">背包管理器 InventoryManager</a></li>
+<li><a href="#%E5%AD%98%E6%A1%A3%E7%AE%A1%E7%90%86%E5%99%A8-datamanager">存档管理器 DataManager</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B0%8F%E7%BB%93">小结</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/goal" class="menu" style="animation-delay: 0.2s">
+          目标
+        </a>
+      
+    
+      
+        <a href="/post/board" class="menu" style="animation-delay: 0.4s">
+          留言
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.6000000000000001s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.8s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/post/links" class="menu" style="animation-delay: 1s">
+          友链
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 1.2000000000000002s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700"><div style="color:#66ccff">夢に僕らで帆を張って、<br />来るべき日のために夜を越え。</div><br />Copyright © 2017 <a style="color:#66ccff">DCTewi</a><br />本站点采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA-4.0 国际许可协议</a>。</div>
+    <a class="rss" href="https://blog.dctewi.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">【开发】Unity的类MVC架构总结</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-27 / 8 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s2.ax1x.com/2019/03/27/AdBNjO.jpg" alt="">
+        
+        <div class="post-content yue">
+          <blockquote>
+<p>画UI画的头疼，想水一篇文章。本来想总结一下DP，但是发现东西实在是太多了，准备多写一些东西再放上来。所以先总结一下最近学到的Unity架构知识。</p>
+</blockquote>
+<!-- more -->
+<p>作为一个常年写竞赛型代码的菜鸡选手，往往不太会用这种写工程用的高级架构。但是写游戏又是一个不小的工程，所以一个清晰的架构就显得特别重要了。Unity编程中，这种类MVC架构我之前就在Unity官方案例中见到过，但是在图书馆借了相关材料之后才进行了系统的学习。</p>
+<h2 id="mvc架构">MVC架构</h2>
+<blockquote>
+<p>MVC模式（Model–view–controller）是软件工程中的一种软件架构模式，把软件系统分为三个基本部分：模型（Model）、视图（View）和控制器（Controller）。</p>
+</blockquote>
+<ul>
+<li>控制器（Controller）- 负责转发请求，对请求进行处理。</li>
+<li>视图（View） - 界面设计人员进行图形界面设计。</li>
+<li>模型（Model） - 程序员编写程序应有的功能（实现算法等等）、数据库专家进行数据管理和数据库设计(可以实现具体的功能)。</li>
+</ul>
+<p>而这种由Manager管理的结构和MVC的分工稍有出入，被书中称为类MVC架构。</p>
+<h2 id="类mvc架构">类MVC架构</h2>
+<p>由一个<code>IGameManager</code>接口封装所有Manager类的基本结构，由一个<code>Managers</code>总类来管理和实例化所有的Manager类，每个Manager类负责不同的模块。</p>
+<p>这样做的优点是代码结构清晰，管理、添加和删除功能模块的时候可以把互相之间的影响降低到最小。</p>
+<h2 id="具体实现">具体实现</h2>
+<h3 id="接口-igamemanager">接口 IGameManager</h3>
+<p>首先是IGameManager接口类：</p>
+<pre><code class="language-c#">public enum ManagerStatus
+{
+    Shutdown,
+    Initializing,
+    Started
+}
+
+public interface IGameManager
+{
+    ManagerStatus status { get; }
+
+    void Startup();
+}
+
+</code></pre>
+<p><code>ManagerStatus</code>枚举用来表示Manager类的实例化情况，<code>Startup()</code>负责分配<code>Manager</code>类在启动时所需要经历的行为，每个<code>Manager</code>内不需要单独实现<code>private void Start()</code>，而是在总的<code>Managers</code>类中统一执行<code>Startup()</code>。这么做可以手动控制<code>Manager</code>类之间的先后加载顺序来避免相互之间的依赖关系而导致的引用错误。</p>
+<h3 id="管理类-managers">管理类 Managers</h3>
+<p>我们拟添加存档管理器<code>DataManager</code>、背包管理器<code>InventoryManager</code>和玩家管理器<code>PlayerManager</code>。</p>
+<p>总管理类不需要继承自接口，代码大概如下：</p>
+<pre><code class="language-c#">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(DataManager))]		// 注1
+[RequireComponent(typeof(InventoryManager))]
+[RequireComponent(typeof(PlayerManager))]
+
+public class Managers : MonoBehaviour
+{
+    // Managers Instance
+    public static Managers instance { get; private set; }	// 注2
+
+    // Manager List
+    public static DataManager Data;
+    public static InventoryManager Inventory;
+    public static PlayerManager Player;
+    
+
+    // Manager Load Sequeue
+    private List&lt;IGameManager&gt; _startSequeue;	// 注3
+
+    private void Awake()
+    {
+        // Check if there isn't an instance
+        if (instance == null)
+        {
+            instance = this;
+        }
+        // Check if there is an instance
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        // Set this Managers instance Don't Destroy on Load
+        DontDestroyOnLoad(gameObject);
+
+        // Get Managers Instances
+        Data = GetComponent&lt;DataManager&gt;();
+        Inventory = GetComponent&lt;InventoryManager&gt;();
+        Player = GetComponent&lt;PlayerManager&gt;();
+
+        // Add Managers to Load Sequeue
+        _startSequeue = new List&lt;IGameManager&gt;
+        {
+            Player,
+            Inventory,
+            Data
+        };
+        // Start Load Managers
+        StartCoroutine(StartupManagers());
+    }
+
+    private IEnumerator StartupManagers()
+    {
+        // Call Startup() of Every Manager
+        foreach (var manager in _startSequeue)
+        {
+            manager.Startup();
+        }
+        // Wait for Next Frame
+        yield return null;
+
+        // Check the number of Managers
+        int numModules = _startSequeue.Count, numReady = 0;
+        // While not Loaded
+        while (numReady &lt; numModules)
+        {
+            int lastReady = numReady;
+            numReady = 0;
+            // Get the Status of Managers
+            foreach (var manager in _startSequeue)
+            {
+                if (manager.status == ManagerStatus.Started)
+                {
+                    numReady++;
+                }
+            }
+
+            // If undone
+            if (numReady &gt; lastReady)
+            {
+                Debug.Log(&quot;Progress: &quot; + numReady + &quot;/&quot; + numModules);
+                // Wait for Next Frame
+                yield return null;
+            }
+        }
+        // Complete
+        Debug.Log(&quot;All managers started up&quot;);
+    }
+}
+</code></pre>
+<ul>
+<li>
+<p>注1：</p>
+<p>这里的三个属性主要有两个作用。一是表明依赖关系，二是在绑定Game Object的时候可以只拖动Managers脚本，Unity会自动添加他需要的剩下的脚本文件。</p>
+</li>
+<li>
+<p>注2：</p>
+<p>获取当前的实例，用来直接调用当前示例以及防止多次实例化。</p>
+</li>
+<li>
+<p>注3：</p>
+<p>需要被初始化的<code>Manager</code>列表。众所周知，出列顺序是固定的，所以解决了<code>Start()</code>函数先后顺序无法确定的问题。</p>
+</li>
+</ul>
+<p>其他的都是一些朴实的模拟过程，配合注释即可食用。</p>
+<h3 id="玩家管理器-playermanager">玩家管理器 PlayerManager</h3>
+<p>只管理血量和血量上限，顺便带了一个更改血量的函数的简略代码：</p>
+<pre><code class="language-c#">using UnityEngine;
+
+public class PlayerManager : MonoBehaviour, IGameManager
+{
+    public ManagerStatus status { get; private set; }
+
+    public float health;
+    public float maxHealth;
+
+    public void Startup()
+    {
+        Debug.Log(&quot;Player manager starting...&quot;);
+
+        health = 50f;
+        maxHealth = 100f;
+
+        status = ManagerStatus.Started;
+    }
+
+    public void ChangeHealth(float delta)
+    {
+        health += delta;
+        if (health &gt; maxHealth)
+        {
+            health = maxHealth;
+        }
+        else if (health &lt; 0)
+        {
+            health = 0f;
+        }
+
+        Debug.Log(&quot;Player HP: &quot; + health + &quot;/&quot; + maxHealth);
+    }
+}
+
+</code></pre>
+<p>很朴实的代码……继承自<code>MonoBehaviour</code>和<code>IGameManager</code>，实现一下接口的要求就没什么了。</p>
+<h3 id="背包管理器-inventorymanager">背包管理器 InventoryManager</h3>
+<p>简略功能后的代码：</p>
+<pre><code class="language-c#">using System.Collections.Generic;
+using UnityEngine;
+
+public class InventoryManager : MonoBehaviour, IGameManager
+{
+    public ManagerStatus status { get; private set; }
+
+    private Dictionary&lt;string, int&gt; _items;
+
+    public void Startup()
+    {
+        Debug.Log(&quot;Inventory manager starting...&quot;);
+
+        _items = new Dictionary&lt;string, int&gt;();
+
+        status = ManagerStatus.Started;
+    }
+
+    public void UpdateData(Dictionary&lt;string, int&gt; newItems)
+    {
+        _items = newItems;
+    }
+
+    public Dictionary&lt;string, int&gt; GetData()
+    {
+        return _items;
+    }
+}
+
+</code></pre>
+<p>使用了<code>Dictonary&lt;string, int&gt;</code>来储存背包信息，但是这么做没有办法记录物品的摆放位置。可以再写一个位置类和物品类，然后用<code>Dictionary&lt;Place, Item&gt;</code>来储存，这里不再展开。</p>
+<h3 id="存档管理器-datamanager">存档管理器 DataManager</h3>
+<p>保留这个主要是顺带记录一下序列化/反序列化来储存游戏存档的方法：</p>
+<pre><code class="language-c#">using System.IO;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
+
+public class DataManager : MonoBehaviour, IGameManager
+{
+    public static string SaveName = &quot;save.dat&quot;;
+
+    public ManagerStatus status { get; private set; }
+
+    private string _savepath;
+
+    public void Startup()
+    {
+        Debug.Log(&quot;Data manager starting...&quot;);
+
+        _savepath = Path.Combine(Application.persistentDataPath, SaveName);
+        Debug.Log(&quot;Set the &quot; + SaveName + &quot; in &quot; + _savepath);
+
+        status = ManagerStatus.Started;
+    }
+
+    [ContextMenu(&quot;Save&quot;)]
+    public void Save()
+    {
+        // Dic of objects which should be saved
+        Dictionary&lt;string, object&gt; gamestate = new Dictionary&lt;string, object&gt;
+        {
+            { &quot;inventory&quot;, Managers.Inventory.GetData() },
+            { &quot;health&quot;, Managers.Player.health },
+            { &quot;maxHealth&quot;, Managers.Player.maxHealth }
+        };
+
+        // Format the serializable object to stream
+        FileStream stream = File.Create(_savepath);
+        BinaryFormatter formatter = new BinaryFormatter();
+        formatter.Serialize(stream, gamestate);
+        stream.Close();
+    }
+    
+    [ContextMenu(&quot;Load&quot;)]
+    public void Load()
+    {
+        try
+        {
+            if (!File.Exists(_savepath))
+            {
+                Debug.Log(&quot;No save file&quot;);
+                throw new FileNotFoundException();
+            }
+        }
+        catch (FileNotFoundException)
+        {
+            EventManager.SaveNotFoundEvent.Invoke();
+            return;
+        }
+
+        Dictionary&lt;string, object&gt; gamestate;
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = File.Open(_savepath, FileMode.Open);
+
+        // Deserialize the stream to object
+        gamestate = formatter.Deserialize(stream) as Dictionary&lt;string, object&gt;;
+        stream.Close();
+
+        Managers.Inventory.UpdateData(gamestate[&quot;inventory&quot;] as Dictionary&lt;string, int&gt;);
+        //...
+    }
+}
+
+</code></pre>
+<p>这个保存和加载的过程涉及到了序列化/反序列化以及C#的装箱/拆箱操作。</p>
+<ul>
+<li>
+<p>保存</p>
+<ol>
+<li>
+<p><code>Dictionary&lt;string, object&gt; gamestate = new Dictionary&lt;string, object&gt;{...}</code></p>
+<p>把所有想要保存的数据装箱。</p>
+</li>
+<li>
+<p>实例化一个<code>FileStream</code>类对象用来输出文件，配合<code>BinaryFormatter</code>来把装箱后的数据保存到想要保存的位置。</p>
+</li>
+<li>
+<p>关闭文件流。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>加载</p>
+<ol>
+<li>检查存档是否存在，若不存在则抛出异常、触发事件并返回（在这里不展开）。</li>
+<li>创建一个接受数据的<code>Dictionary&lt;string, object&gt;</code></li>
+<li><code>BinaryFormatter</code>配合 <code>FileStream</code>从存档位置读入存档内容，关闭文件流</li>
+<li>转换，拆箱，赋值。</li>
+</ol>
+</li>
+</ul>
+<h2 id="小结">小结</h2>
+<p>以上就是Unity工程中类MVC架构的大致结构。</p>
+<p><s>Unity天下第一！！！（被拖走暴打）</s></p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/J3l4TH0lR">
+            <span class="flex-auto">Unity</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ZrLL7yP_C">
+            <span class="flex-auto">旧文归档</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://blog.dctewi.com/post/wsl-setup">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  【捣鼓】WSL部署总结
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://blog.dctewi.com/post/number-theory-base">
+                <h3 class="post-title">
+                  【算法】数论基础小结
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c67700c58e8784319e25',
+    clientSecret: 'b8a2eb7ab6706e02a413e80dac295ef5365662fe',
+    repo: 'dctewi.github.io',
+    owner: 'DCTewi',
+    admin: ['DCTewi'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://blog.dctewi.com/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

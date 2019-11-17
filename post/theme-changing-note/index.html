@@ -1,0 +1,462 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>冻葱Tewi</title>
+<meta name="description" content="一个蒟蒻的博客。" />
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1573979352582">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://blog.dctewi.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="冻葱Tewi - Atom Feed" href="https://blog.dctewi.com/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152707655-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://blog.dctewi.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1573979352582" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%80-%E6%96%B0%E8%AF%84%E8%AE%BA%E8%87%AA%E5%8A%A8%E9%80%9A%E7%9F%A5%E8%AF%84%E8%AE%BA%E4%BD%9C%E8%80%85">一、新评论自动通知评论作者</a></li>
+<li><a href="#%E4%BA%8C-%E7%99%BB%E9%99%86%E5%9C%B0%E5%9D%80%E8%B7%B3%E8%BD%AC">二、登陆地址跳转</a>
+<ul>
+<li><a href="#1%E6%9B%B4%E6%94%B9php%E6%96%87%E4%BB%B6%E7%9A%84%E5%90%8D%E5%AD%97">1.更改php文件的名字</a></li>
+<li><a href="#2%E8%A6%81%E6%B1%82%E8%AE%BF%E9%97%AE%E6%B7%BB%E5%8A%A0%E9%94%AE%E5%80%BC">2.要求访问添加键值</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2%E5%8F%8A%E5%8F%8B%E9%93%BE%E7%AE%A1%E7%90%86">三、友链页面及友链管理</a>
+<ul>
+<li><a href="#1%E5%BC%80%E5%90%AFwp%E9%9A%90%E8%97%8F%E8%B5%B7%E6%9D%A5%E7%9A%84%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86%E5%99%A8">1.开启wp隐藏起来的链接管理器</a></li>
+<li><a href="#2%E5%BB%BA%E7%AB%8B%E9%A1%B5%E9%9D%A2%E6%A8%A1%E6%9D%BF">2.建立页面模板</a></li>
+<li><a href="#3%E4%B8%80%E4%B8%AA%E7%9C%8B%E8%B5%B7%E6%9D%A5%E6%B5%B7%E6%98%9F%E7%9A%84%E5%8F%8B%E9%93%BE%E6%A8%A1%E6%9D%BF">3.一个看起来海星的友链模板</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/goal" class="menu" style="animation-delay: 0.2s">
+          目标
+        </a>
+      
+    
+      
+        <a href="/post/board" class="menu" style="animation-delay: 0.4s">
+          留言
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.6000000000000001s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.8s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/post/links" class="menu" style="animation-delay: 1s">
+          友链
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 1.2000000000000002s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700"><div style="color:#66ccff">夢に僕らで帆を張って、<br />来るべき日のために夜を越え。</div><br />Copyright © 2017 <a style="color:#66ccff">DCTewi</a><br />本站点采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA-4.0 国际许可协议</a>。</div>
+    <a class="rss" href="https://blog.dctewi.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">【旧文归档/捣鼓】更换主题小记</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-01-10 / 9 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s2.ax1x.com/2019/11/17/MrVi2q.png" alt="">
+        
+        <div class="post-content yue">
+          <p>用<a href="https://www.cssplus.org/" target="_blank" rel="noreferrer noopener" aria-label="（在新窗口打开）">路易大佬</a>的<a rel="noreferrer noopener" aria-label="（在新窗口打开）" href="https://www.cssplus.org/wordpress-theme-inspire.html" target="_blank">inspire</a>好几个月了，于是就闲得发慌脑子一抽没事找事想要换一个主题——</p>
+<!-- more -->
+<p>接着我就发现：<strong>路易nb！</strong></p>
+<p>因为inspire已经集成了许多方便实用的nb功能在里面，包括且不限于音乐播放、评论回复、友链模板、登陆保护、SMTP、统计代码、百度SEO等等功能。失去了inspire的庇护之后，发现这些东西全都需要自己搞。我捣鼓了几个小时之后才勉勉强强搞到能用的样子。在这里把一些关键步骤记录一下。</p>
+<h2 id="一-新评论自动通知评论作者">一、新评论自动通知评论作者</h2>
+<p>这个功能首先需要SMTP支持并且正确设置SMTP服务器。</p>
+<p>在安装了WP插件商店中的某个SMTP插件并且配置完成之后，在主题的<code>functions.php</code>中代码最后（不是文件最后）添加如下代码即可：</p>
+<pre><code class="language-php">function comment_mail_notify($comment_id) {
+	$comment = get_comment($comment_id);
+	$parent_id = $comment-&gt;comment_parent ? $comment-&gt;comment_parent : '';
+	$spam_confirmed = $comment-&gt;comment_approved;
+	if (($parent_id != '') &amp;&amp; ($spam_confirmed != 'spam')) {
+		$wp_email = 'admin@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));//admin@改成可用的账户
+		$to = trim(get_comment($parent_id)-&gt;comment_author_email);
+		$subject = '您在 [' . get_option(&quot;blogname&quot;) . '] 的留言有了回应';
+		$message = '&amp;lt;div style=&quot;border-right:#666666 1px solid;border-radius:8px;color:#111;font-size:12px;width:702px;border-bottom:#666666 1px solid;font-family:微软雅黑,arial;margin:10px auto 0px;border-top:#666666 1px solid;border-left:#666666 1px solid&quot;&gt;&amp;lt;div class=&quot;adM&quot;&gt;
+&amp;lt;/div&gt;&amp;lt;div style=&quot;width:100%;background:#666666;min-height:60px;color:white;border-radius:6px 6px 0 0&quot;&gt;&amp;lt;span style=&quot;line-height:60px;min-height:60px;margin-left:30px;font-size:12px&quot;&gt;您在&amp;lt;a style=&quot;color:#00bbff;font-weight:600;text-decoration:none&quot; href=&quot;' . get_option('home') . '&quot; target=&quot;_blank&quot;&gt;' . get_option('blogname') . '&amp;lt;/a&gt; 上的留言有回复啦！&amp;lt;/span&gt; &amp;lt;/div&gt;
+&amp;lt;div style=&quot;margin:0px auto;width:90%&quot;&gt;
+&amp;lt;p&gt;' . trim(get_comment($parent_id)-&gt;comment_author) . ', 您好!&amp;lt;/p&gt;
+&amp;lt;p&gt;您于' . trim(get_comment($parent_id)-&gt;comment_date) . ' 在文章《' . get_the_title($comment-&gt;comment_post_ID) . '》上发表评论: &amp;lt;/p&gt;
+&amp;lt;p style=&quot;border-bottom:#ddd 1px solid;border-left:#ddd 1px solid;padding-bottom:20px;background-color:#eee;margin:15px 0px;padding-left:20px;padding-right:20px;border-top:#ddd 1px solid;border-right:#ddd 1px solid;padding-top:20px&quot;&gt;' . nl2br(get_comment($parent_id)-&gt;comment_content) . '&amp;lt;/p&gt;
+&amp;lt;p&gt;' . trim($comment-&gt;comment_author) . ' 于' . trim($comment-&gt;comment_date) . ' 给您的回复如下: &amp;lt;/p&gt;
+&amp;lt;p style=&quot;border-bottom:#ddd 1px solid;border-left:#ddd 1px solid;padding-bottom:20px;background-color:#eee;margin:15px 0px;padding-left:20px;padding-right:20px;border-top:#ddd 1px solid;border-right:#ddd 1px solid;padding-top:20px&quot;&gt;' . nl2br($comment-&gt;comment_content) . '&amp;lt;/p&gt;
+&amp;lt;p&gt;您可以点击 &amp;lt;a style=&quot;color:#00bbff;text-decoration:none&quot; href=&quot;' . htmlspecialchars(get_comment_link($parent_id)) . '&quot; target=&quot;_blank&quot;&gt;查看回复的完整內容&amp;lt;/a&gt;&amp;lt;/p&gt;
+&amp;lt;p&gt;感谢对 &amp;lt;a style=&quot;color:#00bbff;text-decoration:none&quot; href=&quot;' . get_option('home') . '&quot; target=&quot;_blank&quot;&gt;' . get_option('blogname') . '&amp;lt;/a&gt; 的关注，若有任何疑问，欢迎在博客留言，我会一一解答&amp;lt;/p&gt;&amp;lt;p&gt;(此邮件由系统自动发出，请勿回复。)&amp;lt;/p&gt;&amp;lt;/div&gt;&amp;lt;/div&gt;';
+		$from = &quot;From: \&quot;&quot; . get_option('blogname') . &quot;\&quot; &amp;lt;$wp_email&gt;&quot;;
+		$headers = &quot;$from\nContent-Type: text/html; charset=&quot; . get_option('blog_charset') . &quot;\n&quot;;
+		wp_mail( $to, $subject, $message, $headers );
+	}
+}
+
+add_action('comment_post', 'comment_mail_notify');
+</code></pre>
+<p>中间一大坨主要是邮件的格式，除了那一堆东西之外，东西不是太多。</p>
+<h2 id="二-登陆地址跳转">二、登陆地址跳转</h2>
+<p>因为众所周知的原因，讲WP默认的wp-login.php更改是基本操作。基本上有两种比较简单的方法来达到目的：</p>
+<h3 id="1更改php文件的名字">1.更改php文件的名字</h3>
+<p>将站点内的wp-login.php重命名，然后将php内的几个wp-login.php都替换成新名字，就完事儿了。目前看来好像没什么bug的样子？</p>
+<h3 id="2要求访问添加键值">2.要求访问添加键值</h3>
+<p>在主题的functions.php内追加：</p>
+<pre><code class="language-php">function login_protec()
+{
+	if ($_GET['login'] != 'please') header('Location: https://baidu.com/');
+}
+add_action( 'login_enqueue_scripts' , 'login_protec' );
+</code></pre>
+<p>保存之后，就必须访问 dctewi.com/wp-login.php?login=please 才可以进入登陆界面，否则将会跳转到baidu.com。当然，键值对中的key和value可以随意更改，网址也一样。</p>
+<h2 id="三-友链页面及友链管理">三、友链页面及友链管理</h2>
+<p>换主题之后有一种怅然若失的感觉。突然发现是因为原来的<a rel="noreferrer noopener" aria-label="友链界面（在新窗口打开）" href="https://dctewi.com/links" target="_blank">友链界面</a>不管用了，不仅如此，原来仪表盘内的链接管理项也不存在了。慌的一批的我东凑西凑才找到了解决办法：</p>
+<h3 id="1开启wp隐藏起来的链接管理器">1.开启wp隐藏起来的链接管理器</h3>
+<p>熟悉的functions.php内追加：</p>
+<pre><code class="language-php">add_filter('pre_option_link_manager_enabled','__return_true');
+</code></pre>
+<p>然后就可以发现仪表盘内出现了链接管理器！是不是很简单（）？</p>
+<h3 id="2建立页面模板">2.建立页面模板</h3>
+<p>页面模板原则上可以放在wp路径内的任何一个位置。复制一个主题带的page.php。重命名副本后，在文件内添加：</p>
+<pre><code class="language-php">&lt;?php
+/*
+Template Name: template-name
+*/
+?&gt;
+</code></pre>
+<p>然后wp就可以将这个php识别为一个页面模板文件。在新建页面的时候就可以看到，高级（指gutenberg编辑器，经典编辑器在选项卡中部）选项卡内有了一个名字叫做template-name的模板。通过这个模板创建的页面会用模板php来排版而不是默认的page.php。</p>
+<h3 id="3一个看起来海星的友链模板">3.一个看起来海星的友链模板</h3>
+<p>这个模板是我到处凑出来的，在接连的修改中解决了一些本来存在的问题（比如li标签没有厚度，footer跑到友链上方，高度不协调导致形状感人等等）。</p>
+<pre><code class="language-php">&lt;?php get_header(); ?&gt;
+
+&lt;?php
+/*
+Template Name: 友情链接
+*/
+?&gt;
+&lt;style&gt;
+	.link-content li
+	{
+		display: inline-block; //让li标签有宽度
+		vertical-align: top; //让li标签以顶部对齐
+		text-align: center;
+		width: 100px;
+		height: 150px; //让li标签的高度固定
+		font-size:14px;
+		margin-bottom:10px;
+		list-style-type: none;
+	}
+	.link-content li img
+	{
+		border-radius:100%;
+		margin-bottom:5px;
+		width:64px;
+		height=64px;
+		transition:0.5s;
+		-webkit-transtion:1.5s; //设置变换时间
+	}
+	.link-content li span
+	{
+		display:block; //让span成为块元素
+	}
+	.link-content li:hover img
+	{
+		transform:rotate(360deg); //简单的hover旋转
+		-webkit-transform:rotate(360deg);
+	}
+&lt;/style&gt;
+
+&lt;section id=&quot;content&quot;&gt;
+
+&lt;?php the_post(); ?&gt;
+		
+&lt;article class=&quot;sp&quot;&gt;
+
+&lt;hgroup class=&quot;p_lt p_a&quot;&gt;
+
+	&lt;header class=&quot;p_t&quot;&gt;
+		&lt;h2&gt;&lt;a href=&quot;&lt;?php the_permalink(); ?&gt;&quot;&gt;
+			&lt;?php the_title(); ?&gt;
+		&lt;/a&gt;&lt;/h2&gt;
+	&lt;/header&gt; 
+
+&lt;/hgroup&gt;
+
+&lt;div class=&quot;sp_c&quot;&gt;
+&lt;div&gt;
+ &lt;?php
+//获取友链并且随机排序
+ $bookmarks = get_bookmarks('title_li=&amp;orderby=rand'); 
+//打印格式
+ if ( !empty($bookmarks) ){
+ 	echo '&lt;ul class=&quot;link-content clearfix&quot;&gt;';
+ 	foreach ($bookmarks as $bookmark) {
+ 		$friendimg = $bookmark-&gt;link_image;
+ 		if(empty($friendimg)){
+ 			echo '&lt;li&gt;&lt;a href=&quot;' . $bookmark-&gt;link_url . '&quot; title=&quot;' . $bookmark-&gt;link_description . '&quot; target=&quot;_blank&quot; &gt;'. get_avatar($bookmark-&gt;link_notes,64) . '&lt;span class=&quot;sitename&quot;&gt;'. $bookmark-&gt;link_name .'&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;';
+ 		} else {
+ 			echo '&lt;li&gt;&lt;a href=&quot;' . $bookmark-&gt;link_url . '&quot; title=&quot;' . $bookmark-&gt;link_description . '&quot; target=&quot;_blank&quot; &gt;'. '&lt;img src=&quot;'. $bookmark-&gt;link_image. '&quot; /&gt;' . '&lt;span class=&quot;sitename&quot;&gt;'. $bookmark-&gt;link_name .'&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;';
+ 		}
+ 	}
+ echo '&lt;/ul&gt;';
+ }
+//打印完毕
+ ?&gt;
+&lt;/div&gt;
+&lt;?php the_content(); ?&gt;
+&lt;/div&gt;
+
+&lt;/article&gt;
+
+&lt;?php comments_template( '', true ); ?&gt;
+
+&lt;/section&gt;
+
+&lt;?php get_footer(); ?&gt;
+</code></pre>
+<p>然后把我原来的传送门页面套用这个模板就欧凯了，页面会自动获取连接管理器内的链接。连接图片优先获取链接的 图像地址 项，如果没有填写图像地址，则会以 备注 中的邮箱来获取Gravatar头像，如果还是不存在则使用默认头像。具体效果可以看我的<a href="https://dctewi.com/links/" target="_blank" rel="noreferrer noopener" aria-label="（在新窗口打开）">友链界面</a>。</p>
+<hr>
+<p>以上，做了一些微小的工作，让我的站点得以换个外观。但是我还是想说：坐等路易新主题pix，路易nb！</p>
+<p><del>这么搞了搞感觉自己的php水瓶有所提高了（大雾）。</del></p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/BzIxC8D8s">
+            <span class="flex-auto">折腾</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ZrLL7yP_C">
+            <span class="flex-auto">旧文归档</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://blog.dctewi.com/post/segment-tree-base">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  【数据结构】线段树基础小结
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://blog.dctewi.com/post/vim-setup">
+                <h3 class="post-title">
+                  【捣鼓】Ubuntu及vim、gcc配置笔记
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c67700c58e8784319e25',
+    clientSecret: 'b8a2eb7ab6706e02a413e80dac295ef5365662fe',
+    repo: 'dctewi.github.io',
+    owner: 'DCTewi',
+    admin: ['DCTewi'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://blog.dctewi.com/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

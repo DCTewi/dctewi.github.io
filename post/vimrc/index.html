@@ -1,0 +1,502 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>冻葱Tewi</title>
+<meta name="description" content="一个蒟蒻的博客。" />
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1573979352582">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://blog.dctewi.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="冻葱Tewi - Atom Feed" href="https://blog.dctewi.com/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152707655-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://blog.dctewi.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1573979352582" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E9%80%90%E6%9D%A1%E8%AF%B4%E6%98%8E">逐条说明</a>
+<ul>
+<li><a href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE">基础设置：</a></li>
+<li><a href="#%E8%A1%8C%E4%B8%BA%E8%AE%BE%E7%BD%AE">行为设置</a></li>
+<li><a href="#%E7%BC%A9%E8%BF%9B%E8%AE%BE%E7%BD%AE">缩进设置</a></li>
+<li><a href="#%E6%98%BE%E7%A4%BA%E8%AE%BE%E7%BD%AE">显示设置</a></li>
+<li><a href="#%E6%90%9C%E7%B4%A2%E8%AE%BE%E7%BD%AE">搜索设置</a></li>
+<li><a href="#%E6%98%A0%E5%B0%84%E8%AE%BE%E7%BD%AE">映射设置</a></li>
+<li><a href="#%E8%A1%A5%E5%85%A8%E8%AE%BE%E7%BD%AE">补全设置</a></li>
+<li><a href="#gvim-%E8%AE%BE%E7%BD%AE">GVim 设置</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B1%87%E6%80%BB">汇总</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/goal" class="menu" style="animation-delay: 0.2s">
+          目标
+        </a>
+      
+    
+      
+        <a href="/post/board" class="menu" style="animation-delay: 0.4s">
+          留言
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.6000000000000001s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.8s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/post/links" class="menu" style="animation-delay: 1s">
+          友链
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 1.2000000000000002s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700"><div style="color:#66ccff">夢に僕らで帆を張って、<br />来るべき日のために夜を越え。</div><br />Copyright © 2017 <a style="color:#66ccff">DCTewi</a><br />本站点采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA-4.0 国际许可协议</a>。</div>
+    <a class="rss" href="https://blog.dctewi.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">【杂项】竞赛向 vimrc 配置小结</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-08-06 / 9 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s2.ax1x.com/2019/08/06/eW4vvt.jpg" alt="">
+        
+        <div class="post-content yue">
+          <p>竞赛向简洁风 vim 配置。</p>
+<!-- more -->
+<h2 id="前言">前言</h2>
+<p><s>俗话说，Vim 大法好。</s></p>
+<p>前一段时间写题一直用的是 VS Code，VS Code 扩展丰富，功能强大，补全智能，跨平台。虽然打开的速度比较慢，但总体上来说用来写代码是真的舒服。</p>
+<p>但可惜的是比赛中并没有 VS Code 可以拿来用。习惯了 IntelliCode 强大的基于文本和词法分析的补全功能之后，我发现自己连一行<code>ios::sync_with_stdio(false);</code>都不想写了。裸手代码能力在慢慢消退。</p>
+<p>痛定思痛，我决定换回比赛中可以使用的 IDE 比如 Code::Blocks，但是在我的 Manjaro 笔记本的暗色微风主题下，CB 的界面充斥着各种暗色控件和亮色 Border ，变得特别丑，我还不如去用 Kate 或者 GEdit。这个时候，我突然回想起了在我开始用 Sublime Text 之前使用的神的编辑器 —— Vim。在花了大概一个多小时配置了一下 Vim之后，我已经完全爱上 Vim 啦！</p>
+<p>这套配置遵守了以下的几个原则：</p>
+<ol>
+<li>不使用任何插件。因为比赛环境中是没有网络可以给 Vim 装插件的。</li>
+<li>尽量轻量，避免任何意义不大的配置。因为比赛中给选手用来调配置的时间并不多，应该在尽量快的时间内完成平常使用的配置。</li>
+</ol>
+<p>本文不再记录 vim 的基本操作，请自行网上查询或者查看我<a href="../vim-setup">之前的文章</a>。</p>
+<h2 id="逐条说明">逐条说明</h2>
+<p>话不多说，先逐条说明一下，在文章最后有单独的代码块：</p>
+<pre><code class="language-vimrc">if !exists(&quot;g:os&quot;)
+    if has(&quot;win64&quot;) || has(&quot;win32&quot;) || has(&quot;win16&quot;)
+        let g:os = &quot;win&quot;
+    else
+        let g:os = &quot;unix&quot;
+    endif
+endif
+</code></pre>
+<p>首先判断当前环境究竟是 Windows 还是 Linux，因为我平常会在两种环境下写代码，所以根据不同的情况需要进行不同配置。</p>
+<h3 id="基础设置">基础设置：</h3>
+<pre><code class="language-vimrc">set nocompatible              &quot; 取消 vi 兼容模式
+set showcmd                   &quot; 右下角显示当前输入的命令
+set mouse=a                   &quot; 允许鼠标选中
+set backspace=2               &quot; 绑定 backspace 键到模式2
+set encoding=utf-8            &quot; 设定默认文件编码
+set t_Co=256                  &quot; 使用256色终端
+filetype indent on            &quot; 根据文件类型自动判断缩进类型
+if g:os == &quot;win&quot;              &quot; 将默认 yank 操作的寄存器设置为系统寄存器+/*
+  set clipboard=unnamed       &quot; 设置之后就可以用 y/p 操作系统剪切板了
+else
+  set clipboard=unnamedplus
+endif
+</code></pre>
+<p>这里的 clipboard 设定需要 vim 的 X11 支持，请事先使用 <code>vim --version | grep clipboard</code>查看是否有 <code>+clipboard</code>。如果是减号，则需要安装 <code>vim-gtk</code>包或者 <code>gvim</code>包。</p>
+<h3 id="行为设置">行为设置</h3>
+<pre><code class="language-vimrc">set noswapfile                &quot; 取消 swap 文件生成
+set noerrorbells              &quot; 取消声音提示
+set autoread                  &quot; 若文件被外部改动则自动更新内容
+</code></pre>
+<h3 id="缩进设置">缩进设置</h3>
+<pre><code class="language-vimrc">set cindent                   &quot; 使用 C 系缩进方法
+set tabstop=4                 &quot; 设定 tab 宽度为 4
+set shiftwidth=4              &quot; 设定自动缩进宽度为 4
+set expandtab                 &quot; 将 tab 转换为空格
+set softtabstop=4             &quot; 将 tab 转换为 4 个空格
+</code></pre>
+<h3 id="显示设置">显示设置</h3>
+<pre><code class="language-vimrc">syntax enable                 &quot; 启用符号高亮
+syntax on                     &quot; 开启符号高亮
+set number                    &quot; 显示行号
+set cursorline                &quot; 高亮当前行
+set showmatch                 &quot; 高亮匹配括号以及高亮颜色设置
+hi MatchParen cterm=bold ctermbg=none ctermfg=blue
+</code></pre>
+<h3 id="搜索设置">搜索设置</h3>
+<pre><code class="language-vimrc">set hlsearch                  &quot; 高亮匹配结果
+set incsearch                 &quot; 逐字搜索
+set ignorecase                &quot; 不去别大小写
+set smartcase                 &quot; 若搜索关键字有大写则区别大小写
+</code></pre>
+<h3 id="映射设置">映射设置</h3>
+<pre><code class="language-vimrc">if g:os == &quot;win&quot;
+    map &lt;F5&gt; :w &lt;CR&gt; :!g++ &quot;%&quot; -o &quot;%&lt;.exe&quot; -std=c++14 -O2 -Wall -DDEBUG ; &quot;./%&lt;.exe&quot; &lt;CR&gt;
+else
+    map &lt;F5&gt; :w &lt;CR&gt; :!g++ &quot;%&quot; -o &quot;%&lt;.exe&quot; -std=c++14 -O2 -Wall -DDEBUG &amp;&amp; &quot;./%&lt;.exe&quot; &lt;CR&gt;
+endif
+
+map &lt;C-F5&gt; :w &lt;CR&gt; :!python3 % &lt;CR&gt;
+</code></pre>
+<p>上边是一键<F5>编译 C++ 单文件的映射，其中<code>%</code>表示文件名，<code>%&lt;</code>表示去掉扩展名的文件名，<code>:w</code>保存，<code>&lt;CR&gt;, &lt;cr&gt;</code>代表换行，<code>:!</code>表示在外部 Shell 中运行指令。</p>
+<p>最后一行是按&lt;Ctrl + F5&gt; 运行 python 脚本的映射，可以根据设置将 python3 改成 python。</p>
+<h3 id="补全设置">补全设置</h3>
+<pre><code class="language-vimrc">inoremap ( ()&lt;ESC&gt;i
+inoremap [ []&lt;ESC&gt;i
+inoremap ' ''&lt;ESC&gt;i
+inoremap &quot; &quot;&quot;&lt;ESC&gt;i
+inoremap { {}&lt;ESC&gt;i
+inoremap {&lt;CR&gt; {&lt;CR&gt;}&lt;ESC&gt;O
+
+inoremap &lt;F8&gt; #include&lt;bits/stdc++.h&gt;&lt;CR&gt;using namespace std;&lt;CR&gt;typedef long long ll;&lt;CR&gt;
+</code></pre>
+<p>前几个是自动补全符号，其中如果只输入大括号则单行补全，大括号后按一下回车就会将大括号展开。最后一行是 F8 补全标准文件头，竞赛向嘛，竞赛向。</p>
+<h3 id="gvim-设置">GVim 设置</h3>
+<pre><code class="language-vimrc">if has(&quot;gui_running&quot;)
+    set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+    set fileencoding=utf-8       &quot; 显示编码
+    set guioptions-=m            &quot; 隐藏菜单，工具栏和滚动条
+    set guioptions-=T
+    set guioptions-=r
+    set lines=35 columns=120     &quot; 设置大小
+    colorscheme torte            &quot; 设置配色
+    if g:os == &quot;win&quot;             &quot; 设置字体
+        set guifont=Microsoft_Yahei_Mono:h11
+    else
+        set guifont=Fira\ Mono\ 12
+    endif
+endif
+</code></pre>
+<p>这一段是当使用 vim GUI 模式也就是 GVim 的时候进行的简单配置。比赛的时候可以无视，主要是平时在 Windows 上使用 Vim 的时候用到的。</p>
+<h2 id="汇总">汇总</h2>
+<pre><code class="language-vimrc">&quot; Vim Configuration File
+&quot; Author: dctewi@dctewi.com
+&quot; Description: For minimal icpc use
+&quot;
+
+&quot; System Detect
+if !exists(&quot;g:os&quot;)
+    if has(&quot;win64&quot;) || has(&quot;win32&quot;) || has(&quot;win16&quot;)
+        let g:os = &quot;win&quot;
+    else
+        let g:os = &quot;unix&quot;
+    endif
+endif
+
+&quot; Properties
+set nocompatible
+set showcmd
+set mouse=a
+set backspace=2
+set encoding=utf-8
+set t_Co=256
+filetype indent on
+if g:os == &quot;win&quot;
+  set clipboard=unnamed
+else
+  set clipboard=unnamedplus
+endif
+
+&quot; Util
+set noswapfile
+set noerrorbells
+set autoread
+
+&quot; Indent
+set cindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+
+&quot; Layout
+syntax enable
+syntax on
+set number
+set cursorline
+set showmatch
+hi MatchParen cterm=bold ctermbg=none ctermfg=blue
+
+&quot; Search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+&quot; Compile
+if g:os == &quot;win&quot;
+    map &lt;F5&gt; :w &lt;CR&gt; :!g++ &quot;%&quot; -o &quot;%&lt;.exe&quot; -std=c++14 -O2 -Wall -DDEBUG ; &quot;./%&lt;.exe&quot; &lt;CR&gt;
+else
+    map &lt;F5&gt; :w &lt;CR&gt; :!g++ &quot;%&quot; -o &quot;%&lt;.exe&quot; -std=c++14 -O2 -Wall -DDEBUG &amp;&amp; &quot;./%&lt;.exe&quot; &lt;CR&gt;
+endif
+map &lt;C-F5&gt; :w &lt;CR&gt; :!python3 % &lt;CR&gt;
+
+&quot; Auto complete
+inoremap ( ()&lt;ESC&gt;i
+inoremap [ []&lt;ESC&gt;i
+inoremap ' ''&lt;ESC&gt;i
+inoremap &quot; &quot;&quot;&lt;ESC&gt;i
+inoremap { {}&lt;ESC&gt;i
+inoremap {&lt;CR&gt; {&lt;CR&gt;}&lt;ESC&gt;O
+
+&quot; Header
+inoremap &lt;F8&gt; #include&lt;bits/stdc++.h&gt;&lt;CR&gt;using namespace std;&lt;CR&gt;typedef long long ll;&lt;CR&gt;
+
+&quot; GVim
+if has(&quot;gui_running&quot;)
+    set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+    set fileencoding=utf-8
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set lines=35 columns=120
+    colorscheme torte
+    if g:os == &quot;win&quot;
+        set guifont=Microsoft_Yahei_Mono:h11
+    else
+        set guifont=Fira\ Mono\ 12
+    endif
+endif
+</code></pre>
+<p>文章中 vimrc 不随着我的更新而更新。我当前使用的 vimrc 可在<a href="https://github.com/DCTewi/My-Algorithm-Templates/blob/master/.vimrc">我的Github上</a>找到。</p>
+<p>以上，Happy Vimming Everyday！</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/QJrh5uCS5">
+            <span class="flex-auto">vim</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/UD9G6r3IRW">
+            <span class="flex-auto">vimrc</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://blog.dctewi.com/post/gogs">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  【折腾】一个小时用树莓派搭建私有Git站
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://blog.dctewi.com/post/difference-constraints">
+                <h3 class="post-title">
+                  【算法】差分约束小结
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c67700c58e8784319e25',
+    clientSecret: 'b8a2eb7ab6706e02a413e80dac295ef5365662fe',
+    repo: 'dctewi.github.io',
+    owner: 'DCTewi',
+    admin: ['DCTewi'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://blog.dctewi.com/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

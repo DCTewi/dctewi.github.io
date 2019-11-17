@@ -1,0 +1,555 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>冻葱Tewi</title>
+<meta name="description" content="一个蒟蒻的博客。" />
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1573979352582">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://blog.dctewi.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="冻葱Tewi - Atom Feed" href="https://blog.dctewi.com/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152707655-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://blog.dctewi.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1573979352582" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a href="#%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84">存储结构</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B8%B8%E8%A7%84%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91">常规递归线段树</a>
+<ul>
+<li><a href="#%E5%BB%BA%E6%A0%91%E6%93%8D%E4%BD%9C">建树操作</a></li>
+<li><a href="#push_up%E6%93%8D%E4%BD%9C">push_up()操作</a></li>
+<li><a href="#%E6%87%92%E6%83%B0%E6%A0%87%E8%AE%B0">懒惰标记</a></li>
+<li><a href="#%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C">查询操作</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C">更新操作</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9D%9E%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91zkw%E7%BA%BF%E6%AE%B5%E6%A0%91">非递归线段树（zkw线段树）</a>
+<ul>
+<li><a href="#%E5%BB%BA%E6%A0%91%E6%93%8D%E4%BD%9C-2">建树操作</a></li>
+<li><a href="#%E5%8C%BA%E9%97%B4%E5%88%86%E5%89%B2">区间分割</a></li>
+<li><a href="#%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C-2">查询操作</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C-2">更新操作</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/goal" class="menu" style="animation-delay: 0.2s">
+          目标
+        </a>
+      
+    
+      
+        <a href="/post/board" class="menu" style="animation-delay: 0.4s">
+          留言
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.6000000000000001s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.8s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/post/links" class="menu" style="animation-delay: 1s">
+          友链
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 1.2000000000000002s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700"><div style="color:#66ccff">夢に僕らで帆を張って、<br />来るべき日のために夜を越え。</div><br />Copyright © 2017 <a style="color:#66ccff">DCTewi</a><br />本站点采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA-4.0 国际许可协议</a>。</div>
+    <a class="rss" href="https://blog.dctewi.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">【数据结构】线段树基础小结</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-02-11 / 13 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s2.ax1x.com/2019/02/11/kdi1Yt.jpg" alt="">
+        
+        <div class="post-content yue">
+          <p>学习两种线段树后的总结。<br>
+可能并不适合完全不了解线段树的人入门？但是可能会对稍微知道线段树的人有一些帮助。</p>
+<!-- more -->
+<blockquote>
+<p><strong>线段树</strong>是一种二叉树，可以视为树状数组的变种。</p>
+<p>该数据结构在实际应用中用途不大，但是由于其程序易于实现而呗广泛应用于程序竞赛当中。其用途是在O(logN)查询一个指定区间内的信息，并可在同样的时间复杂度内支持更新等操作。</p>
+<p>——Wikipedia</p>
+</blockquote>
+<h3 id="基本概念">基本概念</h3>
+<p>线段树本身是专门用来处理<strong>区间问题</strong>的数据结构，包括但不限于区间求和问题(RSQ)，区间最值问题(RMQ)等。因为本身具有树的结构特性而被称为线段“树”。</p>
+<p>线段树是分块思想的树化，或者说是对于信息处理的二进制化。即——通过将整个序列分为有穷个小块，对于要查询的某一段区间，总是可以整合成k个<strong>子块</strong>和m个<strong>单个元素</strong>的信息的并集。</p>
+<p>线段树只能维护满足结合律的信息，即只能维护一个幺半群序列（群论可以参见<a href="https://dctewi.com/quick_exp/">群论与快速幂</a>）。而树状数组只能维护交换群序列。</p>
+<p>线段树上的每一个子节点，都表示整个序列中的一段子区间。其中，每个叶子节点都表示序列中的单个元素信息。每次更新，子节点都向上传递信息，来不断更新整个线段树。</p>
+<h3 id="存储结构">存储结构</h3>
+<p>以这一棵总值线段树为例：</p>
+<figure data-type="image" tabindex="1"><img src="https://s2.ax1x.com/2019/02/11/kdPhz8.png" alt="线段树示例"></figure>
+<p>树上每一个节点存储的都是一个区间上的总和。</p>
+<h2 id="常规递归线段树">常规递归线段树</h2>
+<h3 id="建树操作">建树操作</h3>
+<p>一般地，我们经常采用递归的方法来创建线段树。对于节点类：</p>
+<pre><code class="language-cpp">typedef long long ll;
+const int MAXN = 1e5 + 5;  //源数据最大长度
+class SegmentTreeNode
+{
+public:
+    SegmentTreeNode(){}  //构造函数
+    
+    int l, r;  //该节点储存的区间左右范围
+    ll data, add_tag = 0, mul_tag = 1;  //该节点应该储存的数据和标记*
+}st[MAXN &lt;&lt; 2];  //线段树数组，范围×4防止越界
+ll raw_data[MAXN];  //原始数据
+
+</code></pre>
+<p>我们递归地从下向上来创建线段树：</p>
+<pre><code class="language-cpp">void build(int p, int l, int r)  //p节点序号，l, r范围
+{
+    st[p].l = l; st[p].r = r;  //处理当前区间
+
+    if (l == r)  //叶节点特判
+    {
+        st[p].data = raw_data[l];  //赋值
+        return ;  //触底返回
+    }
+
+    int mid = (l + r) &gt;&gt; 1;  //二分递归
+    build(lson(p), l, mid);
+    build(rson(p), mid + 1, r);
+
+    push_up(p);  //上推*
+}
+
+</code></pre>
+<h3 id="push_up操作">push_up()操作</h3>
+<p>push_up()即线段树上推操作，即把下方节点的更新情况&quot;告知&quot;上方节点。对于不同类型的线段树可能有所不同。在总值线段树中，上推操作为：</p>
+<pre><code class="language-cpp">void push_up(int p)
+{
+    st[p].data = (st[lson(p)].data + st[rson(p)].data) % mod;
+}
+
+</code></pre>
+<h3 id="懒惰标记">懒惰标记</h3>
+<p>当我们更新时，如果每次都把整个线段树更新，那么将会耗费很多多余的时间。所以我们将每次节点的更新记录到节点内，当需要使用它下方的节点时在进行下推。标记记录的就是以这个节点为根节点的子树中经过过的更新操作。</p>
+<p>下推懒惰标记的操作为：</p>
+<pre><code class="language-cpp">void lazy_down(int p)
+{
+    if (st[p].add_tag || st[p].mul_tag != 1)
+    {
+        st[lson(p)].data = st[lson(p)].data * st[p].mul_tag % mod;
+        st[lson(p)].mul_tag = st[lson(p)].mul_tag * st[p].mul_tag % mod;
+        st[lson(p)].add_tag = st[lson(p)].add_tag * st[p].mul_tag % mod;
+
+        st[rson(p)].data = st[rson(p)].data * st[p].mul_tag % mod;
+        st[rson(p)].mul_tag = st[rson(p)].mul_tag * st[p].mul_tag % mod;
+        st[rson(p)].add_tag = st[rson(p)].add_tag * st[p].mul_tag % mod;
+
+        st[p].mul_tag = 1;  //乘法标记下推完成，恢复初始值**1**
+
+        st[lson(p)].add_tag +=st[p].add_tag;
+        st[lson(p)].data += st[p].add_tag * (st[lson(p)].r - st[lson(p)].l + 1);
+        st[rson(p)].add_tag +=st[p].add_tag;
+        st[rson(p)].data += st[p].add_tag * (st[rson(p)].r - st[rson(p)].l + 1);
+
+        st[p].add_tag = 0;  //加法标记下推完成，恢复初始值**0**
+    }
+}
+
+</code></pre>
+<p>需要注意的是，这里的线段树支持了加法和乘法操作。那么在处理加法和乘法操作时，应该注意加法和乘法的先后顺序。先处理乘法，并且用乘法标记更新加法标记（因为在做乘法操作时，加法操作也会被乘以相同的系数），然后再处理加法标记。这样才不会丢失精度以及保持数据记录的准确性。</p>
+<h3 id="查询操作">查询操作</h3>
+<p>要查询指定区间（区间长度&gt;=1）的总和/最大值/最小值等时，可以想到：通过不断向下查询节点，将查询区间[l, r]的问题转化成有限个小区间以及有限个单个元素的并集，即分块思想。</p>
+<p>具体实现代码为：</p>
+<pre><code class="language-cpp">long long query(int p, int l, int r)  //p节点序号，l, r范围
+{
+    //若当前节点包括的数据被完全包含与所求区间，那么直接上推本节点数据
+    if (st[p].l &gt;= l &amp;&amp; st[p].r &lt;= r) return st[p].data % mod;
+
+    //若没有完全包含，那么就需要用到下方节点，那么下推标记
+    lazy_down(p);
+
+    //二分向下查询
+    ll ans = 0;
+    int mid = (st[p].l + st[p].r) &gt;&gt; 1;
+    if (mid &gt;= l) ans += query(lson(p), l, r);
+    if (mid &lt;  r) ans += query(rson(p), l, r);
+
+    return ans;
+}
+
+</code></pre>
+<h3 id="更新操作">更新操作</h3>
+<p>加法和乘法更新操作整体步骤基本相同，基本为：如果当前区间被完全包含于修改区间，那么只记录标记；否则继续二分更新。</p>
+<p>具体时间代码为：</p>
+<pre><code class="language-cpp">void add(int p, int l, int r, ll k)
+{
+    //被完全包含
+    if (st[p].l &gt;= l &amp;&amp; st[p].r &lt;= r)
+    {
+        st[p].data = (st[p].data + k * (st[p].r - st[p].l + 1)) % mod;
+        st[p].add_tag += k;
+        return ;
+    }
+    
+	//没有被完全包含
+    lazy_down(p);
+    int mid = (st[p].l + st[p].r) &gt;&gt; 1;
+    if (mid &gt;= l) add(lson(p), l, r, k);
+    if (mid &lt;  r) add(rson(p), l, r, k);
+
+    push_up(p);
+}
+//思路同上函数
+void mul(int p, int l, int r, ll k)
+{
+    if (st[p].l &gt;= l &amp;&amp; st[p].r &lt;= r)
+    {
+        st[p].data = st[p].data * k % mod;
+        st[p].mul_tag = st[p].mul_tag * k % mod;
+        st[p].add_tag = st[p].add_tag * k % mod;
+        return ;
+    }
+
+    lazy_down(p);
+    int mid = (st[p].l + st[p].r) &gt;&gt; 1;
+    if (mid &gt;= l) mul(lson(p), l, r, k);
+    if (mid &lt;  r) mul(rson(p), l, r, k);
+
+    push_up(p);
+}
+
+</code></pre>
+<p>以上就是常规递归线段树的大体思路和具体实现代码（最值线段树）。总代码被放在了文章最下方。</p>
+<h2 id="非递归线段树zkw线段树">非递归线段树（zkw线段树）</h2>
+<p>zkw线段树是由神犇zkw在早些时候提出的<strong>非递归式线段树</strong>。在线段树概念的基础上，优化了常规递归线段树的巨大常数，让线段树的常数变得很小，代码量也同时减少了不少。这里只讨论拥有加法标记的非递归线段树。</p>
+<h3 id="建树操作-2">建树操作</h3>
+<p>使用两个数组，进一步缩小常数（玄学操作）：</p>
+<pre><code class="language-cpp">ll st[MAXN &lt;&lt; 2], add[MAXN &lt;&lt; 2];  //线段树和标记
+int n, N = 1;  //n为原始数据数量，N为**原始数据的起始位置**
+
+inline void build()
+{
+	for (; N &lt; n + 1; N &lt;&lt;= 1);  //找到原始数据应该在的位置
+	for (int i = N + 1; i &lt;= N + n; i++) read(st[i]); //放置原始数据
+	for (int i = N - 1; i &gt;= 1; i--) st[i] = st[i &lt;&lt; 1] + st[i &lt;&lt; 1 | 1];//从下向上构建线段树
+}
+
+</code></pre>
+<p>代码量变小了，意味着信息浓度的增加。这短短三个for语句其实蕴含了不少信息量。</p>
+<p>在zkw线段树中，我们将原始数据放在线段树数组的最后方+1的位置，这样将有利于之后的各种操作。</p>
+<p>二叉树中，对于节点n，n / 2 和 n / 2 + 1分别是n的两个儿子节点。位运算中的表述如上代码，不再赘述。</p>
+<h3 id="区间分割">区间分割</h3>
+<p>在zkw线段树中，我们的查询和更新操作将引入两个特殊的节点（或者说是&quot;节点指针&quot;）s和t。</p>
+<p>对于目标区间[l, r]，s一开始指向节点(l - 1)，t一开始指向节点(r + 1)。每个小步骤，s和t都指向他们当前的父亲节点</p>
+<p>通过在纸上的模拟，我们可以发现：</p>
+<p>从s，t的初始位置，直到s和t在本次步骤中父亲节点相同。这个过程中，如果s是它父亲节点的左节点，那么加上他的右边的兄弟；如果t是它父亲节点的右节点，那么加上它左边的兄弟。那么最后加上的所有节点包含的区间，恰好不重不漏地等价于[l, r]。</p>
+<p>在zkw线段树中，我们可以发现：对于一个长度是1（r - l + 1的值）的节点（即叶子节点），每次更新他需要加上1次标记。同理，对于一个长度是n的节点，每次更新他需要加上n个标记。</p>
+<p>可以推出，从叶子节点向上，每次需要加上的标记数量将增加一倍——即乘二，或者说右移一位。</p>
+<h3 id="查询操作-2">查询操作</h3>
+<p>和递归式线段树不同，zkw线段树的每次操作都是直接从底部开始向上操作。并且在操作完成后继续上推到根节点。</p>
+<pre><code class="language-cpp">inline ll query(int l, int r)
+{
+	int s = N + l - 1, t = N + r + 1;  //s节点和t节点
+    //lNum表示当前s包含的标记个数，rNum表示当t包含的标记个数
+    //num表示当前层的节点包含的标记个数（从1开始）
+	ll lNum = 0, rNum = 0, num = 1, ans = 0;
+    
+    //如果s和t拥有同一个父亲节点，那么s ^ t == 1，即二进制路径只有最后一位不同
+    //那么s ^ t ^ 1 == 0，循环停止
+    //每个循环节，s和t上移，num右移一位
+	for (; s ^ t ^ 1; s &gt;&gt;= 1, t &gt;&gt;= 1, num &lt;&lt;= 1)
+	{
+		if (add[s]) ans += add[s] * lNum;  //处理标记
+		if (add[t]) ans += add[t] * rNum;
+		if (~s &amp; 1) {ans += st[s ^ 1]; lNum += num;}
+		if ( t &amp; 1) {ans += st[t ^ 1]; rNum += num;}
+        //如果s是父亲的左儿子，二进制最后一位应该是0，取反后&amp;1应该是1
+        //同理，t是父亲的右儿子时，t &amp; 1应该是是1
+	}
+	for (; s; s &gt;&gt;= 1, t &gt;&gt;= 1)  //继续上推到根节点
+	{
+		ans += add[s] * lNum;
+		ans += add[t] * rNum;
+	}
+	return ans;
+}
+
+</code></pre>
+<h3 id="更新操作-2">更新操作</h3>
+<p>也是从下向上，一直上推到根节点。每次上推更新自己以应对包含自己的情形。如果s是左||t是右，那么给它的兄弟上标记并更新节点。</p>
+<pre><code class="language-cpp">inline void update(int l, int r, ll k)
+{
+	int s = N + l - 1, t = N + r + 1; 
+	ll lNum = 0, rNum = 0, num = 1;
+	for (; s ^ t ^ 1; s &gt;&gt;= 1, t &gt;&gt;= 1, num &lt;&lt;= 1)
+	{
+		st[s] += k * lNum;  //更新自己
+		st[t] += k * rNum;
+        //满足条件就更新自己的兄弟
+		if (~s &amp; 1) {add[s ^ 1] += k; st[s ^ 1] += k * num; lNum += num;}
+		if ( t &amp; 1) {add[t ^ 1] += k; st[t ^ 1] += k * num; rNum += num;}
+	}
+	for (; s; s &gt;&gt;= 1, t &gt;&gt;= 1)  //上推到根节点
+	{
+		st[s] += k * lNum;
+		st[t] += k * rNum;
+	}
+}
+
+</code></pre>
+<p>到此，zkw线段树的基本实现已经差不多完成了。</p>
+<p>可以看到，zkw线段树比常规线段树的代码量和常数小了很多，但是换来的是每句话信息量的增大。</p>
+<h2 id="总结">总结</h2>
+<p>到此，线段树学习小结基本结束。</p>
+<p>本小结为自己学习线段树后总结之用，可能并不适合完全不了解线段树的人入门？但是可能会对稍微知道线段树的人有一些帮助。</p>
+<p>两个版本的线段树的具体实现代码可以查看<a href="https://github.com/DCTewi/My-Algorithm-Templates/tree/master/5.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20-%20Stucture">我的Github页</a>。</p>
+<p>以上。</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/Gr8-1MesZ">
+            <span class="flex-auto">数据结构</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/BpU7Rv76yB">
+            <span class="flex-auto">线段树</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ZrLL7yP_C">
+            <span class="flex-auto">旧文归档</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://blog.dctewi.com/post/kmp">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  【算法】KMP学习小结
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://blog.dctewi.com/post/theme-changing-note">
+                <h3 class="post-title">
+                  【旧文归档/捣鼓】更换主题小记
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c67700c58e8784319e25',
+    clientSecret: 'b8a2eb7ab6706e02a413e80dac295ef5365662fe',
+    repo: 'dctewi.github.io',
+    owner: 'DCTewi',
+    admin: ['DCTewi'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://blog.dctewi.com/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
