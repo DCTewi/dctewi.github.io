@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.dctewi.com</id>
     <title>冻葱Tewi</title>
-    <updated>2020-02-03T06:04:51.542Z</updated>
+    <updated>2020-02-03T06:11:17.782Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.dctewi.com"/>
     <link rel="self" href="https://blog.dctewi.com/atom.xml"/>
@@ -12,10 +12,14 @@
     <rights>All rights reserved 2020, 冻葱Tewi</rights>
     <entry>
         <title type="html"><![CDATA[【总结】UnityEvent 和 C# event 的差异与选择]]></title>
-        <id>https://blog.dctewi.com/post/zong-jie-unityevent-he-c-event-de-chai-yi-yu-xuan-ze</id>
-        <link href="https://blog.dctewi.com/post/zong-jie-unityevent-he-c-event-de-chai-yi-yu-xuan-ze">
+        <id>https://blog.dctewi.com/post/unityevent-vs-csharpevent</id>
+        <link href="https://blog.dctewi.com/post/unityevent-vs-csharpevent">
         </link>
         <updated>2020-02-03T05:54:04.000Z</updated>
+        <summary type="html"><![CDATA[<p>Event 是一种十分方便的机制。一个 Event 就好像是一个 Youtuber，而他的粉丝 Subscribers/Listeners 会在这个 Event 发生的时候进行响应（观看）。许多现代语言都有类似的订阅机制，比如 Java 中的 EventBus 类。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Event 是一种十分方便的机制。一个 Event 就好像是一个 Youtuber，而他的粉丝 Subscribers/Listeners 会在这个 Event 发生的时候进行响应（观看）。许多现代语言都有类似的订阅机制，比如 Java 中的 EventBus 类。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[【总结】2019南京网络赛小结]]></title>

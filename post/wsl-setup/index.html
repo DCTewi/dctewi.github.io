@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>冻葱Tewi</title>
 <meta name="description" content="一个蒟蒻的博客。" />
-<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1580709810402">
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1580710239680">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -33,7 +33,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://blog.dctewi.com">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1580709810402" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1580710239680" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
       </div>
@@ -140,9 +140,9 @@
 <pre><code class="language-powershell">Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 </code></pre>
 <p>稍等片刻，会弹出按Y重启的通知。按Y之后会自动重启两到三次，再次进入桌面的时候，WSL就已经启用完毕了。</p>
-<figure data-type="image" tabindex="1"><img src="https://s2.ax1x.com/2019/04/07/AfHruD.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://s2.ax1x.com/2019/04/07/AfHruD.png" alt="" loading="lazy"></figure>
 <p>接着，需要选择一款你想要的Linux发行版。进入Microsoft Store，搜索Linux，进入Linux发行版专题。早些时候只有Ubuntu可以选择，但是现在除了Ubuntu之外还有Debian，Kali等多个发行版可以选择。当然作为只用的来Ubuntu的菜鸡，我选择了Ubuntu并下载。</p>
-<figure data-type="image" tabindex="2"><img src="https://s2.ax1x.com/2019/04/07/AfHsDe.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://s2.ax1x.com/2019/04/07/AfHsDe.png" alt="" loading="lazy"></figure>
 <p>安装完成之后，你的WSL就已经初步部署完毕了！</p>
 <p>有两种方法可以进入WSL：</p>
 <ol>
@@ -187,7 +187,7 @@ sudo apt upgrade
 <pre><code class="language-sh">sudo apt install fonts-noto-cjk
 </code></pre>
 <p>重启WSL，现在已经是中文本地化模式了。</p>
-<figure data-type="image" tabindex="3"><img src="https://s2.ax1x.com/2019/04/07/AfHgUA.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://s2.ax1x.com/2019/04/07/AfHgUA.png" alt="" loading="lazy"></figure>
 <h2 id="wsl配合xming显示gui">WSL配合Xming显示GUI</h2>
 <p>WSL默认是没有安装图形窗口系统的（毕竟只有300MiB大），所以要想显示GUI，必须要再自己安装。</p>
 <p>X窗口系统，是一种以位图方式显示的软件窗口系统。好像Windows自带的X.Org就是一种X窗口系统，Xming这个工具是通过给WSL提供端口来实现图形化界面的显示的。</p>
@@ -213,7 +213,7 @@ sudo apt upgrade
 <pre><code class="language-sh">gnome-terminal
 </code></pre>
 <p>然后应该就弹出终端了。</p>
-<figure data-type="image" tabindex="4"><img src="https://s2.ax1x.com/2019/04/07/AfHyHH.png" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://s2.ax1x.com/2019/04/07/AfHyHH.png" alt="" loading="lazy"></figure>
 <h3 id="安装geany">安装Geany</h3>
 <p>Geany是ICPC World Final 2019上，华沙大学队伍使用的编辑器。轻量，五脏俱全，支持C, C++, Java, Python以及各种前端语言的语法高亮和自动补全。~~我寻思这个支持的语言列表，难道是面向ACM开发的嘛……~~众所周知，Code::Blocks在Ubuntu上经常闪退，而赛场上的vim肯定没什么时间深度配置所以也不太好用，CLion要收费，所以这个Geany安装之后玩了一会儿就爱上了。</p>
 <p>添加ppa，更新包列表，安装一气呵成：</p>
@@ -222,7 +222,7 @@ sudo apt-get update
 sudo apt-get install geany
 </code></pre>
 <p>然后在终端键入<code>geany</code>，不出意外的话就会弹出来啦！</p>
-<figure data-type="image" tabindex="5"><img src="https://s2.ax1x.com/2019/04/07/AfHcEd.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://s2.ax1x.com/2019/04/07/AfHcEd.png" alt="" loading="lazy"></figure>
 <p>在首选项里配置一番就开始玩吧！当然，别忘了安装相关语言的环境：</p>
 <pre><code class="language-sh"># C/C++
 sudo apt install build-essential
@@ -269,7 +269,7 @@ C:\Users\%USER_NAME%\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindow
 <li>
 <p>一个更好的wsl终端，可以用来显示32位色：</p>
 <p><a href="https://github.com/goreliu/wsl-terminal">WSL-terminal on github</a></p>
-<figure data-type="image" tabindex="6"><img src="https://s2.ax1x.com/2019/04/07/AfHBjO.png" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://s2.ax1x.com/2019/04/07/AfHBjO.png" alt="" loading="lazy"></figure>
 </li>
 </ul>
 <h2 id="参考资料">参考资料</h2>
