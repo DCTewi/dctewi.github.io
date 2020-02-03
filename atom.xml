@@ -2,14 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.dctewi.com</id>
     <title>冻葱Tewi</title>
-    <updated>2019-11-18T15:56:35.894Z</updated>
+    <updated>2020-02-03T06:04:51.542Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.dctewi.com"/>
     <link rel="self" href="https://blog.dctewi.com/atom.xml"/>
     <subtitle>一个蒟蒻的博客。</subtitle>
     <logo>https://blog.dctewi.com/images/avatar.png</logo>
     <icon>https://blog.dctewi.com/favicon.ico</icon>
-    <rights>All rights reserved 2019, 冻葱Tewi</rights>
+    <rights>All rights reserved 2020, 冻葱Tewi</rights>
+    <entry>
+        <title type="html"><![CDATA[【总结】UnityEvent 和 C# event 的差异与选择]]></title>
+        <id>https://blog.dctewi.com/post/zong-jie-unityevent-he-c-event-de-chai-yi-yu-xuan-ze</id>
+        <link href="https://blog.dctewi.com/post/zong-jie-unityevent-he-c-event-de-chai-yi-yu-xuan-ze">
+        </link>
+        <updated>2020-02-03T05:54:04.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【总结】2019南京网络赛小结]]></title>
         <id>https://blog.dctewi.com/post/2019-icpc-online-nanjing</id>
@@ -174,19 +181,6 @@
         <summary type="html"><![CDATA[<p>换一个角度看快速幂和快速乘。</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>换一个角度看快速幂和快速乘。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【旧文归档】冻葱的月记 - 201807]]></title>
-        <id>https://blog.dctewi.com/post/record-201807</id>
-        <link href="https://blog.dctewi.com/post/record-201807">
-        </link>
-        <updated>2018-07-31T11:29:56.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><span style="color: #ff0000;">什么？七月已经要过去了？</span></strong></p>
-<p>以上，所以冻葱这个沙雕一直到7.31下午五点还没有意识到七月已经到最后一天了的事实。<del>本次月记结束。</del></p>
-]]></summary>
-        <content type="html"><![CDATA[<p><strong><span style="color: #ff0000;">什么？七月已经要过去了？</span></strong></p>
-<p>以上，所以冻葱这个沙雕一直到7.31下午五点还没有意识到七月已经到最后一天了的事实。<del>本次月记结束。</del></p>
 ]]></content>
     </entry>
 </feed>

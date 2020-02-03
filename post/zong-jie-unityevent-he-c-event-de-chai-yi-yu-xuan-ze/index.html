@@ -1,0 +1,431 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>冻葱Tewi</title>
+<meta name="description" content="一个蒟蒻的博客。" />
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1580709810402">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://blog.dctewi.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="冻葱Tewi - Atom Feed" href="https://blog.dctewi.com/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152707655-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://blog.dctewi.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1580709810402" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8-event-%E5%A4%84%E7%90%86%E9%80%9A%E4%BF%A1">使用 event 处理通信</a></li>
+<li><a href="#c-delegate">C# Delegate</a></li>
+<li><a href="#c-%E5%8E%9F%E7%94%9F-event">C# 原生 event</a></li>
+<li><a href="#unityevent">UnityEvent</a></li>
+<li><a href="#unityevent-or-c-event">UnityEvent or C# event ？</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0s">
+          关于
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/post/links" class="menu" style="animation-delay: 0.4s">
+          友链
+        </a>
+      
+    
+      
+        <a href="/post/goal" class="menu" style="animation-delay: 0.6000000000000001s">
+          目标
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.8s">
+          标签
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700"><div style="color:#66ccff">夢に僕らで帆を張って、<br />来るべき日のために夜を越え。</div><br />Copyright © 2017 <a style="color:#66ccff">DCTewi</a><br />本站点采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA-4.0 国际许可协议</a>。</div>
+    <a class="rss" href="https://blog.dctewi.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">【总结】UnityEvent 和 C# event 的差异与选择</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-02-03 / 6 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s2.ax1x.com/2020/02/03/1UmUSO.jpg" alt="">
+        
+        <div class="post-content yue">
+          <h2 id="使用-event-处理通信">使用 event 处理通信</h2>
+<p>​Event 是一种十分方便的机制。一个 Event 就好像是一个 Youtuber，而他的粉丝 Subscribers/Listeners 会在这个 Event 发生的时候进行响应（观看）。许多现代语言都有类似的订阅机制，比如 Java 中的 EventBus 类。而 C# 的原生 event 则基于 C# 的语言特性“委托” delegate。从另一个角度看，C# 的 event 就是一种 multicast delegate。</p>
+<p>​这种结构有利于保持各对象之间的独立性和架构的可扩展性。比如当玩家类进行开枪操作时，玩家类可以不必关心他的这个操作造成了什么结果，而只是 Invoke 一个事件。此时，粒子系统等就可以根据这个事件的发生进行在自己的处理，而玩家类并不关心这个事件造成了什么后果。这样可以起到减少耦合的作用。</p>
+<h2 id="c-delegate">C# Delegate</h2>
+<p>​delegate，巨硬给出的官方翻译是委托 。delegate 本质上是一个用来存放函数的容器。众所周知，在面向对象的语言中，变量可以是值类型，也可以是引用类型。而 C# 则用 delegate 的机制将函数引用存储起来，并且可以在运行时被改变。delegate 特别用于实现事件和回调方法，一种委托将提前约定好存放的函数的返回类型和参数列表。</p>
+<p>​delegate 可以被初始化成一个函数的引用，也可以通过 +=，-= 等运算符进行存放多个函数引用。存放多个函数时，调用 delegate 将会调用所有的函数引用，这种行为叫做 multicast delegate，即委托的多播。</p>
+<h2 id="c-原生-event">C# 原生 event</h2>
+<p>​C# 原生事件的使用其实十分易懂。每个 event 的都需要约定一种委托类型用于存储该事件的所有订阅者，如果委托不需要参数，则使用<code>EventArgs.Empty</code>来进行占位。event 不需要进行实例化，订阅者只需要在订阅时对 event 进行 <code>+=</code> 操作，退订时使用 <code>-=</code> 操作即可。触发事件则有直接像调用函数一样使用 <code>()</code> 运算符触发和使用成员函数 <code>Invoke()</code> 触发两种方式。</p>
+<p>​以下是在 Unity 中使用 C# event 的一个示例（EventManager 为事件， Listener 为订阅者）。</p>
+<pre><code class="language-c#">// EventManager.cs //
+using System;
+using UnityEngine;
+
+public class EventManager : MonoBehaviour
+{
+    // 事件参数
+    public class MouseDownEventArgs : EventArgs
+    {
+        public string Message { get; private set; }
+		// 构造函数
+        public MouseDownEventArgs(string message)
+        {
+            Message = message;
+        }
+    }
+    // 事件的委托声明
+    public delegate void MouseDownEventHandler(object sender, MouseDownEventArgs e);
+	// 事件
+    static public event MouseDownEventHandler OnMouseDownEvent;
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 触发事件
+            OnMouseDownEvent.Invoke(this, new MouseDownEventArgs(&quot;Hello!&quot;));
+           	// OnMouseDownEvent(this, new MouseDownEventArgs(&quot;Hello!&quot;)); // 另一种触发方式
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-c#">// Listener.cs //
+using System;
+using UnityEngine;
+
+public class Listener : MonoBehaviour
+{
+    private void OnEnable()
+    {
+        EventManager.OnMouseDownEvent += OnMouseDownEventInvoked; // 订阅
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnMouseDownEvent -= OnMouseDownEventInvoked; // 退订
+    }
+
+    // 订阅者函数
+    private void OnMouseDownEventInvoked(object sender, EventManager.MouseDownEventArgs e)
+    {
+        Debug.Log(string.Format(&quot;Mouse click! {0}, {1}&quot;, sender, e.Message), gameObject);
+    }
+}
+</code></pre>
+<h2 id="unityevent">UnityEvent</h2>
+<p>​C# event 设计之初当然不会为了 Unity 进行优化和适配，所以 Unity 对 C# event 进行了一番魔改和封装得到了 <code>UnityAction</code> 和 <code>UnityEvent</code> 类，都包含在 <code>UnityEngine.Event</code>命名空间下。一定程度上简化了事件的使用（我觉得本来已经够简化了），并且支持在 Unity Editor 的 Inspector 中直接进行可视化编辑。比如 Unity 的 uGUI 的 Button 等的诸如 <code>OnClick()</code> 事件都是通过 <code>UnityEvent</code> 来实现的，所以可以在 Inspector 上可视化编辑。</p>
+<p>​一个<code>UnityEvent</code>的使用示例如下。</p>
+<pre><code class="language-c#">// 无参数 来源于 Unity Doc
+using UnityEngine;
+using UnityEngine.Events;
+using System.Collections;
+
+public class ExampleClass : MonoBehaviour
+{
+    // 事件定义
+    UnityEvent m_MyEvent;
+
+    void Start()
+    {
+        // 实例化事件
+        if (m_MyEvent == null)
+            m_MyEvent = new UnityEvent();
+		// 添加订阅者
+        m_MyEvent.AddListener(Ping);
+    }
+
+    void Update()
+    {
+        if (Input.anyKeyDown &amp;&amp; m_MyEvent != null)
+        {
+            // 事件触发
+            m_MyEvent.Invoke();
+        }
+    }
+
+    // 订阅者函数
+    void Ping()
+    {
+        Debug.Log(&quot;Ping&quot;);
+    }
+}
+</code></pre>
+<pre><code class="language-c#">// 单个参数 来源于 Unity Doc
+using UnityEngine;
+using UnityEngine.Events;
+
+// 添加 System.Serializable 属性的参数才可以被 UnityEvent 使用
+[System.Serializable]
+public class MyIntEvent : UnityEvent&lt;int&gt;
+{
+}
+
+public class ExampleClass : MonoBehaviour
+{
+    public MyIntEvent m_MyEvent;
+
+    void Start()
+    {
+        if (m_MyEvent == null)
+            m_MyEvent = new MyIntEvent();
+
+        m_MyEvent.AddListener(Ping);
+    }
+
+    void Update()
+    {
+        if (Input.anyKeyDown &amp;&amp; m_MyEvent != null)
+        {
+            m_MyEvent.Invoke(5);
+        }
+    }
+
+    void Ping(int i)
+    {
+        Debug.Log(&quot;Ping&quot; + i);
+    }
+}
+</code></pre>
+<h2 id="unityevent-or-c-event">UnityEvent or C# event ？</h2>
+<p>​经过 Jackson Dunstan 的性能分析（链接在后方参考资料处），可以发现 <code>UnityEvent</code> 在内存使用、GC回收和响应速度上都不如 C# event。如果订阅者小于等于一的情况下，<code>UnityEvent</code> 产生的垃圾小于 C# event，反之则要多。<code>UnityEvent</code>在首次触发事件时会产生垃圾，而 C# event 则没有垃圾，且前者的速度比后者慢两倍之多。C# event 在所有批量测试上都优于 <code>UnityEvent</code>，且触发事件越多，差距越大。最好情况下 <code>UnityEvent</code> 花费的时间是 C# event 的2.25倍，最坏情况下达到了40倍。</p>
+<p>​在实际使用中，除了性能问题之外，还会发现另外的问题。<code>UnityEvent</code> 是一个类，需要实例化的特点让开发者需要注意在使用该事件时该事件的实例化情况。并且在进行自定义事件参数的时候会出现很麻烦的问题，比如在 Inspector 中不显示而导致可视化的优势也莫得了等等。</p>
+<p>​所以，对于有一定基础并且对性能有追求的开发者来说，选择 C# event 是较好的选择。如果对性能要求不大，并且喜欢可视化编程的开发者来说，可以使用 <code>UnityEvent</code> 来得到更好的开发体验。当然，如果是开发 Editor Plugin 的场景，则显然使用 <code>UnityEvent</code> 更为恰当。所以两者的选择也需要具体情况具体分析。</p>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/event">event (C# reference) - Microsoft .NET Doc</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html">Unity - Scripting API - UnityEvent</a></li>
+<li><a href="https://www.reddit.com/r/Unity3D/comments/a4ucmv/c_event_vs_unityevent_vs_messaging_performance/">C# Event vs UnityEvent vs Messaging performance - Reddit</a></li>
+<li><a href="https://stackoverflow.com/questions/44734580/why-choose-unityevent-over-native-c-sharp-events">Why choose UnityEvent over native C# events? - StackOverFlow</a></li>
+<li><a href="https://jacksondunstan.com/articles/3335">Event Performance: C# vs. UnityEvent - Jackson Dunstan</a></li>
+</ul>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/am4ghw7lK">
+            <span class="flex-auto">UnityEvent</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/J3l4TH0lR">
+            <span class="flex-auto">Unity</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/-zzRF13bvq">
+            <span class="flex-auto">笔记</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://blog.dctewi.com/post/2019-icpc-online-nanjing">
+                <h3 class="post-title">
+                  【总结】2019南京网络赛小结
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c67700c58e8784319e25',
+    clientSecret: 'b8a2eb7ab6706e02a413e80dac295ef5365662fe',
+    repo: 'dctewi.github.io',
+    owner: 'DCTewi',
+    admin: ['DCTewi'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://blog.dctewi.com/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
