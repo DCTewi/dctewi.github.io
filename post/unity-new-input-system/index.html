@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>冻葱Tewi</title>
 <meta name="description" content="一个蒟蒻的博客。" />
-<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1581335136789">
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1581342659308">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -33,7 +33,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://blog.dctewi.com">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1581335136789" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1581342659308" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
       </div>
@@ -131,18 +131,18 @@
           <p>有关 Unity 新输入系统 Input System 的一些简单介绍和基础总结。目前关于新输入系统的中文资料略少，在 Unity 官方文档中学习了一番之后，我将一些基本的知识记录了下来。</p>
 <!-- more -->
 <h2 id="新输入系统-input-system-概述">新输入系统 (Input System) 概述</h2>
-<p>在 Unity 设计之初，并没有预见到现在如此丰富的平台和设备支持规模，所以一开始设计的输入系统 <code>UnityEngine.Input</code> 使用起来并不舒适，在多设备和多平台输入处理时显得力不从心且不够优雅，甚至连游戏中热插拔手柄这种操作都显得十分臃肿和复杂。Unity Tec 从 2016 年起开始逐步开发新一代输入系统 <code>UnityEngine.InputSystem</code> ，到今天（Unity 2019.3.0f6），已经迭代到了 <code>1.0.0-preview.4</code> 版本。官方表示大概在 Unity 2020 版本推出新输入系统的正式版，但是旧输入系统的下架时间并没有明确。</p>
+<p>在 Unity 设计之初，并没有预见到现在如此丰富的平台和设备支持规模，所以一开始设计的输入系统 <code>UnityEngine.Input</code> 使用起来并不舒适，在多设备和多平台输入处理时显得力不从心且不够优雅，甚至连游戏中热插拔手柄这种操作都显得十分臃肿和复杂。Unity Tec 从 2016 年起开始逐步开发新一代输入系统 <code>UnityEngine.InputSystem</code> ，到今天（Unity 2019.3.0f6），已经迭代到了 <code>1.0.0-preview.4</code> 版本。官方表示大概在 Unity 2020 版本推出新输入系统的正式版，但是旧输入系统的下架时间并没有被明确说明。</p>
 <p>新输入系统基于事件，输入设备和动作逻辑互相分离，通过配置映射来处理输入信息。具有易用，多设备多平台协调一致的特点。现在已经可以在 Package Manager 中安装使用了。</p>
 <h2 id="input-system-安装">Input System 安装</h2>
 <p>在 Unity 2019.1 之后的版本中，打开包管理器（Windows -&gt; Package Manager），在 Advanced 菜单中勾选预览版支持（Show Preview Packages），接着就可以在 All Packages 列表中找到 Input System 了，点击 Install 安装即可。</p>
 <p>导入过程中会跳出警告窗口告知需要激活新输入系统的后端，点击是会重启编辑器，此时便启用了新输入系统。</p>
-<p>接着打开 Edit -&gt; Project Settings，在 Player 选项页中的 Other Settings -&gt; Configuration 中选择 Active Input Handling 为 Input System 以禁用旧输入系统，以防止两个输入系统的冲突和杜绝隐患。</p>
+<p>接着打开 Edit -&gt; Project Settings，在 Player 选项页中的 Other Settings -&gt; Configuration 中设置 Active Input Handling 为 Input System 以禁用旧输入系统，以防止两个输入系统的冲突和杜绝隐患。</p>
 <p>此时，你的工程中已经成功安装了新输入系统。</p>
 <h2 id="input-system-简单介绍">Input System 简单介绍</h2>
 <p>有关新输入系统的内容几乎都在<code>UnityEngine.InputSystem</code>命名空间下，使用时不要忘记 <code>using UnityEngine.InputSystem</code>。一些特殊的对象可能在子命名空间下，具体请查阅文档。</p>
 <h3 id="class-inputaction"><code>Class InputAction</code></h3>
 <p>这个类表示的是一种响应动作逻辑，可以绑定到多个物理输入上，这些绑定的物理输入和得到的输入值将影响同一个 <code>Input Action</code> 对象。该类只代表一种动作“逻辑”而不代表任何物理输入。</p>
-<p>每个动作逻辑在每一时刻都有现在的状态阶段（Phase），通过 <code>Enum InputActionPhase</code> 表示，有五种阶段。分别为：<code>Canceled, Disabled, Performed, Started, Waiting</code>。在<code>Start, Performed, Canceled</code> 阶段会分别触发三个对应的 C# 事件（<code>event Action&lt;InputAction.CallbackContext&gt;</code>）。</p>
+<p>每个动作逻辑在每一时刻都有现在的状态阶段（Phase），通过 <code>Enum InputActionPhase</code> 表示，有五种阶段。分别为：<code>Canceled, Disabled, Performed, Started, Waiting</code>。在<code>Start, Performed, Canceled</code> 阶段会分别触发三个对应的 C# 事件（类型为<code>event Action&lt;InputAction.CallbackContext&gt;</code>）。</p>
 <p>每次动作逻辑被触发时，可以通过<code>ReadValue&lt;TValue&gt;()</code>成员来获取本次触发的具体值。</p>
 <p>声明：</p>
 <pre><code class="language-CSharp">[Serializable] public sealed class InputAction : ICloneable, IDisposable
@@ -191,7 +191,7 @@
 <h3 id="使用-player-input-控件">使用 Player Input 控件</h3>
 <p>通过添加 Player Input 控件来管理输入，这种方式绝大部分绑定操作需要在 Inspector 中完成，代码只需要写出每个事件触发时的订阅者（命名必须为<code>On{ActionName}()</code>，C# 事件方式除外）即可。</p>
 <p>下面是两种类型的动作逻辑值的订阅者示例（只演示两种事件类型，我拒绝<code>SendMessage()</code>）：</p>
-<p><em>Player Input 使用 Unity Event 的 Inspector:</em></p>
+<p><em>使用 Unity Event 的 Player Input 在 Inspector 中的设置:</em></p>
 <figure data-type="image" tabindex="3"><img src="https://s2.ax1x.com/2020/02/10/15X978.png" alt="UnityEventPlayerInput" loading="lazy"></figure>
 <pre><code class="language-CSharp">public class Player : MonoBehaviour
 {
@@ -227,14 +227,14 @@
 </code></pre>
 <h3 id="使用-action-assets-生成的-c-类">使用 Action Assets 生成的 C# 类</h3>
 <p>刚才说过 Action Assets 资源文件可以生成一个 C# 类，通过建立一个这个类对象来进行控制可以达到使用资源文件相同的效果。</p>
-<p>假设我们导出了一个<code>CustomControll</code>，则有示例：</p>
+<p>假设我们导出了一个<code>CustomControl</code> 类，则有示例：</p>
 <pre><code class="language-CSharp">public class Player : MonoBehaviour
 {
-    private CustomControll input;
+    private CustomControl input;
     
     private void Awake()
     {
-        input = new CustomControll(); // 实例化
+        input = new CustomControl(); // 实例化
         
         // 通过订阅事件的方式添加控制方式
         // Player是映射列表, Attack是一个InputAction名字
