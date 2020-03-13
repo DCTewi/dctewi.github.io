@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>冻葱Tewi</title>
 <meta name="description" content="一个蒟蒻的博客。" />
-<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1581836266323">
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1584095099312">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,6 +23,21 @@
 </script>
 
 
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
   </head>
   <body>
     <div class="main px-4 flex flex-col lg:flex-row">
@@ -32,7 +47,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://blog.dctewi.com">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1581836266323" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1584095099312" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
       </div>
@@ -111,7 +126,7 @@
       
     
       
-        <a href="/post/links" class="menu" style="animation-delay: 0.4s">
+        <a href="links" class="menu" style="animation-delay: 0.4s">
           友链
         </a>
       
@@ -144,13 +159,34 @@
         
   <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
     
-      <a href="https://blog.dctewi.com/post/kmp" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+      <a href="https://blog.dctewi.com/post/number-theory-base/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/02/19/kgpPIO.jpg'">
+        </div>
+      </a>
+    
+    <div class="content">
+      <a href="https://blog.dctewi.com/post/number-theory-base/">
+        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【算法】数论基础小结</h2>
+      </a>
+      <div class="post-abstract text-gray-700 font-light my-4">
+        <blockquote>
+<p>数论是纯粹数学的分支之一，主要研究整数的性质。被誉为“最纯”的数学领域。</p>
+</blockquote>
+
+      </div>
+      <div class="text-gray-400 text-sm font-light">2019-02-19 / 9 min read</div>
+    </div>
+  </section>
+
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
+    
+      <a href="https://blog.dctewi.com/post/kmp/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
         <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/02/16/kr553d.jpg'">
         </div>
       </a>
     
     <div class="content">
-      <a href="https://blog.dctewi.com/post/kmp">
+      <a href="https://blog.dctewi.com/post/kmp/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【算法】KMP学习小结</h2>
       </a>
       <div class="post-abstract text-gray-700 font-light my-4">
@@ -161,15 +197,15 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${2 * 0.2}s` }">
     
-      <a href="https://blog.dctewi.com/post/segment-tree-base" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+      <a href="https://blog.dctewi.com/post/segment-tree-base/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
         <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/02/11/kdi1Yt.jpg'">
         </div>
       </a>
     
     <div class="content">
-      <a href="https://blog.dctewi.com/post/segment-tree-base">
+      <a href="https://blog.dctewi.com/post/segment-tree-base/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【数据结构】线段树基础小结</h2>
       </a>
       <div class="post-abstract text-gray-700 font-light my-4">
@@ -181,15 +217,15 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${2 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${3 * 0.2}s` }">
     
-      <a href="https://blog.dctewi.com/post/theme-changing-note" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+      <a href="https://blog.dctewi.com/post/theme-changing-note/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
         <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/11/17/MrVi2q.png'">
         </div>
       </a>
     
     <div class="content">
-      <a href="https://blog.dctewi.com/post/theme-changing-note">
+      <a href="https://blog.dctewi.com/post/theme-changing-note/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【旧文归档/捣鼓】更换主题小记</h2>
       </a>
       <div class="post-abstract text-gray-700 font-light my-4">
@@ -200,15 +236,15 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${3 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${4 * 0.2}s` }">
     
-      <a href="https://blog.dctewi.com/post/vim-setup" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+      <a href="https://blog.dctewi.com/post/vim-setup/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
         <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/11/17/MrFjrF.jpg'">
         </div>
       </a>
     
     <div class="content">
-      <a href="https://blog.dctewi.com/post/vim-setup">
+      <a href="https://blog.dctewi.com/post/vim-setup/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【捣鼓】Ubuntu及vim、gcc配置笔记</h2>
       </a>
       <div class="post-abstract text-gray-700 font-light my-4">
@@ -219,15 +255,15 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${4 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${5 * 0.2}s` }">
     
-      <a href="https://blog.dctewi.com/post/record-201808" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+      <a href="https://blog.dctewi.com/post/record-201808/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
         <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/11/17/MrF0De.jpg'">
         </div>
       </a>
     
     <div class="content">
-      <a href="https://blog.dctewi.com/post/record-201808">
+      <a href="https://blog.dctewi.com/post/record-201808/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【旧文归档/停更】冻葱的月记 - 201808</h2>
       </a>
       <div class="post-abstract text-gray-700 font-light my-4">
@@ -237,15 +273,15 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${5 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${6 * 0.2}s` }">
     
-      <a href="https://blog.dctewi.com/post/quick-exp" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+      <a href="https://blog.dctewi.com/post/quick-exp/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
         <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/11/17/MriO7d.jpg'">
         </div>
       </a>
     
     <div class="content">
-      <a href="https://blog.dctewi.com/post/quick-exp">
+      <a href="https://blog.dctewi.com/post/quick-exp/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【算法】从群论到快速幂和快速乘</h2>
       </a>
       <div class="post-abstract text-gray-700 font-light my-4">
@@ -256,15 +292,15 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${6 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${7 * 0.2}s` }">
     
-      <a href="https://blog.dctewi.com/post/record-201807" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+      <a href="https://blog.dctewi.com/post/record-201807/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
         <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/11/17/MrChDJ.jpg'">
         </div>
       </a>
     
     <div class="content">
-      <a href="https://blog.dctewi.com/post/record-201807">
+      <a href="https://blog.dctewi.com/post/record-201807/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【旧文归档】冻葱的月记 - 201807</h2>
       </a>
       <div class="post-abstract text-gray-700 font-light my-4">
@@ -276,15 +312,15 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${7 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${8 * 0.2}s` }">
     
-      <a href="https://blog.dctewi.com/post/record-201806" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+      <a href="https://blog.dctewi.com/post/record-201806/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
         <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/11/17/MDz9Zq.png'">
         </div>
       </a>
     
     <div class="content">
-      <a href="https://blog.dctewi.com/post/record-201806">
+      <a href="https://blog.dctewi.com/post/record-201806/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【旧文归档】冻葱的月记 - 201806</h2>
       </a>
       <div class="post-abstract text-gray-700 font-light my-4">
@@ -296,40 +332,21 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${8 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${9 * 0.2}s` }">
     
-      <a href="https://blog.dctewi.com/post/record-201805" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+      <a href="https://blog.dctewi.com/post/record-201805/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
         <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/11/17/MDxGbq.jpg'">
         </div>
       </a>
     
     <div class="content">
-      <a href="https://blog.dctewi.com/post/record-201805">
+      <a href="https://blog.dctewi.com/post/record-201805/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【旧文归档】冻葱的月结 - 201805</h2>
       </a>
       <div class="post-abstract text-gray-700 font-light my-4">
         
       </div>
       <div class="text-gray-400 text-sm font-light">2018-06-14 / 2 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${9 * 0.2}s` }">
-    
-      <a href="https://blog.dctewi.com/post/record-201804" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
-        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://s2.ax1x.com/2019/11/17/MDvRjs.jpg'">
-        </div>
-      </a>
-    
-    <div class="content">
-      <a href="https://blog.dctewi.com/post/record-201804">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">【旧文归档】冻葱的月结 - 201804</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        <p>日子一天天有的没的地过着，如果不经常写在纸上、铺成句子的话，一段时间之后，这段日子就早已被时间的洪流淹没在历史的海洋里，再也回想不起来哪怕一丝一毫。这就是我为什么经常写日记，而这也是我为什么开始周期性的写这些月结。</p>
-
-      </div>
-      <div class="text-gray-400 text-sm font-light">2018-04-28 / 4 min read</div>
     </div>
   </section>
 

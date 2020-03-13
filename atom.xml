@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.dctewi.com</id>
     <title>冻葱Tewi</title>
-    <updated>2020-02-16T06:58:12.697Z</updated>
+    <updated>2020-03-13T10:26:25.456Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.dctewi.com"/>
     <link rel="self" href="https://blog.dctewi.com/atom.xml"/>
@@ -11,9 +11,20 @@
     <icon>https://blog.dctewi.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 冻葱Tewi</rights>
     <entry>
+        <title type="html"><![CDATA[【折腾】Gridea Enchant 总结]]></title>
+        <id>https://blog.dctewi.com/post/gridea-enchant/</id>
+        <link href="https://blog.dctewi.com/post/gridea-enchant/">
+        </link>
+        <updated>2020-03-13T10:13:32.000Z</updated>
+        <summary type="html"><![CDATA[<p>Gridea 是一个类似于 Hexo 的静态博客管理框架。看中了它的颜值，但相比于 Hexo，有些功能不够全面。所以凑今天进行了一波魔改，将过程记录了下来。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Gridea 是一个类似于 Hexo 的静态博客管理框架。看中了它的颜值，但相比于 Hexo，有些功能不够全面。所以凑今天进行了一波魔改，将过程记录了下来。</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[【总结】Unity Input System 使用简要]]></title>
-        <id>https://blog.dctewi.com/post/unity-new-input-system</id>
-        <link href="https://blog.dctewi.com/post/unity-new-input-system">
+        <id>https://blog.dctewi.com/post/unity-new-input-system/</id>
+        <link href="https://blog.dctewi.com/post/unity-new-input-system/">
         </link>
         <updated>2020-02-10T10:36:02.000Z</updated>
         <summary type="html"><![CDATA[<p>有关 Unity 新输入系统 Input System 的一些简单介绍和基础总结。目前关于新输入系统的中文资料略少，在 Unity 官方文档中学习了一番之后，我将一些基本的知识记录了下来。</p>
@@ -23,8 +34,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【总结】UnityEvent 和 C# event 的差异与选择]]></title>
-        <id>https://blog.dctewi.com/post/unityevent-vs-csharpevent</id>
-        <link href="https://blog.dctewi.com/post/unityevent-vs-csharpevent">
+        <id>https://blog.dctewi.com/post/unityevent-vs-csharpevent/</id>
+        <link href="https://blog.dctewi.com/post/unityevent-vs-csharpevent/">
         </link>
         <updated>2020-02-03T05:54:04.000Z</updated>
         <summary type="html"><![CDATA[<p>Event 是一种十分方便的机制。一个 Event 就好像是一个 Youtuber，而他的粉丝 Subscribers/Listeners 会在这个 Event 发生的时候进行响应（观看）。许多现代语言都有类似的订阅机制，比如 Java 中的 EventBus 类。</p>
@@ -34,8 +45,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【总结】2019南京网络赛小结]]></title>
-        <id>https://blog.dctewi.com/post/2019-icpc-online-nanjing</id>
-        <link href="https://blog.dctewi.com/post/2019-icpc-online-nanjing">
+        <id>https://blog.dctewi.com/post/2019-icpc-online-nanjing/</id>
+        <link href="https://blog.dctewi.com/post/2019-icpc-online-nanjing/">
         </link>
         <updated>2019-09-06T03:45:12.000Z</updated>
         <summary type="html"><![CDATA[<p>The Preliminary Contest for ICPC Asia Nanjing 2019 （即 ICPC2019 南京网络赛）部分总结</p>
@@ -45,8 +56,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【折腾】一个小时用树莓派搭建私有Git站]]></title>
-        <id>https://blog.dctewi.com/post/gogs</id>
-        <link href="https://blog.dctewi.com/post/gogs">
+        <id>https://blog.dctewi.com/post/gogs/</id>
+        <link href="https://blog.dctewi.com/post/gogs/">
         </link>
         <updated>2019-08-09T14:23:26.000Z</updated>
         <summary type="html"><![CDATA[<p>将吃灰的树莓派改造成一个属于自己的 Git 站点。</p>
@@ -56,8 +67,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【杂项】竞赛向 vimrc 配置小结]]></title>
-        <id>https://blog.dctewi.com/post/vimrc</id>
-        <link href="https://blog.dctewi.com/post/vimrc">
+        <id>https://blog.dctewi.com/post/vimrc/</id>
+        <link href="https://blog.dctewi.com/post/vimrc/">
         </link>
         <updated>2019-08-06T04:15:47.000Z</updated>
         <summary type="html"><![CDATA[<p>竞赛向简洁风 vim 配置。</p>
@@ -67,8 +78,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【算法】差分约束小结]]></title>
-        <id>https://blog.dctewi.com/post/difference-constraints</id>
-        <link href="https://blog.dctewi.com/post/difference-constraints">
+        <id>https://blog.dctewi.com/post/difference-constraints/</id>
+        <link href="https://blog.dctewi.com/post/difference-constraints/">
         </link>
         <updated>2019-07-19T09:00:01.000Z</updated>
         <summary type="html"><![CDATA[<p>差分约束系统(System of Difference Constraints)的基本概念，思路和用法以及例题总结。</p>
@@ -78,8 +89,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【数学】微积分A2小结]]></title>
-        <id>https://blog.dctewi.com/post/calculus-a2</id>
-        <link href="https://blog.dctewi.com/post/calculus-a2">
+        <id>https://blog.dctewi.com/post/calculus-a2/</id>
+        <link href="https://blog.dctewi.com/post/calculus-a2/">
         </link>
         <updated>2019-06-22T06:22:47.000Z</updated>
         <summary type="html"><![CDATA[<p>考前复习总结——微积分A2篇。</p>
@@ -89,8 +100,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【捣鼓】WSL部署总结]]></title>
-        <id>https://blog.dctewi.com/post/wsl-setup</id>
-        <link href="https://blog.dctewi.com/post/wsl-setup">
+        <id>https://blog.dctewi.com/post/wsl-setup/</id>
+        <link href="https://blog.dctewi.com/post/wsl-setup/">
         </link>
         <updated>2019-04-07T04:04:52.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -106,8 +117,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【开发】Unity的类MVC架构总结]]></title>
-        <id>https://blog.dctewi.com/post/unity-mvc</id>
-        <link href="https://blog.dctewi.com/post/unity-mvc">
+        <id>https://blog.dctewi.com/post/unity-mvc/</id>
+        <link href="https://blog.dctewi.com/post/unity-mvc/">
         </link>
         <updated>2019-03-27T15:00:35.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -121,8 +132,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【算法】数论基础小结]]></title>
-        <id>https://blog.dctewi.com/post/number-theory-base</id>
-        <link href="https://blog.dctewi.com/post/number-theory-base">
+        <id>https://blog.dctewi.com/post/number-theory-base/</id>
+        <link href="https://blog.dctewi.com/post/number-theory-base/">
         </link>
         <updated>2019-02-19T03:48:31.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -136,8 +147,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【算法】KMP学习小结]]></title>
-        <id>https://blog.dctewi.com/post/kmp</id>
-        <link href="https://blog.dctewi.com/post/kmp">
+        <id>https://blog.dctewi.com/post/kmp/</id>
+        <link href="https://blog.dctewi.com/post/kmp/">
         </link>
         <updated>2019-02-15T16:53:31.000Z</updated>
         <summary type="html"><![CDATA[<p>学习kmp算法后的一些总结。本来没打算熬夜的结果搞到零点多。</p>
@@ -147,8 +158,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【数据结构】线段树基础小结]]></title>
-        <id>https://blog.dctewi.com/post/segment-tree-base</id>
-        <link href="https://blog.dctewi.com/post/segment-tree-base">
+        <id>https://blog.dctewi.com/post/segment-tree-base/</id>
+        <link href="https://blog.dctewi.com/post/segment-tree-base/">
         </link>
         <updated>2019-02-11T15:02:23.000Z</updated>
         <summary type="html"><![CDATA[<p>学习两种线段树后的总结。<br>
@@ -160,8 +171,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【旧文归档/捣鼓】更换主题小记]]></title>
-        <id>https://blog.dctewi.com/post/theme-changing-note</id>
-        <link href="https://blog.dctewi.com/post/theme-changing-note">
+        <id>https://blog.dctewi.com/post/theme-changing-note/</id>
+        <link href="https://blog.dctewi.com/post/theme-changing-note/">
         </link>
         <updated>2019-01-10T15:03:49.000Z</updated>
         <summary type="html"><![CDATA[<p>用<a href="https://www.cssplus.org/" target="_blank" rel="noreferrer noopener" aria-label="（在新窗口打开）">路易大佬</a>的<a rel="noreferrer noopener" aria-label="（在新窗口打开）" href="https://www.cssplus.org/wordpress-theme-inspire.html" target="_blank">inspire</a>好几个月了，于是就闲得发慌脑子一抽没事找事想要换一个主题——</p>
@@ -171,20 +182,13 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【捣鼓】Ubuntu及vim、gcc配置笔记]]></title>
-        <id>https://blog.dctewi.com/post/vim-setup</id>
-        <link href="https://blog.dctewi.com/post/vim-setup">
+        <id>https://blog.dctewi.com/post/vim-setup/</id>
+        <link href="https://blog.dctewi.com/post/vim-setup/">
         </link>
         <updated>2018-12-08T10:36:11.000Z</updated>
         <summary type="html"><![CDATA[<p>最近突然发觉ICPC比赛中的机器都是Ubuntu环境，而我却从来都没有用过Linux操作系统。所以便打算在实验室的电脑上捣鼓一番，熟悉一下比赛中使用的环境。</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>最近突然发觉ICPC比赛中的机器都是Ubuntu环境，而我却从来都没有用过Linux操作系统。所以便打算在实验室的电脑上捣鼓一番，熟悉一下比赛中使用的环境。</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【旧文归档/停更】冻葱的月记 - 201808]]></title>
-        <id>https://blog.dctewi.com/post/record-201808</id>
-        <link href="https://blog.dctewi.com/post/record-201808">
-        </link>
-        <updated>2018-09-05T09:50:31.000Z</updated>
     </entry>
 </feed>
