@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.dctewi.com</id>
     <title>冻葱Tewi</title>
-    <updated>2020-03-13T10:26:25.456Z</updated>
+    <updated>2020-03-13T13:42:18.336Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.dctewi.com"/>
     <link rel="self" href="https://blog.dctewi.com/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://blog.dctewi.com/images/avatar.png</logo>
     <icon>https://blog.dctewi.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 冻葱Tewi</rights>
+    <entry>
+        <title type="html"><![CDATA[【总结】A*搜索算法小结]]></title>
+        <id>https://blog.dctewi.com/post/a-star/</id>
+        <link href="https://blog.dctewi.com/post/a-star/">
+        </link>
+        <updated>2020-03-13T12:41:09.000Z</updated>
+        <summary type="html"><![CDATA[<p>A* 搜索是一种使用了 Dijkstra 思想的启发式搜索，是一种在图形平面上，有多个节点的路径，求出最低通过成本的算法。把之前进行的总结整理了一下发了上来。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>A* 搜索是一种使用了 Dijkstra 思想的启发式搜索，是一种在图形平面上，有多个节点的路径，求出最低通过成本的算法。把之前进行的总结整理了一下发了上来。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【折腾】Gridea Enchant 总结]]></title>
         <id>https://blog.dctewi.com/post/gridea-enchant/</id>
@@ -178,17 +189,6 @@
         <summary type="html"><![CDATA[<p>用<a href="https://www.cssplus.org/" target="_blank" rel="noreferrer noopener" aria-label="（在新窗口打开）">路易大佬</a>的<a rel="noreferrer noopener" aria-label="（在新窗口打开）" href="https://www.cssplus.org/wordpress-theme-inspire.html" target="_blank">inspire</a>好几个月了，于是就闲得发慌脑子一抽没事找事想要换一个主题——</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>用<a href="https://www.cssplus.org/" target="_blank" rel="noreferrer noopener" aria-label="（在新窗口打开）">路易大佬</a>的<a rel="noreferrer noopener" aria-label="（在新窗口打开）" href="https://www.cssplus.org/wordpress-theme-inspire.html" target="_blank">inspire</a>好几个月了，于是就闲得发慌脑子一抽没事找事想要换一个主题——</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【捣鼓】Ubuntu及vim、gcc配置笔记]]></title>
-        <id>https://blog.dctewi.com/post/vim-setup/</id>
-        <link href="https://blog.dctewi.com/post/vim-setup/">
-        </link>
-        <updated>2018-12-08T10:36:11.000Z</updated>
-        <summary type="html"><![CDATA[<p>最近突然发觉ICPC比赛中的机器都是Ubuntu环境，而我却从来都没有用过Linux操作系统。所以便打算在实验室的电脑上捣鼓一番，熟悉一下比赛中使用的环境。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>最近突然发觉ICPC比赛中的机器都是Ubuntu环境，而我却从来都没有用过Linux操作系统。所以便打算在实验室的电脑上捣鼓一番，熟悉一下比赛中使用的环境。</p>
 ]]></content>
     </entry>
 </feed>
