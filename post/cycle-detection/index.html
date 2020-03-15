@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>【旧文归档】突然诈尸的zz冻葱 | 冻葱Tewi</title>
+<title>【算法】没啥用的判圈算法两则 | 冻葱Tewi</title>
 <meta name="description" content="一个蒟蒻的博客。" />
 <link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1584287810635">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -57,7 +57,16 @@
             文章目录
           </p>
           <div class="toc-container hidden lg:block">
-            
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#floyd-cycle-detection">Floyd Cycle Detection</a></li>
+<li><a href="#brents-cycle-detection">Brent's Cycle Detection</a></li>
+<li><a href="#%E6%9C%80%E5%90%8E">最后</a></li>
+</ul>
+</li>
+</ul>
+
           </div>
         </div>
       
@@ -108,53 +117,95 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">【旧文归档】突然诈尸的zz冻葱</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">【算法】没啥用的判圈算法两则</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2018-04-11 / 2 min to read
+          2020-03-15 / 4 min to read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s2.ax1x.com/2019/11/17/MBXrOx.jpg" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s1.ax1x.com/2020/03/15/88Iktg.jpg" alt="">
         
         <div class="post-content yue">
-          <p>冻葱这个蒟蒻从NOIP2017回来之后就<del>颓了</del>沉浸在文化课的海洋里准备迎接今年六月份的高考，所以这个博客也一直没怎么管过。最近自招，做课件等等一系列的事件导致我突然又有机会每天来机房水一会儿了。</p>
-<!--more-->
-<p>回看自己各种半途而废的滑稽举动，一种懊悔和痛苦充斥着心头。自己的高中生涯即将结束，而冻葱在以往的近18年里，仿佛什么果实都没有结出过，就这么浑浑噩噩地度过了，没有留下过一丝痕迹。</p>
-<p>人生苦短，茫茫人海中，属于一个人的空间实在太少太少，而值得一个人去探索的东西却又太多太多。每次看到自己计划单上一个又一个的项目，都会一种难以言喻的沉闷贴在心头无法自拔。于是我便想要表达——但不久之后，自己又会对自己刚表达出来的什么不满，于是又是一次放弃。</p>
-<p>我需要一次改变。这个世界上，值得我去敬仰和学习的前辈和大师实在太多太多。保持谦逊和谨慎，保持清醒的头脑。保持输出，不怕嘲笑。不能再在自己的妄想中缩头缩脑——敢于迈向位置的远方，就是一次伟大的成功。</p>
-<p>我是有一个梦想的。我想要在这个世界上留下自己的一点印记。为了这点，我需要去学习和实践的事情还有很多很多——除去我稍有涉猎的码力之外，建模、编曲和绘画等等自己几乎还一无所知。接下来的日子，自己要加油了。</p>
-<p>但是，在这离高考只有短短五十五天的日子里，我当前最为重要的任务自然就是六月七号的那次考试了。稳住自己的身心，为自己默默地加个油。而后，璀璨星空。</p>
-<p><a style="color: purple;">少しだけても、世界をもっと綺麗するために。</a></p>
+          <p>如题，这里记录了两则没啥用的判圈算法。</p>
+<!-- more -->
+<p>对于“判断有向图中是否存在环”这类问题，竞赛中常见的解决办法一般都是带标记深搜或者拓扑排序后删点，在邻接表或者前向星下这两种方法的时间复杂度都是线性，所以一般够用。</p>
+<p>但最近在某个沙雕视频里了解到了一个奥妙算法，叫做 Floyd Cycle Detection，可以在线性时间，常数空间的条件下判断环是否存在。但是竞赛题没办法这么卡空间，了解下这算法也就图一乐。</p>
+<h2 id="floyd-cycle-detection">Floyd Cycle Detection</h2>
+<blockquote>
+<p>Floyd 判圈算法 (Floyd Cycle Detection Algorithm)，又称龟兔赛跑算法 (Tortoise and Hare Algorithm)，是一个可以在有限状态机、迭代函数或者链表上判断是否存在环，求出该环的起点与长度的算法。</p>
+<p>如果有限状态机、迭代函数或者链表上存在环，那么在某个环上以不同速度前进的 2 个指针必定会在某个时刻相遇。同时显然地，如果从同一个起点(即使这个起点不在某个环上)同时开始以不同速度前进的 2 个指针最终相遇，那么可以判定存在一个环，且可以求出 2 者相遇处所在的环的起点与长度。</p>
+</blockquote>
+<p>这是 Wikipedia 上的算法描述。简而言之，如果图有环，那么从图上某一点同时出发的速度不同的两个指针，一定会在快的指针比慢的指针多跑整数倍长度的某一时刻相遇。相反，如果快的点遍历完了图，那么则说明图上没有环。</p>
+<p>Floyd 判圈的具体做法是令快指针每次走两步，慢指针每次走一步。两个指针相遇之后定住一个让另一个跑一圈就可以求出环长度了。</p>
+<p>从慢指针到环上开始，慢指针最多只会走一圈两个指针就会相遇。所以时间复杂度是线性<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>m</mi><mo>+</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(m+n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，即两个指针的步数和。只创建了两个指针和环长，所以空间复杂度是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</p>
+<p>代码大概就这样（临时手搓，没有验证）：</p>
+<pre><code class="language-c++">int floyd_cycle_detection(Node *head)
+{
+    Node *slow = head, *quik = head;
+    int len = 1;
+    while (1)
+    {
+        if (quik == nullptr) return -1;
+        if (slow == quik) break;
+        
+        slow = slow-&gt;next;
+        quik = quik-&gt;next-&gt;next;
+    }
+    while (slow-&gt;next != quik) slow = slow-&gt;next, len++;
+    return len;
+}
+</code></pre>
+<h2 id="brents-cycle-detection">Brent's Cycle Detection</h2>
+<p>Brent's Cycle Detection 算法是上边那个的优化，减少了常数，平均消耗时间减少了36%（据说）。</p>
+<p>他和 Floyd 判圈的不同在于快指针每次的移动长度变成了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">2^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.824664em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span></span></span></span></span></span></span>，慢指针不移动，而是若每次快节点移动的过程中两者没有相遇，则慢指针直接移动到快节点的位置。这样如果有环，快指针在最后一次移动过程中的步数就是环长度。若无环，则慢指针一直在“追逐”快指针，无法相遇。</p>
+<p>也是挺好理解的，代码大概这样：</p>
+<pre><code class="language-c++">int brent_cycle_detection(Node *head)
+{
+    Node *slow = head, *quik = head;
+    int len = 0, now = 1;
+    while (1)
+    {
+        len++; quik = quik-&gt;next;
+        if (quik == nullptr) return -1;
+        if (slow == quik) return len;
+        
+        if (len &gt;= now)
+        {
+            len = 0; now &lt;&lt;= 1;
+            slow = quik;
+        }
+    }
+}
+</code></pre>
+<h2 id="最后">最后</h2>
+<p>虽然这俩算法可能没啥实战作用，但是某种意义上也能感受到一个学者应该拥有的那种对某个问题吹毛求疵的探索态度，值得我们学习。</p>
+<p><s>但是这俩算法确实没啥用。</s></p>
+<p><strong>题外话：</strong> 彩虹社新专「SMASH The PAINT!!」太顶了，Sasaki的那首<a href="https://www.bilibili.com/video/av93933353">「煽動海獣ダイパンダ」</a>过于清楚，ガチ了。</p>
 
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/Af8zBoWgi/">
-            <span class="flex-auto">随笔</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/4I_9DxHav/">
+            <span class="flex-auto">图论</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ZrLL7yP_C/">
-            <span class="flex-auto">旧文归档</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/-zzRF13bvq/">
+            <span class="flex-auto">笔记</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ZXzFglJ4P/">
+            <span class="flex-auto">算法</span>
           </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://blog.dctewi.com/post/dc-is-gonna-study/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  【旧文归档】冻葱滚去闭关修炼了
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://blog.dctewi.com/post/10-days-to-noip2017/">
+              <a href="https://blog.dctewi.com/post/a-star/">
                 <h3 class="post-title">
-                  【旧文归档】距离NOIp2017还有十天
+                  【总结】A*搜索算法小结
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
