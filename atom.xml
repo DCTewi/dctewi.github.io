@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.dctewi.com</id>
     <title>冻葱Tewi</title>
-    <updated>2020-03-15T16:03:19.567Z</updated>
+    <updated>2020-03-23T16:08:30.158Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.dctewi.com"/>
     <link rel="self" href="https://blog.dctewi.com/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://blog.dctewi.com/images/avatar.png</logo>
     <icon>https://blog.dctewi.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 冻葱Tewi</rights>
+    <entry>
+        <title type="html"><![CDATA[【算法】正逆康托展开基础]]></title>
+        <id>https://blog.dctewi.com/post/cantor-basic/</id>
+        <link href="https://blog.dctewi.com/post/cantor-basic/">
+        </link>
+        <updated>2020-03-23T15:35:50.000Z</updated>
+        <summary type="html"><![CDATA[<p>康托展开和逆康托展开是全排列和他的字典序序号相互转化的两种算法。在有关排列方案的问题中可以作为枚举的哈希函数，在允许枚举的数据范围内具有优良的复杂度。但是一般允许枚举的数据范围大概是20以内，因为21！爆int64，所以这也是种图一乐算法。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>康托展开和逆康托展开是全排列和他的字典序序号相互转化的两种算法。在有关排列方案的问题中可以作为枚举的哈希函数，在允许枚举的数据范围内具有优良的复杂度。但是一般允许枚举的数据范围大概是20以内，因为21！爆int64，所以这也是种图一乐算法。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【算法】没啥用的判圈算法两则]]></title>
         <id>https://blog.dctewi.com/post/cycle-detection/</id>

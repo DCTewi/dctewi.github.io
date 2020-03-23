@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>【算法】没啥用的判圈算法两则 | 冻葱Tewi</title>
+<title>【算法】正逆康托展开基础 | 冻葱Tewi</title>
 <meta name="description" content="一个蒟蒻的博客。" />
 <link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1584978229201">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -60,8 +60,14 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#floyd-cycle-detection">Floyd Cycle Detection</a></li>
-<li><a href="#brents-cycle-detection">Brent's Cycle Detection</a></li>
+<li><a href="#%E7%AE%97%E6%B3%95%E4%BD%9C%E7%94%A8">算法作用</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF">实现思路</a>
+<ul>
+<li><a href="#%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80">康托展开</a></li>
+<li><a href="#%E9%80%86%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80">逆康托展开</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0">具体实现</a></li>
 <li><a href="#%E6%9C%80%E5%90%8E">最后</a></li>
 </ul>
 </li>
@@ -117,79 +123,122 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">【算法】没啥用的判圈算法两则</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">【算法】正逆康托展开基础</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-15 / 4 min to read
+          2020-03-23 / 3 min to read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s1.ax1x.com/2020/03/15/88Iktg.jpg" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s1.ax1x.com/2020/03/23/8HWt9H.jpg" alt="">
         
         <div class="post-content yue">
-          <p>如题，这里记录了两则没啥用的判圈算法。</p>
+          <p>康托展开和逆康托展开是全排列和他的字典序序号相互转化的两种算法。在有关排列方案的问题中可以作为枚举的哈希函数，在允许枚举的数据范围内具有优良的复杂度。但是一般允许枚举的数据范围大概是20以内，因为21！爆int64，所以这也是种图一乐算法。</p>
 <!-- more -->
-<p>对于“判断有向图中是否存在环”这类问题，竞赛中常见的解决办法一般都是带标记深搜或者拓扑排序后删点，在邻接表或者前向星下这两种方法的时间复杂度都是线性，所以一般够用。</p>
-<p>但最近在某个沙雕视频里了解到了一个奥妙算法，叫做 Floyd Cycle Detection，可以在线性时间，常数空间的条件下判断环是否存在。但是竞赛题没办法这么卡空间，了解下这算法也就图一乐。</p>
-<h2 id="floyd-cycle-detection">Floyd Cycle Detection</h2>
-<blockquote>
-<p>Floyd 判圈算法 (Floyd Cycle Detection Algorithm)，又称龟兔赛跑算法 (Tortoise and Hare Algorithm)，是一个可以在有限状态机、迭代函数或者链表上判断是否存在环，求出该环的起点与长度的算法。</p>
-<p>如果有限状态机、迭代函数或者链表上存在环，那么在某个环上以不同速度前进的 2 个指针必定会在某个时刻相遇。同时显然地，如果从同一个起点(即使这个起点不在某个环上)同时开始以不同速度前进的 2 个指针最终相遇，那么可以判定存在一个环，且可以求出 2 者相遇处所在的环的起点与长度。</p>
-</blockquote>
-<p>这是 Wikipedia 上的算法描述。简而言之，如果图有环，那么从图上某一点同时出发的速度不同的两个指针，一定会在快的指针比慢的指针多跑整数倍长度的某一时刻相遇。相反，如果快的点遍历完了图，那么则说明图上没有环。</p>
-<p>Floyd 判圈的具体做法是令快指针每次走两步，慢指针每次走一步。两个指针相遇之后定住一个让另一个跑一圈就可以求出环长度了。</p>
-<p>从慢指针到环上开始，慢指针最多只会走一圈两个指针就会相遇。所以时间复杂度是线性<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>m</mi><mo>+</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(m+n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，即两个指针的步数和。只创建了两个指针和环长，所以空间复杂度是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</p>
-<p>代码大概就这样（临时手搓，没有验证）：</p>
-<pre><code class="language-c++">int floyd_cycle_detection(Node *head)
+<h2 id="算法作用">算法作用</h2>
+<p>在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>复杂度中得到一个序列在他的全排列中的字典序序号。逆展开则是由一个全排列中的字典序序号快速得到序列。由树状数组优化后复杂度可以达到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+<h2 id="实现思路">实现思路</h2>
+<h3 id="康托展开">康托展开</h3>
+<p>对于一个长度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>的序列，若他的第<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>位是当前可用数字集合中的第<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span>小的数，则说明他经过这一位比这一位的最小可能字典序大了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi><mo>⋅</mo><mi>i</mi><mo>!</mo></mrow><annotation encoding="application/x-tex">j\cdot i!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">i</span><span class="mclose">!</span></span></span></span>。从左到右依次计算并更新可用数字的集合即可。</p>
+<p>例如，对于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo>}</mo></mrow><annotation encoding="application/x-tex">\{1, 2, 3\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mclose">}</span></span></span></span>的全排列，有表格：</p>
+<table>
+<thead>
+<tr>
+<th>排列</th>
+<th>序号</th>
+<th>展开</th>
+<th>每位的可用数集</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1, 2, 3</td>
+<td>1</td>
+<td>0 * 2! + 0 * 1! + 0 * 0!</td>
+<td>123, 23, 3</td>
+</tr>
+<tr>
+<td>1, 3, 2</td>
+<td>2</td>
+<td>0 * 2! + 1 * 1! + 0 * 0!</td>
+<td>123, 23, 2</td>
+</tr>
+<tr>
+<td>2, 1, 3</td>
+<td>3</td>
+<td>1 * 2! + 0 * 1! + 0 * 0!</td>
+<td>123, 13, 3</td>
+</tr>
+<tr>
+<td>2, 3, 1</td>
+<td>4</td>
+<td>1 * 2! + 1 * 1! + 0 * 0!</td>
+<td>123, 13, 1</td>
+</tr>
+<tr>
+<td>3, 1, 2</td>
+<td>5</td>
+<td>2 * 2! + 0 * 1! + 0 * 0!</td>
+<td>123, 12, 2</td>
+</tr>
+<tr>
+<td>3, 2, 1</td>
+<td>6</td>
+<td>2 * 2! + 1 * 1! + 0 * 0!</td>
+<td>123, 12, 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="逆康托展开">逆康托展开</h3>
+<p>上述过程的逆运算即可。每次算出当前位是可用数集的第几位，获取并更新可用数集即可。</p>
+<h2 id="具体实现">具体实现</h2>
+<p>一种可能的实现方法：</p>
+<pre><code class="language-cpp">const int FACT[] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880}; // 静态化阶乘值
+// 正康托展开
+long long cantor(const vector&lt;int&gt; &amp;a)
 {
-    Node *slow = head, *quik = head;
-    int len = 1;
-    while (1)
+    long long res (0);
+    int len (a.size());
+    for (int i = 0; i &lt; len; i++)
     {
-        if (quik == nullptr) return -1;
-        if (slow == quik) break;
-        
-        slow = slow-&gt;next;
-        quik = quik-&gt;next-&gt;next;
-    }
-    while (slow-&gt;next != quik) slow = slow-&gt;next, len++;
-    return len;
-}
-</code></pre>
-<h2 id="brents-cycle-detection">Brent's Cycle Detection</h2>
-<p>Brent's Cycle Detection 算法是上边那个的优化，减少了常数，平均消耗时间减少了36%（据说）。</p>
-<p>他和 Floyd 判圈的不同在于快指针每次的移动长度变成了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">2^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.824664em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span></span></span></span></span></span></span>，慢指针不移动，而是若每次快节点移动的过程中两者没有相遇，则慢指针直接移动到快节点的位置。这样如果有环，快指针在最后一次移动过程中的步数就是环长度。若无环，则慢指针一直在“追逐”快指针，无法相遇。</p>
-<p>也是挺好理解的，代码大概这样：</p>
-<pre><code class="language-c++">int brent_cycle_detection(Node *head)
-{
-    Node *slow = head, *quik = head;
-    int len = 0, now = 1;
-    while (1)
-    {
-        len++; quik = quik-&gt;next;
-        if (quik == nullptr) return -1;
-        if (slow == quik) return len;
-        
-        if (len &gt;= now)
+        int num = 0;
+        for (int j = i + 1; j &lt; len; j++)
         {
-            len = 0; now &lt;&lt;= 1;
-            slow = quik;
+            if (a[j] &lt; a[i]) num++;
         }
+        res += FACT[len - i - 1] * num;
     }
+    return res;
+}
+// 逆康托展开
+// \param x 字典序序号
+// \param n 排列长度
+vector&lt;int&gt; decantor(int x, int n)
+{
+    vector&lt;int&gt; vis, res;
+    for (int i = 0; i &lt;= n; i++) vis.emplace_back(i + 1);
+    for (int i = n - 1; i &gt;= 0; i--)
+    {
+        int now = x / FACT[i];
+        x %= FACT[i];
+
+        res.emplace_back(vis[now]);
+        vis.erase(vis.begin() + now);
+    }
+    return res;
 }
 </code></pre>
 <h2 id="最后">最后</h2>
-<p>虽然这俩算法可能没啥实战作用，但是某种意义上也能感受到一个学者应该拥有的那种对某个问题吹毛求疵的探索态度，值得我们学习。</p>
-<p><s>但是这俩算法确实没啥用。</s></p>
-<p><strong>题外话：</strong> 彩虹社新专「SMASH The PAINT!!」太顶了，Sasaki的那首<a href="https://www.bilibili.com/video/av93933353">「煽動海獣ダイパンダ」</a>过于清楚，ガチ了。</p>
+<p>以上就是康托展开的基础内容了。</p>
+<p>这种图一乐算法既能图一乐，还篇幅短小。真的很适合水博客（草）。</p>
 
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/4I_9DxHav/">
-            <span class="flex-auto">图论</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/KICHZ7YDw/">
+            <span class="flex-auto">康托展开</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/-zzRF13bvq/">
-            <span class="flex-auto">笔记</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/LX-M-fkc7/">
+            <span class="flex-auto">数论</span>
           </a>
         
           <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ZXzFglJ4P/">
@@ -200,21 +249,12 @@
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://blog.dctewi.com/post/cantor-basic/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  【算法】正逆康托展开基础
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://blog.dctewi.com/post/a-star/">
+              <a href="https://blog.dctewi.com/post/cycle-detection/">
                 <h3 class="post-title">
-                  【总结】A*搜索算法小结
+                  【算法】没啥用的判圈算法两则
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
