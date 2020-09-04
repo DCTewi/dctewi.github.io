@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>【折腾】Gridea Enchant 总结 | 冻葱Tewi</title>
+<title>【总结】我的 Unity C# 编码规范 | 冻葱Tewi</title>
 <meta name="description" content="一个蒟蒻的博客。" />
 <link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1599230707397">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -60,10 +60,17 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5">友情链接</a></li>
-<li><a href="#seo">SEO</a></li>
-<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
-<li><a href="#%E6%9C%80%E5%90%8E">最后</a></li>
+<li><a href="#%E5%91%BD%E5%90%8D">命名</a></li>
+<li><a href="#%E7%BB%93%E6%9E%84">结构</a></li>
+<li><a href="#%E6%A0%BC%E5%BC%8F">格式</a>
+<ul>
+<li><a href="#%E7%BC%A9%E8%BF%9B">缩进</a></li>
+<li><a href="#%E6%8B%AC%E5%8F%B7">括号</a></li>
+<li><a href="#%E7%A9%BA%E6%A0%BC">空格</a></li>
+<li><a href="#%E6%B3%A8%E9%87%8A">注释</a></li>
+<li><a href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4">命名空间</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -118,147 +125,223 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">【折腾】Gridea Enchant 总结</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">【总结】我的 Unity C# 编码规范</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-13 / 5 min read
+          2020-09-04 / 5 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s1.ax1x.com/2020/03/13/8KPHT1.jpg" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s1.ax1x.com/2020/09/04/wAQb40.jpg" alt="">
         
         <div class="post-content yue">
-          <p>Gridea 是一个类似于 Hexo 的静态博客管理框架。看中了它的颜值，但相比于 Hexo，有些功能不够全面。所以凑今天进行了一波魔改，将过程记录了下来。</p>
+          <p>好久没水文章了。所以在这个考试过去了一半了的时间里发点东西，算是起个头，之后又要肝起来咯。</p>
+<p>本套编码规范只代表个人习惯，符合习惯的规范就是好规范。有观点欢迎讨论，但谢绝人身攻击哦。</p>
 <!-- more -->
-<p>注：本文中所有的<code>..</code>路径指<code>库/文档/Gridea</code>路径。</p>
-<h2 id="友情链接">友情链接</h2>
-<p>换成 Gridea 之后，友链一直简单地在用<a href="https://github.com/DCTewi/Links-mdGenerator">生成的</a>用 markdown 硬搓的 html/js，不够优雅，而且更新链条比较长（编辑json -&gt; 跑py -&gt; 复制markdown），所以自己魔改了一波 Gridea 和主题。</p>
-<p>首先在<code>../themes/你的主题/config.json</code>文件中的<code>customConfig</code>列表中添加一个新对象：</p>
-<pre><code class="language-json">{
-      &quot;name&quot;: &quot;friends&quot;,
-      &quot;label&quot;: &quot;友链&quot;,
-      &quot;group&quot;: &quot;友链&quot;,
-      &quot;type&quot;: &quot;array&quot;,
-      &quot;value&quot;: [],
-      &quot;arrayItems&quot;: [
-        { &quot;label&quot;: &quot;名称&quot;, &quot;name&quot;: &quot;siteName&quot;, &quot;type&quot;: &quot;input&quot;, &quot;value&quot;: &quot;&quot; },
-        { &quot;label&quot;: &quot;链接&quot;, &quot;name&quot;: &quot;siteLink&quot;, &quot;type&quot;: &quot;input&quot;, &quot;value&quot;: &quot;&quot; },
-        { &quot;label&quot;: &quot;Logo&quot;, &quot;name&quot;: &quot;siteLogo&quot;, &quot;type&quot;: &quot;input&quot;, &quot;value&quot;: &quot;&quot; },
-        { &quot;label&quot;: &quot;描述&quot;, &quot;name&quot;: &quot;description&quot;, &quot;type&quot;: &quot;textarea&quot;, &quot;value&quot;: &quot;&quot; }
-      ],
-      &quot;note&quot;: &quot;&quot;
+<h2 id="命名">命名</h2>
+<ol>
+<li>不使用匈牙利命名法，不在变量前添加<code>m_</code>等前缀。</li>
+<li>使用大驼峰命名<strong>属性</strong>、<strong>方法</strong>、<strong>事件</strong>、<strong>枚举</strong>、<strong>类型</strong>和<strong>命名空间</strong>。</li>
+</ol>
+<pre><code class="language-csharp">public class MyClass
+{
+    public event Action SomeEvent;
+    public int Name { get; set; }
+    
+    [MenuItem(&quot;Window/SomeMenu&quot;)]
+    public void DoSomething()
+    {
     }
-</code></pre>
-<p>接着重启 Gridea，可以看到已经有了配置页。进行一波填写之后，进行接下来的操作。</p>
-<figure data-type="image" tabindex="1"><img src="https://s1.ax1x.com/2020/03/13/8KpixH.png" alt="Gridea Config" loading="lazy"></figure>
-<p>将<code>../templates/</code>下的<code>post.ejs</code>复制一份，命名为你想要的地址，如<code>links.ejs</code>。接着进行一波编辑，将有关<code>post</code>的内容都删去，编辑一下页面名称，把正文的位置(一般都是<code>{&lt;%- post.content %&gt;}</code>)替换成友链内容，再随便加个洗牌，实例：</p>
-<pre><code class="language-html">&lt;div class=&quot;post-content yue flex flex-wrap&quot;&gt;
-          
-          &lt;% if (site.customConfig.friends) { %&gt;
-            &lt;% site.customConfig.friends.forEach(function(friend) { %&gt;
-              &lt;div class=&quot;friend-box&quot;&gt;
-                &lt;img class=&quot;friend-avatar&quot; src=&quot;&lt;%= friend.siteLogo %&gt;&quot;&gt;
-                &lt;div class=&quot;flink-info&quot;&gt;
-                  &lt;a href=&quot;&lt;%= friend.siteLink %&gt;&quot; target=&quot;_blank&quot;&gt;&lt;%= friend.siteName %&gt;&lt;/a&gt;
-                  &lt;br/&gt;
-                  &lt;%= friend.description %&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;% }); %&gt;
-
-            &lt;script src=&quot;https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js&quot;&gt;&lt;/script&gt;
-            &lt;script&gt;
-              // 这里注入了一个Fisher–Yates Shuffle算法用来洗牌
-              jQuery.prototype.shuffle = function() {
-                var res = this;
-                for (var i = res.length - 1; i &gt;= 0; i--) {
-                  var rnd = Math.floor(Math.random() * (i + 1));
-                  var ind = res[rnd];
-
-                  res[rnd] = res[i];
-                  res[i] = ind;
-                }
-                return res;
-              }
-              // 打乱一下顺序
-              var items = $(&quot;.friend-box&quot;).shuffle();
-              $(&quot;.post-content&quot;).empty().append(items);
-          &lt;/script&gt;
-          &lt;% } %&gt;
-
-        &lt;/div&gt;
-</code></pre>
-<p>在<code>../themes/你的主题/assets/styles/main.less</code>中加点样式和动画：</p>
-<pre><code class="language-css">.friend-box {
-  float: left;
-  width: calc(50% - 20px);
-  margin: 15px 10px;
-  img.friend-avatar{
-    width: 70px;
-    height: 70px;
-    border-radius: 50% !important;
-    float: left;
-    margin:0 15px 0 0 !important;
-    transition:0.5s;
-    -webkit-transtion:1.5s;
-  }
-  img.friend-avatar:hover{
-    transform:rotate(360deg);
-		-webkit-transform:rotate(360deg);
-  }
-  .flink-info{
-    height:70px;
-    overflow: hidden;
-    line-height: 24px;
-  }
 }
 </code></pre>
-<p>就完事了，效果：<a href="https://blog.dctewi.com/links/">https://blog.dctewi.com/links/</a></p>
-<h2 id="seo">SEO</h2>
-<p>Gridea 的主题大都不在网页标题加 title，SEO真的爆炸。Google Analytics 天天发邮件，一般在<code>../templates/post.ejs</code>里加个参数就可以了：</p>
-<pre><code class="language-html">&lt;head&gt;
-    &lt;%- include('./includes/head', { siteTitle: `${post.title} | ${themeConfig.siteName}` }) %&gt;
-&lt;/head&gt;
+<ol start="3">
+<li>使用大驼峰命名<strong>静态变量</strong>，<strong>常量</strong>，和<strong>公开字段(包括公开只读字段)</strong>。</li>
+<li>使用小驼峰命名<strong>私有字段</strong>，<strong>临时变量</strong>，<strong>参数</strong>，不应/不能被其他对象访问的私有字段应添加一个下划线前缀。</li>
+<li>布尔变量由小写介词短语开头，表示逻辑类型。</li>
+</ol>
+<pre><code class="language-csharp">public static string AssetPath = &quot;Asset/&quot;;
+public const double Pi = 3.1415926;
+public readonly int PhoneNumber = 123456;
+public string Name = &quot;Hanpi&quot;;
+
+private int _health;
+
+public bool isOnline;
+private bool canPlayGame;
 </code></pre>
-<p>百度提交和谷歌统计的 js 都放进<code>../templates/includes/head.ejs</code>合适位置就行了。</p>
-<h2 id="参考资料">参考资料</h2>
-<ul>
-<li><a href="https://i.immmmm.com/gridea-templates-friends/">三步创建 Gridea 友情链接页 - 林小沐</a></li>
-<li><a href="https://segmentfault.com/q/1010000000141873">jQuery如何对div进行排序 - SegmentFault</a></li>
-<li><a href="https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程：语法篇 - 阮一峰的网络日志</a></li>
-</ul>
-<h2 id="最后">最后</h2>
-<p>没了，就这。</p>
-<p>我的前端知识全是被逼出来的（悲）。</p>
+<ol start="5">
+<li>接口名以大写I作为前缀。</li>
+</ol>
+<pre><code class="language-csharp">public interface IManager
+{
+}
+</code></pre>
+<ol start="6">
+<li>类名应该是名词或者名词性短语。</li>
+<li>方法名应该是动宾/介宾短语。</li>
+<li>局部变量的名称要有意义，慎用简写/缩写。</li>
+</ol>
+<pre><code class="language-csharp">public class GameManager
+{
+    public string GetName()
+    {
+        var tempVar = MakeName();
+        return tempVar;
+    }
+}
+</code></pre>
+<h2 id="结构">结构</h2>
+<p>类型成员的排列顺序自上而下依次为：</p>
+<ol>
+<li>静态：静态字段，静态属性，静态方法；</li>
+<li>字段：私有字段，受保护字段（尽量不要使用公开字段）；</li>
+<li>属性：私有属性，受保护属性，公开属性；</li>
+<li>事件：私有事件，受保护事件，公开事件；</li>
+<li>嵌套枚举，嵌套类；</li>
+<li>构造函数（如果有），按参数数量升序排列；</li>
+<li>重载方法（如果有），按需排列；</li>
+<li>方法，按需排列；</li>
+<li>Unity 保留方法（如<code>Update()</code>），按调用时间前后排序；</li>
+</ol>
+<p>注1：如有需要，应该使用<code>partial</code>将一部分放在<code>ClassName.PartialType.cs</code>文件中。比如玩家的不同状态机类。</p>
+<p>注2：如果文件行数较多，则应该使用<code>#region</code>分开代码块并折叠。</p>
+<h2 id="格式">格式</h2>
+<h3 id="缩进">缩进</h3>
+<ol>
+<li>不使用 Tab 字符，使用四个空格字符控制一个缩进。</li>
+</ol>
+<h3 id="括号">括号</h3>
+<ol>
+<li>左大括号总是在开始块的语句下一行的行首，块内容应再缩进四个空格。</li>
+</ol>
+<pre><code class="language-csharp">if (condition)
+{
+    DoSth();
+}
+</code></pre>
+<ol start="2">
+<li>Switch-Case 语句的缩进方法：</li>
+</ol>
+<pre><code class="language-csharp">switch (s)
+{
+    case 0:
+        {
+            DoSth();
+        }
+        break;
+    default: break;
+}
+</code></pre>
+<ol start="3">
+<li>单行语句中，可以有在同一行开始或结束的括号。</li>
+</ol>
+<pre><code class="language-csharp">public class Foo
+{
+   int bar;
+   public int Bar
+   {
+      get { return bar; }
+      set { bar = value; }
+   }
+}
+</code></pre>
+<h3 id="空格">空格</h3>
+<ol>
+<li>函数参数之间逗号后使用单个空格。</li>
+</ol>
+<pre><code class="language-csharp">Right:       Console.In.Read(myChar, 0, 1);
+Wrong:       Console.In.Read(myChar,0,1);
+</code></pre>
+<ol start="2">
+<li>圆括号和参数后面不能使用空格。</li>
+</ol>
+<pre><code class="language-csharp">Right:       CreateFoo(myChar, 0, 1)
+Wrong:       CreateFoo( myChar, 0, 1 )
+</code></pre>
+<ol start="3">
+<li>函数名称和括号之间不能使用空格。</li>
+</ol>
+<pre><code class="language-csharp">Right:       CreateFoo()
+Wrong:       CreateFoo ()
+</code></pre>
+<ol start="4">
+<li>不要在括号内使用空格。</li>
+</ol>
+<pre><code class="language-csharp">Right:       x = dataArray[index];
+Wrong:       x = dataArray[ index ];
+</code></pre>
+<ol start="5">
+<li>在流程控制语句之前使用单个空格。</li>
+<li>在算术运算符前后添加一个空格。</li>
+</ol>
+<pre><code class="language-csharp">Right:       while (x == y)
+Wrong:       while(x==y)
+</code></pre>
+<h3 id="注释">注释</h3>
+<ol>
+<li>版权声明（若选择）</li>
+</ol>
+<p>版权声明卸载文件头，不应该使用三斜杠注释，应该使用双斜杠注释。</p>
+<pre><code class="language-csharp">//-----------------------------------------------------------------------
+// &lt;copyright file=&quot;ContainerControl.cs&quot; company=&quot;Microsoft&quot;&gt;
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
+// &lt;/copyright&gt;
+//-----------------------------------------------------------------------
+</code></pre>
+<ol start="2">
+<li>方法注释</li>
+</ol>
+<p>方法注释应该使用三斜杠XML文档注释。对于开发者互相的评论，应该使用<code>&lt;devdoc&gt;</code>标签。</p>
+<p><code>&lt;summary&gt;</code>标签格式应该为：<code>xxx of/which/about/... something</code>。</p>
+<pre><code class="language-csharp">public class Foo 
+{
+/// &lt;summary&gt;Public stuff about the method&lt;/summary&gt;
+/// &lt;param name=”bar”&gt;What a neat parameter!&lt;/param&gt;
+/// &lt;devdoc&gt;Cool internal stuff!&lt;/devdoc&gt;
+///
+public void MyMethod(int bar) { … }
+}
+</code></pre>
+<ol start="3">
+<li>代码注释</li>
+</ol>
+<p>使用双斜杠注释。注释应放在代码的上方。</p>
+<pre><code class="language-csharp">// I'm a comment.
+var rb = GetComponent&lt;RigidBody2D&gt;();
+</code></pre>
+<h3 id="命名空间">命名空间</h3>
+<p>命名空间应根据路径分配，脚本文件的命名空间在<code>using</code>语句下方空出一行处。</p>
+<pre><code class="language-csharp">using System;
+
+namespace ProjectName.Core
+{
+    public class MyClass() { }
+}
+</code></pre>
 
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/MlLcz-LMG/">
-            <span class="flex-auto">前端</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/o9nRsh8s3/">
+            <span class="flex-auto">编码规范</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/BzIxC8D8s/">
-            <span class="flex-auto">折腾</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/J3l4TH0lR/">
+            <span class="flex-auto">Unity</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/-zzRF13bvq/">
+            <span class="flex-auto">笔记</span>
           </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://blog.dctewi.com/post/a-star/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  【总结】A*搜索算法小结
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://blog.dctewi.com/post/unity-new-input-system/">
+              <a href="https://blog.dctewi.com/post/cantor-basic/">
                 <h3 class="post-title">
-                  【总结】Unity Input System 使用简要
+                  【算法】正逆康托展开基础
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>

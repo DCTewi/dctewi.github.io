@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.dctewi.com</id>
     <title>冻葱Tewi</title>
-    <updated>2020-08-07T18:33:28.436Z</updated>
+    <updated>2020-09-04T14:46:09.649Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.dctewi.com"/>
     <link rel="self" href="https://blog.dctewi.com/atom.xml"/>
@@ -10,6 +10,19 @@
     <logo>https://blog.dctewi.com/images/avatar.png</logo>
     <icon>https://blog.dctewi.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 冻葱Tewi</rights>
+    <entry>
+        <title type="html"><![CDATA[【总结】我的 Unity C# 编码规范]]></title>
+        <id>https://blog.dctewi.com/post/my-unity-csharp-code-standard/</id>
+        <link href="https://blog.dctewi.com/post/my-unity-csharp-code-standard/">
+        </link>
+        <updated>2020-09-04T14:05:50.000Z</updated>
+        <summary type="html"><![CDATA[<p>好久没水文章了。所以在这个考试过去了一半了的时间里发点东西，算是起个头，之后又要肝起来咯。</p>
+<p>本套编码规范只代表个人习惯，符合习惯的规范就是好规范。有观点欢迎讨论，但谢绝人身攻击哦。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>好久没水文章了。所以在这个考试过去了一半了的时间里发点东西，算是起个头，之后又要肝起来咯。</p>
+<p>本套编码规范只代表个人习惯，符合习惯的规范就是好规范。有观点欢迎讨论，但谢绝人身攻击哦。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【算法】正逆康托展开基础]]></title>
         <id>https://blog.dctewi.com/post/cantor-basic/</id>
