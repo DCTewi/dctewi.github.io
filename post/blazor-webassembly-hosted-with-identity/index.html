@@ -1,0 +1,479 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>【笔记】在 Blazor WebAssembly Hosted 中使用 Identity | 冻葱Tewi</title>
+<meta name="description" content="一个蒟蒻的博客。" />
+<link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1606921205197">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://blog.dctewi.com/styles/main.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152707655-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://blog.dctewi.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://blog.dctewi.com/images/avatar.png?v=1606921205197" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">冻葱Tewi</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-webassembly">什么是 WebAssembly</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-blazor">什么是 Blazor</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-identity-%E8%BF%9B%E8%A1%8C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">使用 Identity 进行身份验证</a>
+<ul>
+<li><a href="#%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE">新建项目</a></li>
+<li><a href="#%E9%87%8D%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8A%E4%B8%8B%E6%96%87">重建数据库上下文</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87%E5%9F%BA%E6%9E%B6%E5%88%9B%E5%BB%BA-identity-%E6%89%80%E9%9C%80%E7%9A%84-remote-pages">通过基架创建 Identity 所需的 Remote Pages</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%9F%BA%E4%BA%8E-role-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">使用基于 Role 的身份验证</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89">自定义</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0s">
+          关于
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/links" class="menu" style="animation-delay: 0.4s">
+          友链
+        </a>
+      
+    
+      
+        <a href="/post/goal" class="menu" style="animation-delay: 0.6000000000000001s">
+          目标
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.8s">
+          标签
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700"><div style="color:#66ccff">夢に僕らで帆を張って、<br />来るべき日のために夜を越え。</div><br />Copyright © 2017 <a style="color:#66ccff">DCTewi</a><br />本站点采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA-4.0 国际许可协议</a>。</div>
+    <a class="rss" href="https://blog.dctewi.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-12-02 / 8 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s3.ax1x.com/2020/12/02/Do8l0e.jpg" alt="">
+        
+        <div class="post-content yue">
+          <p>记录了一些 Blazor WebAssembly 的基础知识和在其中使用 Identity 进行身份验证的知识点。好久不写博客了，手都生了。</p>
+<!-- more -->
+<blockquote>
+<p>注：本文中使用的 .NET 版本为 .NET 5.0（.NET Core 和 .NET Framework 合并的版本）</p>
+</blockquote>
+<h2 id="什么是-webassembly">什么是 WebAssembly</h2>
+<p>顾名思义，WebAssembly（wasm）是一种实验性的 Web 低级编程语言，应用于浏览器的客户端，以提供比 JavaScript 更快速的便宜和运行。并允许开发者将自己喜欢的编程语言编译成 wasm 后在客户浏览器内以接近原生的性能运行。打破前端只有 JavaScript 的桎梏，让各种“后端”语言走上前台，走进用户的浏览器。</p>
+<p>WebAssembly 由 W3C 发起，由 Mozilla，Google，Microsoft，Apple 分别代表四大浏览器牵头，从2017年起开始实验性支持。最终在 2019 年 12 月被 W3C 推荐，成为 Web 的第四种语言。</p>
+<h2 id="什么是-blazor">什么是 Blazor</h2>
+<p>Blazor 是 .NET 社区的 Web 应用解决方案，名字取自 Browser + Razor 之意，以 C# 和 HTML 创建 Web 应用。</p>
+<p>Blazor 分为 Blazor Server 和 Blazor WebAssembly。Blazor Server 指托管于 Asp.Net Core 的服务器上的瘦客户端。绝大多数操作在服务器端进行，客户端指挥下载所需要的最小化的页面，并通过 SignalR 的连接更新浏览器中的界面。Blazor WebAssembly 是基于 wasm 的单页应用。初始加载内容远大于 Blazor Server，但之后的处理过程将在客户端硬件内完成，所以它具有更快的响应速度。</p>
+<p>Blazor WebAssembly Hosted 是 Blazor WebAssembly with Asp.Net Core Hosted 架构的简称。他是由交给客户的 Blazor WebAssembly 作为前端应用，同时后端由 Asp.Net Core Api 进行数据交换的一种结构。</p>
+<h2 id="使用-identity-进行身份验证">使用 Identity 进行身份验证</h2>
+<h3 id="新建项目">新建项目</h3>
+<p>.NET 官方推荐的身份验证方法是通过 <code>Microsoft.AspNetCore.Identity</code> 和 Identity Server 4 配合 Jwt 来进行用户身份的验证。</p>
+<p>新建工程时，将身份验证和 Asp.Net Core Hosted 正确配置：</p>
+<figure data-type="image" tabindex="1"><img src="https://s3.ax1x.com/2020/12/02/DoeYrR.png" alt="DoeYrR.png" loading="lazy"></figure>
+<h3 id="重建数据库上下文">重建数据库上下文</h3>
+<p>等待示例工程创建完毕之后，可以看到 Solution 中被分成了三个项目。分别是盛放 Blazor WebAssembly 的 Client 项目，盛放 Asp.Net Core 服务器的 Server 项目以及两个项目之间互相通信的共享项目 Shared。</p>
+<figure data-type="image" tabindex="2"><img src="https://s3.ax1x.com/2020/12/02/Doezz4.png" alt="Doezz4.png" loading="lazy"></figure>
+<p>其中，Server 项目中已经写好了默认的用户类、数据库上下文类以及数据库初始化 Migration。默认情况下，Entity Framewok Core 使用的数据库是 SQL Server LocalDB。虽然我更偏好 SQLite，但其实只是换一个 NuGet 包和连接字符串的事，所以等到下次杂项的时候在提，这次先用 LocalDB 凑合。</p>
+<p>删除<code>Server/Data/Migrations</code>文件夹，在选中 Server 项目的情况下打开 工具 - NuGet 包管理器 - 程序包管理器控制台（或使用 Ctrl + `打开），使用以下指令重新建立 Migration 和数据库：</p>
+<pre><code class="language-shell">Add-Migration InitCreate -o Data/Migrations
+Update-Database
+</code></pre>
+<p>或者，如果你使用的是 .NET Core CLI：</p>
+<pre><code class="language-shell">dotnet ef migrations add InitCreate -o Data/Migrations
+dotnet ef database update
+</code></pre>
+<h3 id="通过基架创建-identity-所需的-remote-pages">通过基架创建 Identity 所需的 Remote Pages</h3>
+<p>如果不创建基架，Identity 模块的 <code>&lt;RemoteAuthenticatorView&gt;</code> 控件连接到的界面都会使用默认的页面。通过基架将所有的页面创建后，就可以通过修改<code>cshtml</code>文件来对逻辑和界面进行自定义。</p>
+<p>从 Server 项目的新建菜单中新建基架项目，选择 Identity 并指定数据库上下文类，接着替换全部（不得不说巨硬的这个机翻属实不行，Identity 都能翻译成标识）。</p>
+<p><img src="https://s3.ax1x.com/2020/12/02/DoKRXQ.png" alt="DoKRXQ.png" loading="lazy"><br>
+<img src="https://s3.ax1x.com/2020/12/02/DoQCan.png" alt="DoQCan.png" loading="lazy"><br>
+<img src="https://s3.ax1x.com/2020/12/02/DoQP5q.png" alt="DoQP5q.png" loading="lazy"></p>
+<h3 id="使用基于-role-的身份验证">使用基于 Role 的身份验证</h3>
+<p>基于默认设置，Jwt 口令中是没有 Role 相关信息的。我们需要让服务器发出的 Jwt 口令中带上 Role 信息：</p>
+<pre><code class="language-csharp">/// Server/Startup.cs
+/// Startup.ConfigureServices(IServiceCollection)
+
+services.AddDefaultIdentity&lt;ApplicationUser&gt;()
+    .AddRoles&lt;IdentityRole&gt;() // 指定Role的类
+    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;();
+
+services.AddIdentityServer(options =&gt; options.IssuerUri = Configuration.GetValue&lt;string&gt;(Literal.Domain))
+    // 在JWT中添加Role信息
+    .AddApiAuthorization&lt;AppUser, ApplicationDbContext&gt;(options =&gt;
+    {
+        options.IdentityResources[&quot;openid&quot;].UserClaims.Add(&quot;role&quot;);
+        options.ApiResources.Single().UserClaims.Add(&quot;role&quot;);
+    });
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove(&quot;role&quot;);
+
+services.AddAuthentication()
+    .AddIdentityServerJwt();
+</code></pre>
+<p>坑爹的一点是，当用户只有一个 Role 的时候，Claims 中的信息为：</p>
+<pre><code class="language-json">{
+    &quot;role&quot;: &quot;Admin&quot;
+}
+</code></pre>
+<p>当用户有不止一个 Role 的时候，Claims 中的信息为：</p>
+<pre><code class="language-json">{
+    &quot;role&quot;: [&quot;Admin&quot;, &quot;Operator&quot;]
+}
+</code></pre>
+<p>但！我们亲爱的 Blazor 端的 <code>ClaimsPrincipal.IsInRole()</code>函数和<code>[Authorize(Roles = &quot;&quot;)]</code>属性以及<code>&lt;AuthorizeView Roles=&quot;&quot;&gt;</code>控件都是通过<strong>直接判断字符串是否相等</strong>来判断用户是否在 Role 内。</p>
+<p>我暴怒，这个问题困扰了我好几天的时间。但在 Github Issue 中，Blazor 的 Contributor 竟然说这是 <strong>a Feature</strong> ！</p>
+<p>对此，我们需要手动 Hack 一下客户端内的 <code>AccountClaimsPrincipalFactory</code>，创建如下子类：</p>
+<pre><code class="language-csharp">/// Client.Service.RolesAccountClaimsPrincipalFactory.cs
+
+public class RolesAccountClaimsPrincipalFactory
+    : AccountClaimsPrincipalFactory&lt;RemoteUserAccount&gt;
+{
+    public RolesAccountClaimsPrincipalFactory(IAccessTokenProviderAccessor accessor) : base(accessor) { }
+    public override ValueTask&lt;ClaimsPrincipal&gt; CreateUserAsync(RemoteUserAccount account, 
+                                                               RemoteAuthenticationUserOptions options)
+    {
+        // 提取
+        var roles = account?.AdditionalProperties[&quot;role&quot;] as JsonElement?;
+        // 是数组的情况，分割
+        if (roles?.ValueKind == JsonValueKind.Array)
+        {
+            account.AdditionalProperties.Remove(&quot;role&quot;);
+            var claimsPrincipal = base.CreateUserAsync(account, options).Result;
+
+            foreach (var ele in roles.Value.EnumerateArray())
+            {
+                (claimsPrincipal.Identity as ClaimsIdentity)
+                    .AddClaim(new Claim(&quot;role&quot;, ele.GetString()));
+            }
+            return new ValueTask&lt;ClaimsPrincipal&gt;(claimsPrincipal);
+        }
+        // 返回给基类处理
+        return base.CreateUserAsync(account, options);
+    }
+}
+</code></pre>
+<p>并在 Client 端的 <code>Program.cs</code> 注册中间件：</p>
+<pre><code class="language-csharp">/// Client/Program.cs
+/// Program.Main
+
+builder.Services.AddScoped(typeof(AccountClaimsPrincipalFactory&lt;RemoteUserAccount&gt;),
+                           typeof(RolesAccountClaimsPrincipalFactory));
+builder.Services.AddApiAuthorization();
+</code></pre>
+<p>只能说，希望这个 Feature 能早日被定性成 Bug。</p>
+<h3 id="自定义">自定义</h3>
+<p>然后就是自由发挥的时刻了。</p>
+<p>通过中间件自定义账户规则：</p>
+<pre><code class="language-csharp">/// Server/Startup.cs
+/// Startup.ConfigureServices(IServiceCollection)
+
+services
+    .AddDefaultIdentity&lt;ApplicationUser&gt;(options =&gt;
+    {
+        options.SignIn.RequireConfirmedAccount = false;
+        options.Password.RequiredLength = 6;
+        options.Password.RequiredUniqueChars = 2;
+        options.Password.RequireNonAlphanumeric = false;
+        options.User.AllowedUserNameCharacters = string.Empty;
+        options.User.RequireUniqueEmail = true; 
+    })
+    .AddUserValidator&lt;UserNameValidator&lt;ApplicationUser&gt;&gt;()
+    .AddRoles&lt;IdentityRole&gt;()
+    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;();
+
+</code></pre>
+<p>自定义登录加载页面（通过提供 Render Fragment 参数）：</p>
+<pre><code class="language-csharp">/// Client/Pages/Authentication.razor
+
+@page &quot;/authentication/{Action}&quot;
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+&lt;RemoteAuthenticatorView Action=&quot;@Action&quot; &gt;
+    &lt;CompletingLoggingIn&gt;
+        &lt;Loading LoadingMessage=&quot;@LocalStrings.LoadMessage.CompletingLogin&quot;&gt;&lt;/Loading&gt;
+    &lt;/CompletingLoggingIn&gt;
+    &lt;CompletingLogOut&gt;
+        &lt;Loading LoadingMessage=&quot;@LocalStrings.LoadMessage.CompletingLogout&quot;&gt;&lt;/Loading&gt;
+    &lt;/CompletingLogOut&gt;
+    &lt;LoggingIn&gt;
+        &lt;Loading LoadingMessage=&quot;@LocalStrings.LoadMessage.LoggingIn&quot;&gt;&lt;/Loading&gt;
+    &lt;/LoggingIn&gt;
+    &lt;LogInFailed&gt;
+        &lt;ErrorComponent ErrorTitle=&quot;@LocalStrings.Error.BadRequest400&quot; ErrorContent=&quot;@LocalStrings.Error.LoginFailed&quot;&gt;&lt;/ErrorComponent&gt;
+    &lt;/LogInFailed&gt;
+    &lt;LogOut&gt;
+        &lt;Loading LoadingMessage=&quot;@LocalStrings.LoadMessage.LogOut&quot;&gt;&lt;/Loading&gt;
+    &lt;/LogOut&gt;
+    &lt;LogOutFailed&gt;
+        &lt;ErrorComponent ErrorTitle=&quot;@LocalStrings.Error.BadRequest400&quot; ErrorContent=&quot;@LocalStrings.Error.LogOutFailed&quot;&gt;&lt;/ErrorComponent&gt;
+    &lt;/LogOutFailed&gt;
+    &lt;LogOutSucceeded&gt;
+        &lt;RedirectToHome&gt;&lt;/RedirectToHome&gt;
+    &lt;/LogOutSucceeded&gt;
+    &lt;Registering&gt;
+        &lt;Loading LoadingMessage=&quot;@LocalStrings.LoadMessage.Registering&quot;&gt;&lt;/Loading&gt;
+    &lt;/Registering&gt;
+    &lt;UserProfile&gt;
+        &lt;Loading LoadingMessage=&quot;@LocalStrings.LoadMessage.LoadingUserProfile&quot;&gt;&lt;/Loading&gt;
+    &lt;/UserProfile&gt;
+&lt;/RemoteAuthenticatorView&gt;
+
+@code
+{
+    [Parameter] public string Action { get; set; }
+}
+</code></pre>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/WebAssembly">WebAssembly | MDN (mozilla.org)</a></li>
+<li><a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">Blazor | Build client web apps with C# | .NET (microsoft.com)</a></li>
+<li>[<a href="https://github.com/dotnet/AspNetCore.Docs/issues/17649">Blazor][Wasm] Using roles with ApiAuthorization + Blazor · Issue #17649 · dotnet/AspNetCore.Docs (github.com)</a></li>
+</ul>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/MGyHxbynG/">
+            <span class="flex-auto">.NET</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/ezFEcdrUV4/">
+            <span class="flex-auto">C#</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/iuXQGYgKq8/">
+            <span class="flex-auto">Blazor</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/-zzRF13bvq/">
+            <span class="flex-auto">笔记</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://blog.dctewi.com/post/my-unity-csharp-code-standard/">
+                <h3 class="post-title">
+                  【总结】我的 Unity C# 编码规范
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c67700c58e8784319e25',
+    clientSecret: 'b8a2eb7ab6706e02a413e80dac295ef5365662fe',
+    repo: 'dctewi.github.io',
+    owner: 'DCTewi',
+    admin: ['DCTewi'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://blog.dctewi.com/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
