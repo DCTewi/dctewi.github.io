@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.dctewi.com</id>
     <title>冻葱Tewi</title>
-    <updated>2020-12-02T18:10:20.777Z</updated>
+    <updated>2021-02-25T15:26:33.160Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.dctewi.com"/>
     <link rel="self" href="https://blog.dctewi.com/atom.xml"/>
     <subtitle>一个蒟蒻的博客。</subtitle>
     <logo>https://blog.dctewi.com/images/avatar.png</logo>
     <icon>https://blog.dctewi.com/favicon.ico</icon>
-    <rights>All rights reserved 2020, 冻葱Tewi</rights>
+    <rights>All rights reserved 2021, 冻葱Tewi</rights>
     <entry>
         <title type="html"><![CDATA[【笔记】在 Blazor WebAssembly Hosted 中使用 Identity]]></title>
         <id>https://blog.dctewi.com/post/blazor-webassembly-hosted-with-identity/</id>
