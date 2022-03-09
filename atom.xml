@@ -2,14 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.dctewi.com</id>
     <title>冻葱Tewi</title>
-    <updated>2021-06-27T02:58:30.909Z</updated>
+    <updated>2022-03-09T08:37:59.877Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.dctewi.com"/>
     <link rel="self" href="https://blog.dctewi.com/atom.xml"/>
     <subtitle>一个蒟蒻的博客。</subtitle>
     <logo>https://blog.dctewi.com/images/avatar.png</logo>
     <icon>https://blog.dctewi.com/favicon.ico</icon>
-    <rights>All rights reserved 2021, 冻葱Tewi</rights>
+    <rights>All rights reserved 2022, 冻葱Tewi</rights>
+    <entry>
+        <title type="html"><![CDATA[【杂谈】重振旗鼓]]></title>
+        <id>https://blog.dctewi.com/post/blog-reboot/</id>
+        <link href="https://blog.dctewi.com/post/blog-reboot/">
+        </link>
+        <updated>2022-03-09T08:11:43.000Z</updated>
+        <summary type="html"><![CDATA[<p>咕着咕着，已经两年没有写过新博客了（草）。生活方面、技术方面和其他的种种方面都发生了翻天覆地的变化，是时候重新把博客拿起来了。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>咕着咕着，已经两年没有写过新博客了（草）。生活方面、技术方面和其他的种种方面都发生了翻天覆地的变化，是时候重新把博客拿起来了。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【笔记】在 Blazor WebAssembly Hosted 中使用 Identity]]></title>
         <id>https://blog.dctewi.com/post/blazor-webassembly-hosted-with-identity/</id>

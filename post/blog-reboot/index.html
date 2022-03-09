@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>【折腾】Gridea Enchant 总结 | 冻葱Tewi</title>
+<title>【杂谈】重振旗鼓 | 冻葱Tewi</title>
 <meta name="description" content="一个蒟蒻的博客。" />
 <link rel="shortcut icon" href="https://blog.dctewi.com/favicon.ico?v=1646814921589">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -57,17 +57,7 @@
             文章目录
           </p>
           <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5">友情链接</a></li>
-<li><a href="#seo">SEO</a></li>
-<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
-<li><a href="#%E6%9C%80%E5%90%8E">最后</a></li>
-</ul>
-</li>
-</ul>
-
+            
           </div>
         </div>
       
@@ -118,147 +108,37 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">【折腾】Gridea Enchant 总结</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">【杂谈】重振旗鼓</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-13 / 5 min read
+          2022-03-09 / 1 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s-sh-2563-tewi-box.oss.dogecdn.com/img/blog-header/kano-smile-p2.jpg" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s-sh-2563-tewi-box.oss.dogecdn.com/img/blog-header/shenzilanyao.jpg" alt="">
         
         <div class="post-content yue">
-          <p>Gridea 是一个类似于 Hexo 的静态博客管理框架。看中了它的颜值，但相比于 Hexo，有些功能不够全面。所以凑今天进行了一波魔改，将过程记录了下来。</p>
+          <p>咕着咕着，已经两年没有写过新博客了（草）。生活方面、技术方面和其他的种种方面都发生了翻天覆地的变化，是时候重新把博客拿起来了。</p>
 <!-- more -->
-<p>注：本文中所有的<code>..</code>路径指<code>库/文档/Gridea</code>路径。</p>
-<h2 id="友情链接">友情链接</h2>
-<p>换成 Gridea 之后，友链一直简单地在用<a href="https://github.com/DCTewi/Links-mdGenerator">生成的</a>用 markdown 硬搓的 html/js，不够优雅，而且更新链条比较长（编辑json -&gt; 跑py -&gt; 复制markdown），所以自己魔改了一波 Gridea 和主题。</p>
-<p>首先在<code>../themes/你的主题/config.json</code>文件中的<code>customConfig</code>列表中添加一个新对象：</p>
-<pre><code class="language-json">{
-      &quot;name&quot;: &quot;friends&quot;,
-      &quot;label&quot;: &quot;友链&quot;,
-      &quot;group&quot;: &quot;友链&quot;,
-      &quot;type&quot;: &quot;array&quot;,
-      &quot;value&quot;: [],
-      &quot;arrayItems&quot;: [
-        { &quot;label&quot;: &quot;名称&quot;, &quot;name&quot;: &quot;siteName&quot;, &quot;type&quot;: &quot;input&quot;, &quot;value&quot;: &quot;&quot; },
-        { &quot;label&quot;: &quot;链接&quot;, &quot;name&quot;: &quot;siteLink&quot;, &quot;type&quot;: &quot;input&quot;, &quot;value&quot;: &quot;&quot; },
-        { &quot;label&quot;: &quot;Logo&quot;, &quot;name&quot;: &quot;siteLogo&quot;, &quot;type&quot;: &quot;input&quot;, &quot;value&quot;: &quot;&quot; },
-        { &quot;label&quot;: &quot;描述&quot;, &quot;name&quot;: &quot;description&quot;, &quot;type&quot;: &quot;textarea&quot;, &quot;value&quot;: &quot;&quot; }
-      ],
-      &quot;note&quot;: &quot;&quot;
-    }
-</code></pre>
-<p>接着重启 Gridea，可以看到已经有了配置页。进行一波填写之后，进行接下来的操作。</p>
-<figure data-type="image" tabindex="1"><img src="https://s1.ax1x.com/2020/03/13/8KpixH.png" alt="Gridea Config" loading="lazy"></figure>
-<p>将<code>../templates/</code>下的<code>post.ejs</code>复制一份，命名为你想要的地址，如<code>links.ejs</code>。接着进行一波编辑，将有关<code>post</code>的内容都删去，编辑一下页面名称，把正文的位置(一般都是<code>{&lt;%- post.content %&gt;}</code>)替换成友链内容，再随便加个洗牌，实例：</p>
-<pre><code class="language-html">&lt;div class=&quot;post-content yue flex flex-wrap&quot;&gt;
-          
-          &lt;% if (site.customConfig.friends) { %&gt;
-            &lt;% site.customConfig.friends.forEach(function(friend) { %&gt;
-              &lt;div class=&quot;friend-box&quot;&gt;
-                &lt;img class=&quot;friend-avatar&quot; src=&quot;&lt;%= friend.siteLogo %&gt;&quot;&gt;
-                &lt;div class=&quot;flink-info&quot;&gt;
-                  &lt;a href=&quot;&lt;%= friend.siteLink %&gt;&quot; target=&quot;_blank&quot;&gt;&lt;%= friend.siteName %&gt;&lt;/a&gt;
-                  &lt;br/&gt;
-                  &lt;%= friend.description %&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;% }); %&gt;
-
-            &lt;script src=&quot;https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js&quot;&gt;&lt;/script&gt;
-            &lt;script&gt;
-              // 这里注入了一个Fisher–Yates Shuffle算法用来洗牌
-              jQuery.prototype.shuffle = function() {
-                var res = this;
-                for (var i = res.length - 1; i &gt;= 0; i--) {
-                  var rnd = Math.floor(Math.random() * (i + 1));
-                  var ind = res[rnd];
-
-                  res[rnd] = res[i];
-                  res[i] = ind;
-                }
-                return res;
-              }
-              // 打乱一下顺序
-              var items = $(&quot;.friend-box&quot;).shuffle();
-              $(&quot;.post-content&quot;).empty().append(items);
-          &lt;/script&gt;
-          &lt;% } %&gt;
-
-        &lt;/div&gt;
-</code></pre>
-<p>在<code>../themes/你的主题/assets/styles/main.less</code>中加点样式和动画：</p>
-<pre><code class="language-css">.friend-box {
-  float: left;
-  width: calc(50% - 20px);
-  margin: 15px 10px;
-  img.friend-avatar{
-    width: 70px;
-    height: 70px;
-    border-radius: 50% !important;
-    float: left;
-    margin:0 15px 0 0 !important;
-    transition:0.5s;
-    -webkit-transtion:1.5s;
-  }
-  img.friend-avatar:hover{
-    transform:rotate(360deg);
-		-webkit-transform:rotate(360deg);
-  }
-  .flink-info{
-    height:70px;
-    overflow: hidden;
-    line-height: 24px;
-  }
-}
-</code></pre>
-<p>就完事了，效果：<a href="https://blog.dctewi.com/links/">https://blog.dctewi.com/links/</a></p>
-<h2 id="seo">SEO</h2>
-<p>Gridea 的主题大都不在网页标题加 title，SEO真的爆炸。Google Analytics 天天发邮件，一般在<code>../templates/post.ejs</code>里加个参数就可以了：</p>
-<pre><code class="language-html">&lt;head&gt;
-    &lt;%- include('./includes/head', { siteTitle: `${post.title} | ${themeConfig.siteName}` }) %&gt;
-&lt;/head&gt;
-</code></pre>
-<p>百度提交和谷歌统计的 js 都放进<code>../templates/includes/head.ejs</code>合适位置就行了。</p>
-<h2 id="参考资料">参考资料</h2>
-<ul>
-<li><a href="https://i.immmmm.com/gridea-templates-friends/">三步创建 Gridea 友情链接页 - 林小沐</a></li>
-<li><a href="https://segmentfault.com/q/1010000000141873">jQuery如何对div进行排序 - SegmentFault</a></li>
-<li><a href="https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程：语法篇 - 阮一峰的网络日志</a></li>
-</ul>
-<h2 id="最后">最后</h2>
-<p>没了，就这。</p>
-<p>我的前端知识全是被逼出来的（悲）。</p>
+<p>路过图床的事故之后，我自己搭了一个图床。但友情链接里的图还没有搬过去，凑空把友链里的图恢复一下。</p>
+<p>另外，我已经光荣退役了（），所以博客的内容应该会从竞赛转向日常开发和一些碎碎念。自我介绍的部分以及目标页面都该返厂，过两天重新放出来。</p>
+<p>大概就这样吧。不管怎样，多写点东西总不是什么坏习惯。</p>
 
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/MlLcz-LMG/">
-            <span class="flex-auto">前端</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/BzIxC8D8s/">
-            <span class="flex-auto">折腾</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://blog.dctewi.com/tag/Af8zBoWgi/">
+            <span class="flex-auto">随笔</span>
           </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://blog.dctewi.com/post/a-star/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  【总结】A*搜索算法小结
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://blog.dctewi.com/post/unity-new-input-system/">
+              <a href="https://blog.dctewi.com/post/blazor-webassembly-hosted-with-identity/">
                 <h3 class="post-title">
-                  【总结】Unity Input System 使用简要
+                  【笔记】在 Blazor WebAssembly Hosted 中使用 Identity
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
