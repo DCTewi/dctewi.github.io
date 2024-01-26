@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>【算法】从群论到快速幂和快速乘 - 冻葱Tewi</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="blog,冻葱,冻葱Tewi,DCTewi">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="换一个角度看快速幂和快速乘。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【算法】从群论到快速幂和快速乘">
+<meta property="og:url" content="https://blog.dctewi.com/2018/08/quick-exp/">
+<meta property="og:site_name" content="冻葱Tewi">
+<meta property="og:description" content="换一个角度看快速幂和快速乘。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-08-16T15:55:52.000Z">
+<meta property="article:modified_time" content="2024-01-26T19:43:25.078Z">
+<meta property="article:author" content="冻葱Tewi">
+<meta property="article:tag" content="旧文归档">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="快速幂">
+<meta property="article:tag" content="快速乘">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1706298473259">
+
+<link rel="stylesheet" href="/css/style.css?v=1706298473259">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1706298473259">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1706298473259"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-152707655-1");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="冻葱Tewi" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/bg.jpg)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="冻葱Tewi"><img src="/images/avatar.png" alt="冻葱Tewi"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="冻葱Tewi">
+            <img src="/images/avatar.png" alt="冻葱Tewi" alt="冻葱Tewi">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>30</div>
+        <div><span>标签</span>39</div>
+        <div><span>分类</span>1</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive" title="归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/friends" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/goal" title="目标">
+            <i class="mdui-list-item-icon nexmoefont icon-areachart"></i>
+            <div class="mdui-list-item-content">
+                目标
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1706298473259"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/1427846"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/dctewi"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/DCTewi"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://blog.dctewi.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/旧站迁移/">旧站迁移</a>
+          <span class="category-list-count">30</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.addEventListener('load', function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  })
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/blog-reboot/">【杂谈】重振旗鼓</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/blazor-webassembly-hosted-with-identity/">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/my-unity-csharp-code-standard/">【总结】我的 Unity C# 编码规范</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cantor-basic/">【算法】正逆康托展开基础</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cycle-detection/">【算法】没啥用的判圈算法两则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/net/" style="font-size: 10px;">.NET</a> <a href="/tags/a/" style="font-size: 10px;">A*</a> <a href="/tags/blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/c/" style="font-size: 10px;">C#</a> <a href="/tags/kmp/" style="font-size: 10px;">KMP</a> <a href="/tags/spfa/" style="font-size: 10px;">SPFA</a> <a href="/tags/unity/" style="font-size: 13.33px;">Unity</a> <a href="/tags/unityevent/" style="font-size: 10px;">UnityEvent</a> <a href="/tags/wsl/" style="font-size: 10px;">WSL</a> <a href="/tags/gogs/" style="font-size: 10px;">gogs</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimrc/" style="font-size: 10px;">vimrc</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 10px;">差分约束</a> <a href="/tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/" style="font-size: 10px;">康托展开</a> <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 10px;">微积分</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" style="font-size: 10px;">快速乘</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 10px;">快速幂</a> <a href="/tags/%E6%8A%98%E8%85%BE/" style="font-size: 13.33px;">折腾</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 11.67px;">数论</a> <a href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" style="font-size: 20px;">旧文归档</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" style="font-size: 10px;">最大公因数</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 11.67px;">最短路</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 10px;">树状数组</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" style="font-size: 10px;">欧拉定理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 16.67px;">笔记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A0%E6%95%B0/" style="font-size: 10px;">素数</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" style="font-size: 10px;">组合数</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编码规范</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 18.33px;">随笔</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(39);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 冻葱Tewi
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br />
+<br />
+<img src="/images/logo.png" width="150px">
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 56.71874999999999%;"> 
+            <img src="https://s-sh-2563-tewi-box.oss.dogecdn.com/img/blog-header/minoto-paint.jpg" alt="【算法】从群论到快速幂和快速乘" loading="lazy">
+            <h1>【算法】从群论到快速幂和快速乘</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2018年08月16日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/">旧站迁移</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约5k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要18 分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <p>换一个角度看快速幂和快速乘。</p>
+<span id="more"></span>
+
+<p><strong>群</strong>在抽象代数中具有基本的重要地位。许多代数结构，包括环、域和向量空间都可以看作是在群的基础上添加新的运算和公理而形成的。群的概念在数学的很多分支都有出现，而且群论的研究方法也对抽象代数的其他分支有重要影响。</p>
+<p>在数学中，群是由一个<strong>集合</strong>以及一个<strong>二元运算</strong>所组成的，符合以下四个性质（称为“<strong>群公理</strong>”）的代数结构。即<strong>封闭性</strong>，<strong>结合律</strong>，<strong>单位元</strong>和<strong>逆元存在</strong>。</p>
+<p>对于**群$(G,·)$**，该群由一个集合G和一个二元运算·组成。对于该群，群公理表现为：</p>
+<ol>
+<li>封闭性： 对于任意a, b ∈ G，有a · b ∈ G 。</li>
+<li>结合律： 对于任意a, b, c ∈ G，有(a · b) · c &#x3D; a · (b · c) 。</li>
+<li>单位元： 存在e ∈ G，使得对于所有元素a ∈ G总有 e · a &#x3D; a · e &#x3D; a成立。</li>
+<li>逆元存在： 对于任意a ∈ G，存在元素b使得总有a · b &#x3D; b · a &#x3D; e，此处e为单位元。</li>
+</ol>
+<p><strong>幺半群</strong>是一种类似群的结构。幺半群不一定满足逆元存在公理，但是其余的三个群公理均满足。即幺半群$(G, <em>)$满足</em>*{封闭性， 结合律， 单位元}**。又因为幺半群的要求比群要少，所以所有的群都是幺半群。幺半群的例子:(非负整数，加法运算)，(正整数，乘法运算)。</p>
+<p><strong><del>所以，这和标题里的快速幂和快速乘又有什么关系呢？</del></strong></p>
+<p><del>因为，</del>快速幂算法就可以从幺半群的角度来分析。</p>
+<p>对于幺半群$&lt;N^*, *&gt;$(N*为非零自然数，*是乘法运算)，计算a的k次幂，当k &#x3D; 0时为1，其余情况为k个n相乘。根据结合律（强行），我们可以在至多$O(log(k))$的时间内把k拆成二进制下的1，然后使用至多$O(log(k))$次乘法合并这些幂次。</p>
+<p>用代码表达会更直观一些：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-function">ll <span class="hljs-title">q_exp</span><span class="hljs-params">(ll a, ll k, ll mod)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">if</span> (!b) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; <span class="hljs-comment">//任何实数的0次幂都是1;</span><br><br>	ll ans = <span class="hljs-number">1</span>; <span class="hljs-comment">//结果变量</span><br>	<span class="hljs-keyword">while</span> (k) <span class="hljs-comment">//拆k</span><br>	&#123;<br>		<span class="hljs-keyword">if</span> (k &amp; <span class="hljs-number">1</span>) ans = ans * a % mod; <span class="hljs-comment">//如果现在的k是个奇数，则ans多乘一个a;</span><br>		a = a * a % mod; <span class="hljs-comment">//a自乘</span><br>		k &gt;&gt;= <span class="hljs-number">1</span>; <span class="hljs-comment">//继续拆k</span><br>	&#125;<br>	<br>	<span class="hljs-keyword">return</span> ans; <span class="hljs-comment">//返回结果</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个过程中，我们用到了一下几个性质：</p>
+<ol>
+<li>乘法 满足封闭性</li>
+<li>乘法 满足结合律</li>
+<li>乘法 下有单位元(即1)</li>
+</ol>
+<p>即我们在不知不觉中已经使用到了幺半群的相关内容。而如果我们稍加思考，将上述幺半群$&lt;N^*, *&gt;$魔改成$&lt;Z, +&gt;$呢？因为加法也满足以上的几个性质(单位元是0)，所以我们就引申到了另一个神奇的算法——快速乘。这种神奇的算法在罗宾米勒算法中，为了防止$a * b % mod$时溢出而使用过。当$a * b$的结果连<code>long long</code>都放不下的时候，求$a * b % mod$ 的结果就需要用到这种方法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-function">ll <span class="hljs-title">q_mul</span><span class="hljs-params">(ll a, ll b, ll mod)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">if</span> (!b) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">//任何数乘0都是0</span><br><br>	ll ans = <span class="hljs-number">0</span>; <span class="hljs-comment">//结果变量</span><br>	<span class="hljs-keyword">while</span> (b) <span class="hljs-comment">//拆b</span><br>	&#123;<br>		<span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>) ans = (ans + a) % mod; <span class="hljs-comment">//如果现在的b是个奇数，则ans多加一个a;</span><br>		a = (a + a) % mod; <span class="hljs-comment">//a自加</span><br>		b &gt;&gt;= <span class="hljs-number">1</span>; <span class="hljs-comment">//继续拆b</span><br>	&#125;<br>	<br>	<span class="hljs-keyword">return</span> ans;<span class="hljs-comment">//返回结果</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样我们就得到了快速乘算法的代码。</p>
+<p>以上，快速幂和快速乘其实就这么结束了，所以抽象代数真的很厉害。</p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>冻葱Tewi<br>
+        <strong>本文链接：</strong><a href="https://blog.dctewi.com/2018/08/quick-exp/" title="https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2018&#x2F;08&#x2F;quick-exp&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2018&#x2F;08&#x2F;quick-exp&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" rel="tag">快速乘</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" rel="tag">快速幂</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" rel="tag">旧文归档</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1706298473150"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          这里将会显示评论栏
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});</script>
+</div></body></html>

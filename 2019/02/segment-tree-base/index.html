@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>【数据结构】线段树基础小结 - 冻葱Tewi</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="blog,冻葱,冻葱Tewi,DCTewi">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="学习两种线段树后的总结。  可能并不适合完全不了解线段树的人入门？但是可能会对稍微知道线段树的人有一些帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【数据结构】线段树基础小结">
+<meta property="og:url" content="https://blog.dctewi.com/2019/02/segment-tree-base/">
+<meta property="og:site_name" content="冻葱Tewi">
+<meta property="og:description" content="学习两种线段树后的总结。  可能并不适合完全不了解线段树的人入门？但是可能会对稍微知道线段树的人有一些帮助。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.ax1x.com/2019/02/11/kdPhz8.png">
+<meta property="article:published_time" content="2019-02-11T15:02:23.000Z">
+<meta property="article:modified_time" content="2024-01-26T19:43:25.079Z">
+<meta property="article:author" content="冻葱Tewi">
+<meta property="article:tag" content="旧文归档">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="线段树">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/02/11/kdPhz8.png">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1706298473251">
+
+<link rel="stylesheet" href="/css/style.css?v=1706298473251">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1706298473251">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1706298473251"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-152707655-1");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="冻葱Tewi" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/bg.jpg)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="冻葱Tewi"><img src="/images/avatar.png" alt="冻葱Tewi"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="冻葱Tewi">
+            <img src="/images/avatar.png" alt="冻葱Tewi" alt="冻葱Tewi">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>30</div>
+        <div><span>标签</span>39</div>
+        <div><span>分类</span>1</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive" title="归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/friends" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/goal" title="目标">
+            <i class="mdui-list-item-icon nexmoefont icon-areachart"></i>
+            <div class="mdui-list-item-content">
+                目标
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1706298473251"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/1427846"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/dctewi"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/DCTewi"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://blog.dctewi.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/旧站迁移/">旧站迁移</a>
+          <span class="category-list-count">30</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.addEventListener('load', function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  })
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/blog-reboot/">【杂谈】重振旗鼓</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/blazor-webassembly-hosted-with-identity/">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/my-unity-csharp-code-standard/">【总结】我的 Unity C# 编码规范</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cantor-basic/">【算法】正逆康托展开基础</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cycle-detection/">【算法】没啥用的判圈算法两则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/net/" style="font-size: 10px;">.NET</a> <a href="/tags/a/" style="font-size: 10px;">A*</a> <a href="/tags/blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/c/" style="font-size: 10px;">C#</a> <a href="/tags/kmp/" style="font-size: 10px;">KMP</a> <a href="/tags/spfa/" style="font-size: 10px;">SPFA</a> <a href="/tags/unity/" style="font-size: 13.33px;">Unity</a> <a href="/tags/unityevent/" style="font-size: 10px;">UnityEvent</a> <a href="/tags/wsl/" style="font-size: 10px;">WSL</a> <a href="/tags/gogs/" style="font-size: 10px;">gogs</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimrc/" style="font-size: 10px;">vimrc</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 10px;">差分约束</a> <a href="/tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/" style="font-size: 10px;">康托展开</a> <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 10px;">微积分</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" style="font-size: 10px;">快速乘</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 10px;">快速幂</a> <a href="/tags/%E6%8A%98%E8%85%BE/" style="font-size: 13.33px;">折腾</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 11.67px;">数论</a> <a href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" style="font-size: 20px;">旧文归档</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" style="font-size: 10px;">最大公因数</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 11.67px;">最短路</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 10px;">树状数组</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" style="font-size: 10px;">欧拉定理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 16.67px;">笔记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A0%E6%95%B0/" style="font-size: 10px;">素数</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" style="font-size: 10px;">组合数</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编码规范</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 18.33px;">随笔</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(39);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 冻葱Tewi
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br />
+<br />
+<img src="/images/logo.png" width="150px">
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 56.71874999999999%;"> 
+            <img src="https://s2.ax1x.com/2019/02/11/kdi1Yt.jpg" alt="【数据结构】线段树基础小结" loading="lazy">
+            <h1>【数据结构】线段树基础小结</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2019年02月11日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/">旧站迁移</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约25k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1:29分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <p>学习两种线段树后的总结。<br>  可能并不适合完全不了解线段树的人入门？但是可能会对稍微知道线段树的人有一些帮助。</p>
+<span id="more"></span>
+
+<blockquote>
+<p><strong>线段树</strong>是一种二叉树，可以视为树状数组的变种。</p>
+<p>该数据结构在实际应用中用途不大，但是由于其程序易于实现而呗广泛应用于程序竞赛当中。其用途是在O(logN)查询一个指定区间内的信息，并可在同样的时间复杂度内支持更新等操作。</p>
+<p>——Wikipedia</p>
+</blockquote>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>线段树本身是专门用来处理<strong>区间问题</strong>的数据结构，包括但不限于区间求和问题(RSQ)，区间最值问题(RMQ)等。因为本身具有树的结构特性而被称为线段“树”。</p>
+<p>线段树是分块思想的树化，或者说是对于信息处理的二进制化。即——通过将整个序列分为有穷个小块，对于要查询的某一段区间，总是可以整合成k个<strong>子块</strong>和m个<strong>单个元素</strong>的信息的并集。</p>
+<p>线段树只能维护满足结合律的信息，即只能维护一个幺半群序列（群论可以参见<a target="_blank" rel="noopener" href="https://dctewi.com/quick_exp/">群论与快速幂</a>）。而树状数组只能维护交换群序列。</p>
+<p>线段树上的每一个子节点，都表示整个序列中的一段子区间。其中，每个叶子节点都表示序列中的单个元素信息。每次更新，子节点都向上传递信息，来不断更新整个线段树。</p>
+<h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p>以这一棵总值线段树为例：</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://s2.ax1x.com/2019/02/11/kdPhz8.png" alt="线段树示例" data-caption="线段树示例" loading="lazy"></p>
+<p>树上每一个节点存储的都是一个区间上的总和。</p>
+<h2 id="常规递归线段树"><a href="#常规递归线段树" class="headerlink" title="常规递归线段树"></a>常规递归线段树</h2><h3 id="建树操作"><a href="#建树操作" class="headerlink" title="建树操作"></a>建树操作</h3><p>一般地，我们经常采用递归的方法来创建线段树。对于节点类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">1e5</span> + <span class="hljs-number">5</span>;  <span class="hljs-comment">//源数据最大长度</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SegmentTreeNode</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">SegmentTreeNode</span>()&#123;&#125;  <span class="hljs-comment">//构造函数</span><br>    <br>    <span class="hljs-type">int</span> l, r;  <span class="hljs-comment">//该节点储存的区间左右范围</span><br>    ll data, add_tag = <span class="hljs-number">0</span>, mul_tag = <span class="hljs-number">1</span>;  <span class="hljs-comment">//该节点应该储存的数据和标记*</span><br>&#125;st[MAXN &lt;&lt; <span class="hljs-number">2</span>];  <span class="hljs-comment">//线段树数组，范围×4防止越界</span><br>ll raw_data[MAXN];  <span class="hljs-comment">//原始数据</span><br><br></code></pre></td></tr></table></figure>
+
+<p>我们递归地从下向上来创建线段树：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span>  <span class="hljs-comment">//p节点序号，l, r范围</span></span><br><span class="hljs-function"></span>&#123;<br>    st[p].l = l; st[p].r = r;  <span class="hljs-comment">//处理当前区间</span><br><br>    <span class="hljs-keyword">if</span> (l == r)  <span class="hljs-comment">//叶节点特判</span><br>    &#123;<br>        st[p].data = raw_data[l];  <span class="hljs-comment">//赋值</span><br>        <span class="hljs-keyword">return</span> ;  <span class="hljs-comment">//触底返回</span><br>    &#125;<br><br>    <span class="hljs-type">int</span> mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;  <span class="hljs-comment">//二分递归</span><br>    <span class="hljs-built_in">build</span>(<span class="hljs-built_in">lson</span>(p), l, mid);<br>    <span class="hljs-built_in">build</span>(<span class="hljs-built_in">rson</span>(p), mid + <span class="hljs-number">1</span>, r);<br><br>    <span class="hljs-built_in">push_up</span>(p);  <span class="hljs-comment">//上推*</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="push-up-操作"><a href="#push-up-操作" class="headerlink" title="push_up()操作"></a>push_up()操作</h3><p>push_up()即线段树上推操作，即把下方节点的更新情况”告知”上方节点。对于不同类型的线段树可能有所不同。在总值线段树中，上推操作为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push_up</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span></span><br><span class="hljs-function"></span>&#123;<br>    st[p].data = (st[<span class="hljs-built_in">lson</span>(p)].data + st[<span class="hljs-built_in">rson</span>(p)].data) % mod;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="懒惰标记"><a href="#懒惰标记" class="headerlink" title="懒惰标记"></a>懒惰标记</h3><p>当我们更新时，如果每次都把整个线段树更新，那么将会耗费很多多余的时间。所以我们将每次节点的更新记录到节点内，当需要使用它下方的节点时在进行下推。标记记录的就是以这个节点为根节点的子树中经过过的更新操作。</p>
+<p>下推懒惰标记的操作为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">lazy_down</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (st[p].add_tag || st[p].mul_tag != <span class="hljs-number">1</span>)<br>    &#123;<br>        st[<span class="hljs-built_in">lson</span>(p)].data = st[<span class="hljs-built_in">lson</span>(p)].data * st[p].mul_tag % mod;<br>        st[<span class="hljs-built_in">lson</span>(p)].mul_tag = st[<span class="hljs-built_in">lson</span>(p)].mul_tag * st[p].mul_tag % mod;<br>        st[<span class="hljs-built_in">lson</span>(p)].add_tag = st[<span class="hljs-built_in">lson</span>(p)].add_tag * st[p].mul_tag % mod;<br><br>        st[<span class="hljs-built_in">rson</span>(p)].data = st[<span class="hljs-built_in">rson</span>(p)].data * st[p].mul_tag % mod;<br>        st[<span class="hljs-built_in">rson</span>(p)].mul_tag = st[<span class="hljs-built_in">rson</span>(p)].mul_tag * st[p].mul_tag % mod;<br>        st[<span class="hljs-built_in">rson</span>(p)].add_tag = st[<span class="hljs-built_in">rson</span>(p)].add_tag * st[p].mul_tag % mod;<br><br>        st[p].mul_tag = <span class="hljs-number">1</span>;  <span class="hljs-comment">//乘法标记下推完成，恢复初始值**1**</span><br><br>        st[<span class="hljs-built_in">lson</span>(p)].add_tag +=st[p].add_tag;<br>        st[<span class="hljs-built_in">lson</span>(p)].data += st[p].add_tag * (st[<span class="hljs-built_in">lson</span>(p)].r - st[<span class="hljs-built_in">lson</span>(p)].l + <span class="hljs-number">1</span>);<br>        st[<span class="hljs-built_in">rson</span>(p)].add_tag +=st[p].add_tag;<br>        st[<span class="hljs-built_in">rson</span>(p)].data += st[p].add_tag * (st[<span class="hljs-built_in">rson</span>(p)].r - st[<span class="hljs-built_in">rson</span>(p)].l + <span class="hljs-number">1</span>);<br><br>        st[p].add_tag = <span class="hljs-number">0</span>;  <span class="hljs-comment">//加法标记下推完成，恢复初始值**0**</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>需要注意的是，这里的线段树支持了加法和乘法操作。那么在处理加法和乘法操作时，应该注意加法和乘法的先后顺序。先处理乘法，并且用乘法标记更新加法标记（因为在做乘法操作时，加法操作也会被乘以相同的系数），然后再处理加法标记。这样才不会丢失精度以及保持数据记录的准确性。</p>
+<h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><p>要查询指定区间（区间长度&gt;&#x3D;1）的总和&#x2F;最大值&#x2F;最小值等时，可以想到：通过不断向下查询节点，将查询区间[l, r]的问题转化成有限个小区间以及有限个单个元素的并集，即分块思想。</p>
+<p>具体实现代码为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span>  <span class="hljs-comment">//p节点序号，l, r范围</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//若当前节点包括的数据被完全包含与所求区间，那么直接上推本节点数据</span><br>    <span class="hljs-keyword">if</span> (st[p].l &gt;= l &amp;&amp; st[p].r &lt;= r) <span class="hljs-keyword">return</span> st[p].data % mod;<br><br>    <span class="hljs-comment">//若没有完全包含，那么就需要用到下方节点，那么下推标记</span><br>    <span class="hljs-built_in">lazy_down</span>(p);<br><br>    <span class="hljs-comment">//二分向下查询</span><br>    ll ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> mid = (st[p].l + st[p].r) &gt;&gt; <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (mid &gt;= l) ans += <span class="hljs-built_in">query</span>(<span class="hljs-built_in">lson</span>(p), l, r);<br>    <span class="hljs-keyword">if</span> (mid &lt;  r) ans += <span class="hljs-built_in">query</span>(<span class="hljs-built_in">rson</span>(p), l, r);<br><br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作"></a>更新操作</h3><p>加法和乘法更新操作整体步骤基本相同，基本为：如果当前区间被完全包含于修改区间，那么只记录标记；否则继续二分更新。</p>
+<p>具体时间代码为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, ll k)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//被完全包含</span><br>    <span class="hljs-keyword">if</span> (st[p].l &gt;= l &amp;&amp; st[p].r &lt;= r)<br>    &#123;<br>        st[p].data = (st[p].data + k * (st[p].r - st[p].l + <span class="hljs-number">1</span>)) % mod;<br>        st[p].add_tag += k;<br>        <span class="hljs-keyword">return</span> ;<br>    &#125;<br>    <br>	<span class="hljs-comment">//没有被完全包含</span><br>    <span class="hljs-built_in">lazy_down</span>(p);<br>    <span class="hljs-type">int</span> mid = (st[p].l + st[p].r) &gt;&gt; <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (mid &gt;= l) <span class="hljs-built_in">add</span>(<span class="hljs-built_in">lson</span>(p), l, r, k);<br>    <span class="hljs-keyword">if</span> (mid &lt;  r) <span class="hljs-built_in">add</span>(<span class="hljs-built_in">rson</span>(p), l, r, k);<br><br>    <span class="hljs-built_in">push_up</span>(p);<br>&#125;<br><span class="hljs-comment">//思路同上函数</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mul</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, ll k)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (st[p].l &gt;= l &amp;&amp; st[p].r &lt;= r)<br>    &#123;<br>        st[p].data = st[p].data * k % mod;<br>        st[p].mul_tag = st[p].mul_tag * k % mod;<br>        st[p].add_tag = st[p].add_tag * k % mod;<br>        <span class="hljs-keyword">return</span> ;<br>    &#125;<br><br>    <span class="hljs-built_in">lazy_down</span>(p);<br>    <span class="hljs-type">int</span> mid = (st[p].l + st[p].r) &gt;&gt; <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (mid &gt;= l) <span class="hljs-built_in">mul</span>(<span class="hljs-built_in">lson</span>(p), l, r, k);<br>    <span class="hljs-keyword">if</span> (mid &lt;  r) <span class="hljs-built_in">mul</span>(<span class="hljs-built_in">rson</span>(p), l, r, k);<br><br>    <span class="hljs-built_in">push_up</span>(p);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>以上就是常规递归线段树的大体思路和具体实现代码（最值线段树）。总代码被放在了文章最下方。</p>
+<h2 id="非递归线段树（zkw线段树）"><a href="#非递归线段树（zkw线段树）" class="headerlink" title="非递归线段树（zkw线段树）"></a>非递归线段树（zkw线段树）</h2><p>zkw线段树是由神犇zkw在早些时候提出的<strong>非递归式线段树</strong>。在线段树概念的基础上，优化了常规递归线段树的巨大常数，让线段树的常数变得很小，代码量也同时减少了不少。这里只讨论拥有加法标记的非递归线段树。</p>
+<h3 id="建树操作-1"><a href="#建树操作-1" class="headerlink" title="建树操作"></a>建树操作</h3><p>使用两个数组，进一步缩小常数（玄学操作）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ll st[MAXN &lt;&lt; <span class="hljs-number">2</span>], add[MAXN &lt;&lt; <span class="hljs-number">2</span>];  <span class="hljs-comment">//线段树和标记</span><br><span class="hljs-type">int</span> n, N = <span class="hljs-number">1</span>;  <span class="hljs-comment">//n为原始数据数量，N为**原始数据的起始位置**</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">for</span> (; N &lt; n + <span class="hljs-number">1</span>; N &lt;&lt;= <span class="hljs-number">1</span>);  <span class="hljs-comment">//找到原始数据应该在的位置</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = N + <span class="hljs-number">1</span>; i &lt;= N + n; i++) <span class="hljs-built_in">read</span>(st[i]); <span class="hljs-comment">//放置原始数据</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = N - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">1</span>; i--) st[i] = st[i &lt;&lt; <span class="hljs-number">1</span>] + st[i &lt;&lt; <span class="hljs-number">1</span> | <span class="hljs-number">1</span>];<span class="hljs-comment">//从下向上构建线段树</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>代码量变小了，意味着信息浓度的增加。这短短三个for语句其实蕴含了不少信息量。</p>
+<p>在zkw线段树中，我们将原始数据放在线段树数组的最后方+1的位置，这样将有利于之后的各种操作。</p>
+<p>二叉树中，对于节点n，n &#x2F; 2 和 n &#x2F; 2 + 1分别是n的两个儿子节点。位运算中的表述如上代码，不再赘述。</p>
+<h3 id="区间分割"><a href="#区间分割" class="headerlink" title="区间分割"></a>区间分割</h3><p>在zkw线段树中，我们的查询和更新操作将引入两个特殊的节点（或者说是”节点指针”）s和t。</p>
+<p>对于目标区间[l, r]，s一开始指向节点(l - 1)，t一开始指向节点(r + 1)。每个小步骤，s和t都指向他们当前的父亲节点</p>
+<p>通过在纸上的模拟，我们可以发现：</p>
+<p>从s，t的初始位置，直到s和t在本次步骤中父亲节点相同。这个过程中，如果s是它父亲节点的左节点，那么加上他的右边的兄弟；如果t是它父亲节点的右节点，那么加上它左边的兄弟。那么最后加上的所有节点包含的区间，恰好不重不漏地等价于[l, r]。</p>
+<p>在zkw线段树中，我们可以发现：对于一个长度是1（r - l + 1的值）的节点（即叶子节点），每次更新他需要加上1次标记。同理，对于一个长度是n的节点，每次更新他需要加上n个标记。</p>
+<p>可以推出，从叶子节点向上，每次需要加上的标记数量将增加一倍——即乘二，或者说右移一位。</p>
+<h3 id="查询操作-1"><a href="#查询操作-1" class="headerlink" title="查询操作"></a>查询操作</h3><p>和递归式线段树不同，zkw线段树的每次操作都是直接从底部开始向上操作。并且在操作完成后继续上推到根节点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> ll <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> s = N + l - <span class="hljs-number">1</span>, t = N + r + <span class="hljs-number">1</span>;  <span class="hljs-comment">//s节点和t节点</span><br>    <span class="hljs-comment">//lNum表示当前s包含的标记个数，rNum表示当t包含的标记个数</span><br>    <span class="hljs-comment">//num表示当前层的节点包含的标记个数（从1开始）</span><br>	ll lNum = <span class="hljs-number">0</span>, rNum = <span class="hljs-number">0</span>, num = <span class="hljs-number">1</span>, ans = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-comment">//如果s和t拥有同一个父亲节点，那么s ^ t == 1，即二进制路径只有最后一位不同</span><br>    <span class="hljs-comment">//那么s ^ t ^ 1 == 0，循环停止</span><br>    <span class="hljs-comment">//每个循环节，s和t上移，num右移一位</span><br>	<span class="hljs-keyword">for</span> (; s ^ t ^ <span class="hljs-number">1</span>; s &gt;&gt;= <span class="hljs-number">1</span>, t &gt;&gt;= <span class="hljs-number">1</span>, num &lt;&lt;= <span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-keyword">if</span> (add[s]) ans += add[s] * lNum;  <span class="hljs-comment">//处理标记</span><br>		<span class="hljs-keyword">if</span> (add[t]) ans += add[t] * rNum;<br>		<span class="hljs-keyword">if</span> (~s &amp; <span class="hljs-number">1</span>) &#123;ans += st[s ^ <span class="hljs-number">1</span>]; lNum += num;&#125;<br>		<span class="hljs-keyword">if</span> ( t &amp; <span class="hljs-number">1</span>) &#123;ans += st[t ^ <span class="hljs-number">1</span>]; rNum += num;&#125;<br>        <span class="hljs-comment">//如果s是父亲的左儿子，二进制最后一位应该是0，取反后&amp;1应该是1</span><br>        <span class="hljs-comment">//同理，t是父亲的右儿子时，t &amp; 1应该是是1</span><br>	&#125;<br>	<span class="hljs-keyword">for</span> (; s; s &gt;&gt;= <span class="hljs-number">1</span>, t &gt;&gt;= <span class="hljs-number">1</span>)  <span class="hljs-comment">//继续上推到根节点</span><br>	&#123;<br>		ans += add[s] * lNum;<br>		ans += add[t] * rNum;<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="更新操作-1"><a href="#更新操作-1" class="headerlink" title="更新操作"></a>更新操作</h3><p>也是从下向上，一直上推到根节点。每次上推更新自己以应对包含自己的情形。如果s是左||t是右，那么给它的兄弟上标记并更新节点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, ll k)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> s = N + l - <span class="hljs-number">1</span>, t = N + r + <span class="hljs-number">1</span>; <br>	ll lNum = <span class="hljs-number">0</span>, rNum = <span class="hljs-number">0</span>, num = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span> (; s ^ t ^ <span class="hljs-number">1</span>; s &gt;&gt;= <span class="hljs-number">1</span>, t &gt;&gt;= <span class="hljs-number">1</span>, num &lt;&lt;= <span class="hljs-number">1</span>)<br>	&#123;<br>		st[s] += k * lNum;  <span class="hljs-comment">//更新自己</span><br>		st[t] += k * rNum;<br>        <span class="hljs-comment">//满足条件就更新自己的兄弟</span><br>		<span class="hljs-keyword">if</span> (~s &amp; <span class="hljs-number">1</span>) &#123;add[s ^ <span class="hljs-number">1</span>] += k; st[s ^ <span class="hljs-number">1</span>] += k * num; lNum += num;&#125;<br>		<span class="hljs-keyword">if</span> ( t &amp; <span class="hljs-number">1</span>) &#123;add[t ^ <span class="hljs-number">1</span>] += k; st[t ^ <span class="hljs-number">1</span>] += k * num; rNum += num;&#125;<br>	&#125;<br>	<span class="hljs-keyword">for</span> (; s; s &gt;&gt;= <span class="hljs-number">1</span>, t &gt;&gt;= <span class="hljs-number">1</span>)  <span class="hljs-comment">//上推到根节点</span><br>	&#123;<br>		st[s] += k * lNum;<br>		st[t] += k * rNum;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>到此，zkw线段树的基本实现已经差不多完成了。</p>
+<p>可以看到，zkw线段树比常规线段树的代码量和常数小了很多，但是换来的是每句话信息量的增大。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到此，线段树学习小结基本结束。</p>
+<p>本小结为自己学习线段树后总结之用，可能并不适合完全不了解线段树的人入门？但是可能会对稍微知道线段树的人有一些帮助。</p>
+<p>两个版本的线段树的具体实现代码可以查看<a target="_blank" rel="noopener" href="https://github.com/DCTewi/My-Algorithm-Templates/tree/master/5.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%20-%20Stucture">我的Github页</a>。</p>
+<p>以上。</p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>冻葱Tewi<br>
+        <strong>本文链接：</strong><a href="https://blog.dctewi.com/2019/02/segment-tree-base/" title="https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;02&#x2F;segment-tree-base&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;02&#x2F;segment-tree-base&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" rel="tag">旧文归档</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag">线段树</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1706298473150"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          这里将会显示评论栏
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">存储结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number"></span> <span class="toc-text">常规递归线段树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E6%A0%91%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">建树操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push-up-%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">push_up()操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%87%92%E6%83%B0%E6%A0%87%E8%AE%B0"><span class="toc-number">3.</span> <span class="toc-text">懒惰标记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">查询操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C"><span class="toc-number">5.</span> <span class="toc-text">更新操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%88zkw%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">非递归线段树（zkw线段树）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E6%A0%91%E6%93%8D%E4%BD%9C-1"><span class="toc-number">1.</span> <span class="toc-text">建树操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E5%88%86%E5%89%B2"><span class="toc-number">2.</span> <span class="toc-text">区间分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.</span> <span class="toc-text">查询操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C-1"><span class="toc-number">4.</span> <span class="toc-text">更新操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number"></span> <span class="toc-text">总结</span></a>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});</script>
+</div></body></html>

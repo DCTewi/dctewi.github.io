@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>【算法】KMP学习小结 - 冻葱Tewi</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="blog,冻葱,冻葱Tewi,DCTewi">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="学习kmp算法后的一些总结。本来没打算熬夜的结果搞到零点多。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【算法】KMP学习小结">
+<meta property="og:url" content="https://blog.dctewi.com/2019/02/kmp/">
+<meta property="og:site_name" content="冻葱Tewi">
+<meta property="og:description" content="学习kmp算法后的一些总结。本来没打算熬夜的结果搞到零点多。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-15T16:53:31.000Z">
+<meta property="article:modified_time" content="2024-01-26T19:43:25.078Z">
+<meta property="article:author" content="冻葱Tewi">
+<meta property="article:tag" content="旧文归档">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="KMP">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1706298473248">
+
+<link rel="stylesheet" href="/css/style.css?v=1706298473248">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1706298473248">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1706298473248"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-152707655-1");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="冻葱Tewi" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/bg.jpg)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="冻葱Tewi"><img src="/images/avatar.png" alt="冻葱Tewi"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="冻葱Tewi">
+            <img src="/images/avatar.png" alt="冻葱Tewi" alt="冻葱Tewi">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>30</div>
+        <div><span>标签</span>39</div>
+        <div><span>分类</span>1</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive" title="归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/friends" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/goal" title="目标">
+            <i class="mdui-list-item-icon nexmoefont icon-areachart"></i>
+            <div class="mdui-list-item-content">
+                目标
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1706298473248"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/1427846"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/dctewi"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/DCTewi"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://blog.dctewi.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/旧站迁移/">旧站迁移</a>
+          <span class="category-list-count">30</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.addEventListener('load', function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  })
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/blog-reboot/">【杂谈】重振旗鼓</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/blazor-webassembly-hosted-with-identity/">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/my-unity-csharp-code-standard/">【总结】我的 Unity C# 编码规范</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cantor-basic/">【算法】正逆康托展开基础</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cycle-detection/">【算法】没啥用的判圈算法两则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/net/" style="font-size: 10px;">.NET</a> <a href="/tags/a/" style="font-size: 10px;">A*</a> <a href="/tags/blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/c/" style="font-size: 10px;">C#</a> <a href="/tags/kmp/" style="font-size: 10px;">KMP</a> <a href="/tags/spfa/" style="font-size: 10px;">SPFA</a> <a href="/tags/unity/" style="font-size: 13.33px;">Unity</a> <a href="/tags/unityevent/" style="font-size: 10px;">UnityEvent</a> <a href="/tags/wsl/" style="font-size: 10px;">WSL</a> <a href="/tags/gogs/" style="font-size: 10px;">gogs</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimrc/" style="font-size: 10px;">vimrc</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 10px;">差分约束</a> <a href="/tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/" style="font-size: 10px;">康托展开</a> <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 10px;">微积分</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" style="font-size: 10px;">快速乘</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 10px;">快速幂</a> <a href="/tags/%E6%8A%98%E8%85%BE/" style="font-size: 13.33px;">折腾</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 11.67px;">数论</a> <a href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" style="font-size: 20px;">旧文归档</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" style="font-size: 10px;">最大公因数</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 11.67px;">最短路</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 10px;">树状数组</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" style="font-size: 10px;">欧拉定理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 16.67px;">笔记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A0%E6%95%B0/" style="font-size: 10px;">素数</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" style="font-size: 10px;">组合数</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编码规范</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 18.33px;">随笔</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(39);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 冻葱Tewi
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br />
+<br />
+<img src="/images/logo.png" width="150px">
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 56.71874999999999%;"> 
+            <img src="https://s2.ax1x.com/2019/02/16/kr553d.jpg" alt="【算法】KMP学习小结" loading="lazy">
+            <h1>【算法】KMP学习小结</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2019年02月16日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/">旧站迁移</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约8.6k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要31 分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <p>学习kmp算法后的一些总结。本来没打算熬夜的结果搞到零点多。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>在计算机科学中，<strong>Knuth-Morris-Pratt字符串查找算法</strong>（简称为KMP算法）可以在一个主文本字符串<code>S</code>内查找一个词<code>w</code>的出现位置。此算法通过运用对这个词在不匹配时本身旧包含足够的信息来确定下一个匹配将在哪里开始的发现，从而避免重新检查先前匹配的字符。</p>
+<p>——Wikipedia。</p>
+</blockquote>
+<h2 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h2><p>简单来说，KMP算法就是用来解决字符串匹配问题的算法，即在一个主要字符串（称为<strong>主串</strong>）中寻找另一个字符串（称为<strong>模式串</strong>）是否存在的问题。</p>
+<h2 id="主要概念"><a href="#主要概念" class="headerlink" title="主要概念"></a>主要概念</h2><p>学习KMP算法之前，首先要了解这个算法的一些重要概念。</p>
+<h3 id="失配"><a href="#失配" class="headerlink" title="失配"></a>失配</h3><p>即“失去匹配”。指对于从<code>l</code>开始匹配模式串时，模式串第<code>i</code>位和主串第<code>l + i</code>位不相同，则称第<code>i</code>位失配。</p>
+<h3 id="next数组"><a href="#next数组" class="headerlink" title="next数组"></a>next数组</h3><p>在kmp算法中，预处理出的一个数组。<code>next[i]</code>表示第<code>0</code>位~第<code>i - 1</code>位中，<strong>前缀与后缀相同的部分</strong>最长长度(而不是回文)。同时，<code>next[i]</code>也表示着当模式串在第<code>i</code>位失配时，当前位置要跳转到哪一位才<strong>有可能</strong>重新匹配成功。</p>
+<p>出于我的习惯，把数据从下标0开始放：则，<code>next[i] = -1</code>指从第<code>0</code>位<del>第<code>i - 1</code>位的子字符串的相同前后缀不存在（即前后缀长度是0）。<code>next[i]</code>代表从第<code>0</code>位</del>第<code>i - 1</code>位最大相同前后缀的长度 - 1，同样表示失配指针下标。</p>
+<h2 id="推导思路"><a href="#推导思路" class="headerlink" title="推导思路"></a>推导思路</h2><p>在思考kmp算法之前，先来模拟一下朴素的扫描式字符串匹配算法：</p>
+<h3 id="朴素扫描"><a href="#朴素扫描" class="headerlink" title="朴素扫描"></a>朴素扫描</h3><p>即模式串从前向后每次移动一个单位，每次移动后从前往后检查模式串和主串相应位置的字符是否相同，如果完全相同则匹配完成，失配则继续移动。</p>
+<p>这种匹配方法的复杂度为<code>O(nm)</code>，显然，这种朴素算法有丶过于暴力了。我们需要优化它。</p>
+<p>下面举出一个扫描过程的例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">01234567890<br>ABCABABCABD &lt;-主串<br>ABCABD &lt;-模式串<br>------ 1<br>ABCABABCABD<br> ABCABD<br>------ 2<br>ABCABABCABD<br>  ABCABD<br>------ 3<br>ABCABABCABD<br>   ABCABD<br>------ 4<br>ABCABABCABD<br>    ABCABD<br>------ 5<br>ABCABABCABD<br>     ABCABD<br></code></pre></td></tr></table></figure>
+
+<p>这五次移动中，中间的许多步骤是多余的。</p>
+<p>再观察属于<code>ABCABD</code>的<code>next[]</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> nxt[] = &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>因为既然在第一步当中，D和A失配。那么他前方（不包括它本身）的子字符串与主串匹配。可以直接将当前位置跳转到next[5]，即0（-1表示触顶）的位置。则直接跳转到了最后一步，接着就可以匹配成功了。</p>
+<p>虽然kmp算法不可能每次都准确地跳过所有地无用步骤，但是它的复杂度<code>O(n + m)</code>还是要比朴素算法优秀了不少。</p>
+<h3 id="kmp算法"><a href="#kmp算法" class="headerlink" title="kmp算法"></a>kmp算法</h3><p>通过上边的推导，可以发现：kmp算法的核心就是预处理出next数组。我们通过模式串自我比对来获取next数组。</p>
+<p>通过巧妙地设置匹配游标k，可以快速地获取指定模式串的next[]数组。而实际上，预处理过程和正式的kmp过程思路和代码几乎完全一样。</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>首先是预处理next数组的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">1e6</span> + <span class="hljs-number">5</span>;<br>ll nxt[MAXN];<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getNext</span><span class="hljs-params">(string s)</span></span><br><span class="hljs-function"></span>&#123;<br>	nxt[<span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>; <span class="hljs-comment">// -1 表示前后缀不存在</span><br>	<span class="hljs-type">int</span> k = <span class="hljs-number">-1</span>; <span class="hljs-comment">// 模式串的匹配游标</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++)<br>	&#123;<br>        <span class="hljs-comment">//下一个数失配则更新本位的失配指针，k == -1则触顶</span><br>		<span class="hljs-keyword">while</span> (k != <span class="hljs-number">-1</span> &amp;&amp; s[k + <span class="hljs-number">1</span>] != s[i]) k = nxt[k];<br>		<span class="hljs-keyword">if</span> (s[k + <span class="hljs-number">1</span>] == s[i]) k++; <span class="hljs-comment">// 如果游标后可以继续得到相同的前后缀</span><br>		nxt[i] = k; <span class="hljs-comment">// 更新next[]数组</span><br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>可以通过上边部分使用过的模式串<code>ABCABD</code>来简单模拟一下这个过程。这个过程实际上是寻找相同前后缀长度的过程，同时正得到了我们需要的next[]数组。</p>
+<p>然后是kmp的过程：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">kmp</span><span class="hljs-params">(string s, string p)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> k = <span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++)<br>	&#123;<br>        <span class="hljs-comment">// 下一位失配则移动游标 &lt;=&gt; 移动模式串</span><br>		<span class="hljs-keyword">while</span> (k != <span class="hljs-number">-1</span> &amp;&amp; p[k + <span class="hljs-number">1</span>] != s[i]) k = nxt[k];<br>		<span class="hljs-keyword">if</span> (p[k + <span class="hljs-number">1</span>] == s[i]) k++; <span class="hljs-comment">// 匹配成功，后移游标</span><br>		<span class="hljs-keyword">if</span> (k == p.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>)<br>		&#123;<br>			<span class="hljs-comment">// 找到某个匹配结果</span><br>			k = nxt[k]; <span class="hljs-comment">// 继续向后匹配</span><br>			<span class="hljs-comment">/// &lt;custom_code&gt;</span><br>				cout&lt;&lt;i - p.<span class="hljs-built_in">size</span>() + <span class="hljs-number">2</span>&lt;&lt;endl; <span class="hljs-comment">// 输出模式串开始位置</span><br>				<span class="hljs-comment">// +2分别是位置坐标补正和减法补正:wq</span><br>			<span class="hljs-comment">/// &lt;/custom_code&gt;</span><br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>其中<code>&lt;custom_code&gt;</code>中间是自定义的代码。一般的kmp题目输出要求可以再这里实现，这里输出的是每一个匹配成功的主串起始位置的下标。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>简单来讲，kmp算法就是模式串先自己和自己搞一遍，在和主串搞一遍（不）。</p>
+<p>在纸上模拟之后就可以发现这个next数组的真正用途，接着就可以豁然开朗，从而理解这个过程。</p>
+<p>kmp算法是AC自动机的基础知识点。AC自动机本质上是kmp算法思想和tire树结构的一种结合（但是对我这种菜鸡来说还是难炸了。</p>
+<p>以上就是冻葱Tewi的kmp算法学习小结！</p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>冻葱Tewi<br>
+        <strong>本文链接：</strong><a href="https://blog.dctewi.com/2019/02/kmp/" title="https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;02&#x2F;kmp&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;02&#x2F;kmp&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/kmp/" rel="tag">KMP</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" rel="tag">旧文归档</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1706298473149"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          这里将会显示评论栏
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">算法概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">主要概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B1%E9%85%8D"><span class="toc-number">2.1.</span> <span class="toc-text">失配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#next%E6%95%B0%E7%BB%84"><span class="toc-number">2.2.</span> <span class="toc-text">next数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E6%80%9D%E8%B7%AF"><span class="toc-number">3.</span> <span class="toc-text">推导思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E6%89%AB%E6%8F%8F"><span class="toc-number">3.1.</span> <span class="toc-text">朴素扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kmp%E7%AE%97%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">kmp算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">具体实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});</script>
+</div></body></html>

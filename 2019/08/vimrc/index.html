@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>【杂项】竞赛向 vimrc 配置小结 - 冻葱Tewi</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="blog,冻葱,冻葱Tewi,DCTewi">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="竞赛向简洁风 vim 配置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【杂项】竞赛向 vimrc 配置小结">
+<meta property="og:url" content="https://blog.dctewi.com/2019/08/vimrc/">
+<meta property="og:site_name" content="冻葱Tewi">
+<meta property="og:description" content="竞赛向简洁风 vim 配置。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-06T04:15:47.000Z">
+<meta property="article:modified_time" content="2024-01-26T19:43:25.079Z">
+<meta property="article:author" content="冻葱Tewi">
+<meta property="article:tag" content="vim">
+<meta property="article:tag" content="vimrc">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1706298473232">
+
+<link rel="stylesheet" href="/css/style.css?v=1706298473232">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1706298473232">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1706298473232"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-152707655-1");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="冻葱Tewi" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/bg.jpg)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="冻葱Tewi"><img src="/images/avatar.png" alt="冻葱Tewi"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="冻葱Tewi">
+            <img src="/images/avatar.png" alt="冻葱Tewi" alt="冻葱Tewi">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>30</div>
+        <div><span>标签</span>39</div>
+        <div><span>分类</span>1</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive" title="归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/friends" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/goal" title="目标">
+            <i class="mdui-list-item-icon nexmoefont icon-areachart"></i>
+            <div class="mdui-list-item-content">
+                目标
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1706298473232"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/1427846"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/dctewi"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/DCTewi"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://blog.dctewi.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/旧站迁移/">旧站迁移</a>
+          <span class="category-list-count">30</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.addEventListener('load', function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  })
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/blog-reboot/">【杂谈】重振旗鼓</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/blazor-webassembly-hosted-with-identity/">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/my-unity-csharp-code-standard/">【总结】我的 Unity C# 编码规范</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cantor-basic/">【算法】正逆康托展开基础</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cycle-detection/">【算法】没啥用的判圈算法两则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/net/" style="font-size: 10px;">.NET</a> <a href="/tags/a/" style="font-size: 10px;">A*</a> <a href="/tags/blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/c/" style="font-size: 10px;">C#</a> <a href="/tags/kmp/" style="font-size: 10px;">KMP</a> <a href="/tags/spfa/" style="font-size: 10px;">SPFA</a> <a href="/tags/unity/" style="font-size: 13.33px;">Unity</a> <a href="/tags/unityevent/" style="font-size: 10px;">UnityEvent</a> <a href="/tags/wsl/" style="font-size: 10px;">WSL</a> <a href="/tags/gogs/" style="font-size: 10px;">gogs</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimrc/" style="font-size: 10px;">vimrc</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 10px;">差分约束</a> <a href="/tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/" style="font-size: 10px;">康托展开</a> <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 10px;">微积分</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" style="font-size: 10px;">快速乘</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 10px;">快速幂</a> <a href="/tags/%E6%8A%98%E8%85%BE/" style="font-size: 13.33px;">折腾</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 11.67px;">数论</a> <a href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" style="font-size: 20px;">旧文归档</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" style="font-size: 10px;">最大公因数</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 11.67px;">最短路</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 10px;">树状数组</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" style="font-size: 10px;">欧拉定理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 16.67px;">笔记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A0%E6%95%B0/" style="font-size: 10px;">素数</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" style="font-size: 10px;">组合数</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编码规范</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 18.33px;">随笔</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(39);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 冻葱Tewi
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br />
+<br />
+<img src="/images/logo.png" width="150px">
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 56.71874999999999%;"> 
+            <img src="https://s-sh-2563-tewi-box.oss.dogecdn.com/img/blog-header/kagura-bigeye.jpg" alt="【杂项】竞赛向 vimrc 配置小结" loading="lazy">
+            <h1>【杂项】竞赛向 vimrc 配置小结</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2019年08月06日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/">旧站迁移</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约14k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要52 分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <p>竞赛向简洁风 vim 配置。</p>
+<span id="more"></span>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><del>俗话说，Vim 大法好。</del></p>
+<p>前一段时间写题一直用的是 VS Code，VS Code 扩展丰富，功能强大，补全智能，跨平台。虽然打开的速度比较慢，但总体上来说用来写代码是真的舒服。</p>
+<p>但可惜的是比赛中并没有 VS Code 可以拿来用。习惯了 IntelliCode 强大的基于文本和词法分析的补全功能之后，我发现自己连一行<code>ios::sync_with_stdio(false);</code>都不想写了。裸手代码能力在慢慢消退。</p>
+<p>痛定思痛，我决定换回比赛中可以使用的 IDE 比如 Code::Blocks，但是在我的 Manjaro 笔记本的暗色微风主题下，CB 的界面充斥着各种暗色控件和亮色 Border ，变得特别丑，我还不如去用 Kate 或者 GEdit。这个时候，我突然回想起了在我开始用 Sublime Text 之前使用的神的编辑器 —— Vim。在花了大概一个多小时配置了一下 Vim之后，我已经完全爱上 Vim 啦！</p>
+<p>这套配置遵守了以下的几个原则：</p>
+<ol>
+<li>不使用任何插件。因为比赛环境中是没有网络可以给 Vim 装插件的。</li>
+<li>尽量轻量，避免任何意义不大的配置。因为比赛中给选手用来调配置的时间并不多，应该在尽量快的时间内完成平常使用的配置。</li>
+</ol>
+<p>本文不再记录 vim 的基本操作，请自行网上查询或者查看我<a href="../vim-setup">之前的文章</a>。</p>
+<h2 id="逐条说明"><a href="#逐条说明" class="headerlink" title="逐条说明"></a>逐条说明</h2><p>话不多说，先逐条说明一下，在文章最后有单独的代码块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">if !exists(&quot;g:os&quot;)<br>    if has(&quot;win64&quot;) || has(&quot;win32&quot;) || has(&quot;win16&quot;)<br>        let g:os = &quot;win&quot;<br>    else<br>        let g:os = &quot;unix&quot;<br>    endif<br>endif<br></code></pre></td></tr></table></figure>
+
+<p>首先判断当前环境究竟是 Windows 还是 Linux，因为我平常会在两种环境下写代码，所以根据不同的情况需要进行不同配置。</p>
+<h3 id="基础设置："><a href="#基础设置：" class="headerlink" title="基础设置："></a>基础设置：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">set nocompatible              &quot; 取消 vi 兼容模式<br>set showcmd                   &quot; 右下角显示当前输入的命令<br>set mouse=a                   &quot; 允许鼠标选中<br>set backspace=2               &quot; 绑定 backspace 键到模式2<br>set encoding=utf-8            &quot; 设定默认文件编码<br>set t_Co=256                  &quot; 使用256色终端<br>filetype indent on            &quot; 根据文件类型自动判断缩进类型<br>if g:os == &quot;win&quot;              &quot; 将默认 yank 操作的寄存器设置为系统寄存器+/*<br>  set clipboard=unnamed       &quot; 设置之后就可以用 y/p 操作系统剪切板了<br>else<br>  set clipboard=unnamedplus<br>endif<br></code></pre></td></tr></table></figure>
+
+<p>这里的 clipboard 设定需要 vim 的 X11 支持，请事先使用 <code>vim --version | grep clipboard</code>查看是否有 <code>+clipboard</code>。如果是减号，则需要安装 <code>vim-gtk</code>包或者 <code>gvim</code>包。</p>
+<h3 id="行为设置"><a href="#行为设置" class="headerlink" title="行为设置"></a>行为设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">set noswapfile                &quot; 取消 swap 文件生成<br>set noerrorbells              &quot; 取消声音提示<br>set autoread                  &quot; 若文件被外部改动则自动更新内容<br></code></pre></td></tr></table></figure>
+
+<h3 id="缩进设置"><a href="#缩进设置" class="headerlink" title="缩进设置"></a>缩进设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">set cindent                   &quot; 使用 C 系缩进方法<br>set tabstop=4                 &quot; 设定 tab 宽度为 4<br>set shiftwidth=4              &quot; 设定自动缩进宽度为 4<br>set expandtab                 &quot; 将 tab 转换为空格<br>set softtabstop=4             &quot; 将 tab 转换为 4 个空格<br></code></pre></td></tr></table></figure>
+
+<h3 id="显示设置"><a href="#显示设置" class="headerlink" title="显示设置"></a>显示设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">syntax enable                 &quot; 启用符号高亮<br>syntax on                     &quot; 开启符号高亮<br>set number                    &quot; 显示行号<br>set cursorline                &quot; 高亮当前行<br>set showmatch                 &quot; 高亮匹配括号以及高亮颜色设置<br>hi MatchParen cterm=bold ctermbg=none ctermfg=blue<br></code></pre></td></tr></table></figure>
+
+<h3 id="搜索设置"><a href="#搜索设置" class="headerlink" title="搜索设置"></a>搜索设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">set hlsearch                  &quot; 高亮匹配结果<br>set incsearch                 &quot; 逐字搜索<br>set ignorecase                &quot; 不去别大小写<br>set smartcase                 &quot; 若搜索关键字有大写则区别大小写<br></code></pre></td></tr></table></figure>
+
+<h3 id="映射设置"><a href="#映射设置" class="headerlink" title="映射设置"></a>映射设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">if g:os == &quot;win&quot;<br>    map &lt;F5&gt; :w &lt;CR&gt; :!g++ &quot;%&quot; -o &quot;%&lt;.exe&quot; -std=c++14 -O2 -Wall -DDEBUG ; &quot;./%&lt;.exe&quot; &lt;CR&gt;<br>else<br>    map &lt;F5&gt; :w &lt;CR&gt; :!g++ &quot;%&quot; -o &quot;%&lt;.exe&quot; -std=c++14 -O2 -Wall -DDEBUG &amp;&amp; &quot;./%&lt;.exe&quot; &lt;CR&gt;<br>endif<br><br>map &lt;C-F5&gt; :w &lt;CR&gt; :!python3 % &lt;CR&gt;<br></code></pre></td></tr></table></figure>
+
+<p>上边是一键<F5>编译 C++ 单文件的映射，其中<code>%</code>表示文件名，<code>%&lt;</code>表示去掉扩展名的文件名，<code>:w</code>保存，<code>&lt;CR&gt;, &lt;cr&gt;</code>代表换行，<code>:!</code>表示在外部 Shell 中运行指令。</p>
+<p>最后一行是按&lt;Ctrl + F5&gt; 运行 python 脚本的映射，可以根据设置将 python3 改成 python。</p>
+<h3 id="补全设置"><a href="#补全设置" class="headerlink" title="补全设置"></a>补全设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">inoremap ( ()&lt;ESC&gt;i<br>inoremap [ []&lt;ESC&gt;i<br>inoremap &#x27; &#x27;&#x27;&lt;ESC&gt;i<br>inoremap &quot; &quot;&quot;&lt;ESC&gt;i<br>inoremap &#123; &#123;&#125;&lt;ESC&gt;i<br>inoremap &#123;&lt;CR&gt; &#123;&lt;CR&gt;&#125;&lt;ESC&gt;O<br><br>inoremap &lt;F8&gt; #include&lt;bits/stdc++.h&gt;&lt;CR&gt;using namespace std;&lt;CR&gt;typedef long long ll;&lt;CR&gt;<br></code></pre></td></tr></table></figure>
+
+<p>前几个是自动补全符号，其中如果只输入大括号则单行补全，大括号后按一下回车就会将大括号展开。最后一行是 F8 补全标准文件头，竞赛向嘛，竞赛向。</p>
+<h3 id="GVim-设置"><a href="#GVim-设置" class="headerlink" title="GVim 设置"></a>GVim 设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">if has(&quot;gui_running&quot;)<br>    set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1<br>    set fileencoding=utf-8       &quot; 显示编码<br>    set guioptions-=m            &quot; 隐藏菜单，工具栏和滚动条<br>    set guioptions-=T<br>    set guioptions-=r<br>    set lines=35 columns=120     &quot; 设置大小<br>    colorscheme torte            &quot; 设置配色<br>    if g:os == &quot;win&quot;             &quot; 设置字体<br>        set guifont=Microsoft_Yahei_Mono:h11<br>    else<br>        set guifont=Fira\ Mono\ 12<br>    endif<br>endif<br></code></pre></td></tr></table></figure>
+
+<p>这一段是当使用 vim GUI 模式也就是 GVim 的时候进行的简单配置。比赛的时候可以无视，主要是平时在 Windows 上使用 Vim 的时候用到的。</p>
+<h2 id="汇总"><a href="#汇总" class="headerlink" title="汇总"></a>汇总</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs vimrc">&quot; Vim Configuration File<br>&quot; Author: dctewi@dctewi.com<br>&quot; Description: For minimal icpc use<br>&quot;<br><br>&quot; System Detect<br>if !exists(&quot;g:os&quot;)<br>    if has(&quot;win64&quot;) || has(&quot;win32&quot;) || has(&quot;win16&quot;)<br>        let g:os = &quot;win&quot;<br>    else<br>        let g:os = &quot;unix&quot;<br>    endif<br>endif<br><br>&quot; Properties<br>set nocompatible<br>set showcmd<br>set mouse=a<br>set backspace=2<br>set encoding=utf-8<br>set t_Co=256<br>filetype indent on<br>if g:os == &quot;win&quot;<br>  set clipboard=unnamed<br>else<br>  set clipboard=unnamedplus<br>endif<br><br>&quot; Util<br>set noswapfile<br>set noerrorbells<br>set autoread<br><br>&quot; Indent<br>set cindent<br>set tabstop=4<br>set shiftwidth=4<br>set expandtab<br>set softtabstop=4<br><br>&quot; Layout<br>syntax enable<br>syntax on<br>set number<br>set cursorline<br>set showmatch<br>hi MatchParen cterm=bold ctermbg=none ctermfg=blue<br><br>&quot; Search<br>set hlsearch<br>set incsearch<br>set ignorecase<br>set smartcase<br><br>&quot; Compile<br>if g:os == &quot;win&quot;<br>    map &lt;F5&gt; :w &lt;CR&gt; :!g++ &quot;%&quot; -o &quot;%&lt;.exe&quot; -std=c++14 -O2 -Wall -DDEBUG ; &quot;./%&lt;.exe&quot; &lt;CR&gt;<br>else<br>    map &lt;F5&gt; :w &lt;CR&gt; :!g++ &quot;%&quot; -o &quot;%&lt;.exe&quot; -std=c++14 -O2 -Wall -DDEBUG &amp;&amp; &quot;./%&lt;.exe&quot; &lt;CR&gt;<br>endif<br>map &lt;C-F5&gt; :w &lt;CR&gt; :!python3 % &lt;CR&gt;<br><br>&quot; Auto complete<br>inoremap ( ()&lt;ESC&gt;i<br>inoremap [ []&lt;ESC&gt;i<br>inoremap &#x27; &#x27;&#x27;&lt;ESC&gt;i<br>inoremap &quot; &quot;&quot;&lt;ESC&gt;i<br>inoremap &#123; &#123;&#125;&lt;ESC&gt;i<br>inoremap &#123;&lt;CR&gt; &#123;&lt;CR&gt;&#125;&lt;ESC&gt;O<br><br>&quot; Header<br>inoremap &lt;F8&gt; #include&lt;bits/stdc++.h&gt;&lt;CR&gt;using namespace std;&lt;CR&gt;typedef long long ll;&lt;CR&gt;<br><br>&quot; GVim<br>if has(&quot;gui_running&quot;)<br>    set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1<br>    set fileencoding=utf-8<br>    set guioptions-=m<br>    set guioptions-=T<br>    set guioptions-=r<br>    set lines=35 columns=120<br>    colorscheme torte<br>    if g:os == &quot;win&quot;<br>        set guifont=Microsoft_Yahei_Mono:h11<br>    else<br>        set guifont=Fira\ Mono\ 12<br>    endif<br>endif<br></code></pre></td></tr></table></figure>
+
+<p>文章中 vimrc 不随着我的更新而更新。我当前使用的 vimrc 可在<a target="_blank" rel="noopener" href="https://github.com/DCTewi/My-Algorithm-Templates/blob/master/.vimrc">我的Github上</a>找到。</p>
+<p>以上，Happy Vimming Everyday！</p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>冻葱Tewi<br>
+        <strong>本文链接：</strong><a href="https://blog.dctewi.com/2019/08/vimrc/" title="https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;08&#x2F;vimrc&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;08&#x2F;vimrc&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/vim/" rel="tag">vim</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/vimrc/" rel="tag">vimrc</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1706298473148"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          这里将会显示评论栏
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%90%E6%9D%A1%E8%AF%B4%E6%98%8E"><span class="toc-number">2.</span> <span class="toc-text">逐条说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">基础设置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">行为设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E8%BF%9B%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.3.</span> <span class="toc-text">缩进设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text">显示设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.5.</span> <span class="toc-text">搜索设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%A0%E5%B0%84%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.6.</span> <span class="toc-text">映射设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%A8%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.7.</span> <span class="toc-text">补全设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GVim-%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.8.</span> <span class="toc-text">GVim 设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E6%80%BB"><span class="toc-number">3.</span> <span class="toc-text">汇总</span></a></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});</script>
+</div></body></html>

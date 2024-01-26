@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>【捣鼓】WSL部署总结 - 冻葱Tewi</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="blog,冻葱,冻葱Tewi,DCTewi">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="Windows Subsystem for Linux 是微软在Windows 10和 Windows  Server 2019上添加的能够原生运行Linux二进制可执行文件的兼容层。 简单的记录了一下部署的过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【捣鼓】WSL部署总结">
+<meta property="og:url" content="https://blog.dctewi.com/2019/04/wsl-setup/">
+<meta property="og:site_name" content="冻葱Tewi">
+<meta property="og:description" content="Windows Subsystem for Linux 是微软在Windows 10和 Windows  Server 2019上添加的能够原生运行Linux二进制可执行文件的兼容层。 简单的记录了一下部署的过程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/07/AfHruD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/07/AfHsDe.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/07/AfHgUA.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/07/AfHyHH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/07/AfHcEd.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/07/AfHBjO.png">
+<meta property="article:published_time" content="2019-04-07T04:04:52.000Z">
+<meta property="article:modified_time" content="2024-01-26T19:43:25.080Z">
+<meta property="article:author" content="冻葱Tewi">
+<meta property="article:tag" content="旧文归档">
+<meta property="article:tag" content="折腾">
+<meta property="article:tag" content="WSL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/07/AfHruD.png">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1706298473241">
+
+<link rel="stylesheet" href="/css/style.css?v=1706298473241">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1706298473241">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1706298473241"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-152707655-1");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="冻葱Tewi" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/bg.jpg)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="冻葱Tewi"><img src="/images/avatar.png" alt="冻葱Tewi"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="冻葱Tewi">
+            <img src="/images/avatar.png" alt="冻葱Tewi" alt="冻葱Tewi">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>30</div>
+        <div><span>标签</span>39</div>
+        <div><span>分类</span>1</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive" title="归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/friends" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/goal" title="目标">
+            <i class="mdui-list-item-icon nexmoefont icon-areachart"></i>
+            <div class="mdui-list-item-content">
+                目标
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1706298473242"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/1427846"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/dctewi"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/DCTewi"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://blog.dctewi.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/旧站迁移/">旧站迁移</a>
+          <span class="category-list-count">30</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.addEventListener('load', function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  })
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/blog-reboot/">【杂谈】重振旗鼓</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/blazor-webassembly-hosted-with-identity/">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/my-unity-csharp-code-standard/">【总结】我的 Unity C# 编码规范</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cantor-basic/">【算法】正逆康托展开基础</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cycle-detection/">【算法】没啥用的判圈算法两则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/net/" style="font-size: 10px;">.NET</a> <a href="/tags/a/" style="font-size: 10px;">A*</a> <a href="/tags/blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/c/" style="font-size: 10px;">C#</a> <a href="/tags/kmp/" style="font-size: 10px;">KMP</a> <a href="/tags/spfa/" style="font-size: 10px;">SPFA</a> <a href="/tags/unity/" style="font-size: 13.33px;">Unity</a> <a href="/tags/unityevent/" style="font-size: 10px;">UnityEvent</a> <a href="/tags/wsl/" style="font-size: 10px;">WSL</a> <a href="/tags/gogs/" style="font-size: 10px;">gogs</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimrc/" style="font-size: 10px;">vimrc</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 10px;">差分约束</a> <a href="/tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/" style="font-size: 10px;">康托展开</a> <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 10px;">微积分</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" style="font-size: 10px;">快速乘</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 10px;">快速幂</a> <a href="/tags/%E6%8A%98%E8%85%BE/" style="font-size: 13.33px;">折腾</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 11.67px;">数论</a> <a href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" style="font-size: 20px;">旧文归档</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" style="font-size: 10px;">最大公因数</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 11.67px;">最短路</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 10px;">树状数组</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" style="font-size: 10px;">欧拉定理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 16.67px;">笔记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A0%E6%95%B0/" style="font-size: 10px;">素数</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" style="font-size: 10px;">组合数</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编码规范</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 18.33px;">随笔</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(39);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 冻葱Tewi
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br />
+<br />
+<img src="/images/logo.png" width="150px">
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 56.71874999999999%;"> 
+            <img src="https://s-sh-2563-tewi-box.oss.dogecdn.com/img/blog-header/minoto-paint.jpg" alt="【捣鼓】WSL部署总结" loading="lazy">
+            <h1>【捣鼓】WSL部署总结</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2019年04月07日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/">旧站迁移</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约13k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要48 分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <p>Windows Subsystem for Linux 是微软在Windows 10和 Windows  Server 2019上添加的能够原生运行Linux二进制可执行文件的兼容层。</p>
+<p>简单的记录了一下部署的过程。</p>
+<span id="more"></span>
+
+<h2 id="Windows-Subsystem-for-Linux-简介"><a href="#Windows-Subsystem-for-Linux-简介" class="headerlink" title="Windows Subsystem for Linux 简介"></a>Windows Subsystem for Linux 简介</h2><p> Windows Subsystem for Linux 是微软在Windows 10和 Windows  Server 2019上添加的能够原生运行Linux二进制可执行文件的兼容层。</p>
+<p>由于没有硬件仿真&#x2F;虚拟化（与coLinux等其他项目不同），WSL直接使用主机文件系统（通过VolFS和DrvFS）和硬件的某些部分，例如网络（Web服务器，用于例如，可以通过主机上配置的相同接口和IP地址进行访问，并且对使用需要管理权限的端口或已经被其他应用程序占用的端口共享相同的限制），这保证了互操作性。</p>
+<p>此子系统无法运行所有Linux软件（如32位二进制文件）或需要在WSL中未实现的特定Linux内核服务的软件。由于WSL中没有“真正的”Linux内核，因此无法运行内核模块（如设备驱动程序）。</p>
+<p>可以通过在Windows（主机）环境（例如VcXsrv或Xming）中安装X窗口系统来运行一些图形（GUI）应用程序（例如Mozilla Firefox），尽管并非没有警告，例如缺乏音频支持或硬件加速（导致图形性能不佳）。当前还没有实施对OpenCL和CUDA的支持，尽管计划在将来的版本中使用。</p>
+<p><del><strong>——以上说明复制自Wikipedia。</strong></del></p>
+<p>总之，这是除了双系统之外，同时使用Windows和Linux的另一种<strong>轻量级</strong>的方法。虽然有局限性，但是一般的Linux使用还是没有什么问题的。对于日常学习，使用Linux而不想&#x2F;不能离开Windows的同学来说有着很大的帮助。</p>
+<h2 id="WSL的启用与安装"><a href="#WSL的启用与安装" class="headerlink" title="WSL的启用与安装"></a>WSL的启用与安装</h2><p>首先用管理员权限打开Windows Powershell。一种可能的打开方式是：<code>Windows徽标键 + X</code> -&gt; <code>Windows Powershell(管理员)(A)</code>。</p>
+<p>然后键入：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Enable-WindowsOptionalFeature</span> <span class="hljs-literal">-Online</span> <span class="hljs-literal">-FeatureName</span> Microsoft<span class="hljs-literal">-Windows-Subsystem-Linux</span><br></code></pre></td></tr></table></figure>
+
+<p>稍等片刻，会弹出按Y重启的通知。按Y之后会自动重启两到三次，再次进入桌面的时候，WSL就已经启用完毕了。</p>
+<p><img src="https://s2.ax1x.com/2019/04/07/AfHruD.png"></p>
+<p>接着，需要选择一款你想要的Linux发行版。进入Microsoft Store，搜索Linux，进入Linux发行版专题。早些时候只有Ubuntu可以选择，但是现在除了Ubuntu之外还有Debian，Kali等多个发行版可以选择。当然作为只用的来Ubuntu的菜鸡，我选择了Ubuntu并下载。</p>
+<p><img src="https://s2.ax1x.com/2019/04/07/AfHsDe.png"></p>
+<p>安装完成之后，你的WSL就已经初步部署完毕了！</p>
+<p>有两种方法可以进入WSL：</p>
+<ol>
+<li>通过Powershell指令<code>bash</code>进入WSL。</li>
+<li>直接点击Ubuntu图标进入WSL。</li>
+</ol>
+<p>打开之后，键入<code>lsb_release -c</code>，显示<code>Codename:        bionic</code>。说明我们安装了Ubuntu18.04 LTS。</p>
+<h2 id="WSL的初步配置"><a href="#WSL的初步配置" class="headerlink" title="WSL的初步配置"></a>WSL的初步配置</h2><p>下载完成之后官方的数据源仓库是ubuntu仓库，由于是境外网站，而且WSL不能走SOCKS的原因，所以最好把数据源更换成国内镜像站。这里推荐清华的镜像。</p>
+<p>首先备份原来的数据源配置文件:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list.bak<br></code></pre></td></tr></table></figure>
+
+<p>然后修改数据源配置文件，可以通过自带的<code>vim</code>。如果不会用的话，可以手动用Windows上的notepad++之类打开<code>%UbuntuPath%\LocalState\rootfs\etc\apt\sources.list</code>修改。</p>
+<p>全选，删除，修改成以下内容：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main multiverse restricted universe<br>deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main multiverse restricted universe<br>deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main multiverse restricted universe<br>deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main multiverse restricted universe<br>deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main multiverse restricted universe<br>deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main multiverse restricted universe<br>deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main multiverse restricted universe<br>deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main multiverse restricted universe<br>deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main multiverse restricted universe<br>deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main multiverse restricted universe<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>这仅限于Ubuntu 18.04，即bionic版本。如果你<code>lsb_release -c</code>后显示的结果不是bionic，那么请将以上数据源地址中所有的<code>bionic</code>替换成你的版本代号。</p>
+<p>修改保存之后，更新配置并且升级（可能会占用较长的时间，可以起身转一转）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt update<br>sudo apt upgrade<br></code></pre></td></tr></table></figure>
+
+<p>到此，WSL已经初步配置完成啦。</p>
+<h2 id="WSL的本地化"><a href="#WSL的本地化" class="headerlink" title="WSL的本地化"></a>WSL的本地化</h2><p>虽说日常使用用英文也没什么大碍，但是既然有中文本地化，就没理由补折腾一番啦。</p>
+<p>首先安装中文本地化包：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt install language-pack-zh-hans<br></code></pre></td></tr></table></figure>
+
+<p>然后更新本地化设置：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo update-locale LANG=zh_CN.UTF-8<br></code></pre></td></tr></table></figure>
+
+<p>接着安装Noto CJK包来防止中文被显示为日文字形，导致的全员小方框乱码故障：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt install fonts-noto-cjk<br></code></pre></td></tr></table></figure>
+
+<p>重启WSL，现在已经是中文本地化模式了。</p>
+<p><img src="https://s2.ax1x.com/2019/04/07/AfHgUA.png"></p>
+<h2 id="WSL配合Xming显示GUI"><a href="#WSL配合Xming显示GUI" class="headerlink" title="WSL配合Xming显示GUI"></a>WSL配合Xming显示GUI</h2><p>WSL默认是没有安装图形窗口系统的（毕竟只有300MiB大），所以要想显示GUI，必须要再自己安装。</p>
+<p>X窗口系统，是一种以位图方式显示的软件窗口系统。好像Windows自带的X.Org就是一种X窗口系统，Xming这个工具是通过给WSL提供端口来实现图形化界面的显示的。</p>
+<p>官方的Xming已经年经失修，推荐一个魔改版本VcXsrv。下载地址：<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/vcxsrv/">SourceForge</a>，<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1y3AHoNbCiLJj-AndnlUQsw">百度云</a>(提取码<code>hm4o</code>)。</p>
+<p>安装VcXsrv之后，启动XLaunch，开放0端口。然后打开WSL，输入：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;export DISPLAY=127.0.0.1:0&quot;</span>&gt;&gt;~/.bashrc<br></code></pre></td></tr></table></figure>
+
+<p>这样就把默认的显示配置完成了。</p>
+<h3 id="安装Ubuntu-Desktop-可选"><a href="#安装Ubuntu-Desktop-可选" class="headerlink" title="安装Ubuntu Desktop (可选)"></a>安装Ubuntu Desktop (可选)</h3><p>Ubuntu-Desktop不是Ubuntu桌面，只是安装了Ubuntu GUI默认安装的图形工具，比如gedit之类。比较大，有2G那么大，而且我的Windows上也不怎么需要Ubuntu Desktop，所以我就没安装。</p>
+<p>直接键入：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt install ubuntu-desktop<br></code></pre></td></tr></table></figure>
+
+<p>就完事了。有2G大，估计会持续很长时间。</p>
+<h3 id="安装Gnome-terminal"><a href="#安装Gnome-terminal" class="headerlink" title="安装Gnome-terminal"></a>安装Gnome-terminal</h3><p>如果你安装了<code>ubunutu-desktop</code>可能可以跳过这一步，因为<code>ubuntu-desktop</code>包中应该已经安装好了<code>Gnome-ternimal</code>的依赖项。当然打一行指令也没啥。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt install dbus-x11<br></code></pre></td></tr></table></figure>
+
+<p>然后就是安装了，没啥好说的。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt install gnome-terminal<br></code></pre></td></tr></table></figure>
+
+<p>好了，安装完成。保持后台Xming服务开启，终端输入:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">gnome-terminal<br></code></pre></td></tr></table></figure>
+
+<p>然后应该就弹出终端了。</p>
+<p><img src="https://s2.ax1x.com/2019/04/07/AfHyHH.png"></p>
+<h3 id="安装Geany"><a href="#安装Geany" class="headerlink" title="安装Geany"></a>安装Geany</h3><p>Geany是ICPC World Final 2019上，华沙大学队伍使用的编辑器。轻量，五脏俱全，支持C, C++, Java, Python以及各种前端语言的语法高亮和自动补全。<del>我寻思这个支持的语言列表，难道是面向ACM开发的嘛……</del>众所周知，Code::Blocks在Ubuntu上经常闪退，而赛场上的vim肯定没什么时间深度配置所以也不太好用，CLion要收费，所以这个Geany安装之后玩了一会儿就爱上了。</p>
+<p>添加ppa，更新包列表，安装一气呵成：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo add-apt-repository ppa:geany-dev/ppa<br>sudo apt-get update<br>sudo apt-get install geany<br></code></pre></td></tr></table></figure>
+
+<p>然后在终端键入<code>geany</code>，不出意外的话就会弹出来啦！</p>
+<p><img src="https://s2.ax1x.com/2019/04/07/AfHcEd.png"></p>
+<p>在首选项里配置一番就开始玩吧！当然，别忘了安装相关语言的环境：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># C/C++</span><br>sudo apt install build-essential<br><span class="hljs-comment"># JDK (Unconfirmed)</span><br>sudo apt install default-jre<br>sudo apt install default-jdk<br><span class="hljs-built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$JAVA_HOME</span>/jre<br><span class="hljs-built_in">source</span> /etc/environment<br><span class="hljs-comment"># Python</span><br>sudo apt install python3<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>Java的环境变量地址请根据自己的安装路径调整，查看安装地址可以使用：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo update-alternatives --config java<br></code></pre></td></tr></table></figure>
+
+<h2 id="WSL要知道的"><a href="#WSL要知道的" class="headerlink" title="WSL要知道的"></a>WSL要知道的</h2><ul>
+<li><p>Windows和WSL中的路径对应关系：</p>
+<ul>
+<li><p>磁盘根目录对应：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># Windows</span><br>C:\<br><span class="hljs-comment"># WSL</span><br>/mnt/c/<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>WSL根目录对应：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># Windows</span><br>C:\Users\%USER_NAME%\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_%VERSION_HASH%\LocalState\rootfs\<br><span class="hljs-comment"># WSL</span><br>/<br></code></pre></td></tr></table></figure>
+<p><strong>注意！请不要直接从C盘访问该地址修改内容，会导致权限混乱。Windows10-1903以上版本请在WSL运行时访问<code>\\$wsl\</code></strong></p>
+</li>
+</ul>
+</li>
+<li><p>卸载WSL</p>
+<p>Powershell：<code>lxrun /uninstall /full</code></p>
+</li>
+<li><p>一个更好的wsl终端，可以用来显示32位色：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/goreliu/wsl-terminal">WSL-terminal on github</a></p>
+<p><img src="https://s2.ax1x.com/2019/04/07/AfHBjO.png"></p>
+</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux Installation Guide for Windows 10</a></p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F">适用于 Linux 的 Windows 子系统 ——维基百科，自由的百科全书</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Microsoft/WSL/issues/2016">Issues with dbus-launch and x11 forwarding and &#x2F;etc&#x2F;machine-id? ——Github</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/bashonubuntuonwindows/comments/9l46br/asking_wsl_ubuntu_1804_dbus_fix_updated/">[Asking] WSL, Ubuntu 18.04, DBUS fix updated instruction? ——Reddit</a></p>
+<p><a target="_blank" rel="noopener" href="https://tecadmin.net/install-geany-ide-ubuntu/">How to Install Geany IDE on Ubuntu 18.04 &amp; 16.04 LTS ——TecAdmin</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04">How To Install Java with apt on Ubuntu 18.04 ——DigitalOcean</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/47141667">如何正确为 Noto Sans CJK 配置 fontconfig 使中文不会被显示为日文字型？——知乎</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是本次总结的全部内容了。</p>
+<p>人人都应该试一试Linux！玩得愉快！</p>
+<p><strong>冻葱Tewi</strong> 于 <strong>2019-04-07</strong></p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>冻葱Tewi<br>
+        <strong>本文链接：</strong><a href="https://blog.dctewi.com/2019/04/wsl-setup/" title="https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;04&#x2F;wsl-setup&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;04&#x2F;wsl-setup&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/wsl/" rel="tag">WSL</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%8A%98%E8%85%BE/" rel="tag">折腾</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" rel="tag">旧文归档</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1706298473149"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          这里将会显示评论栏
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Subsystem-for-Linux-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Windows Subsystem for Linux 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSL%E7%9A%84%E5%90%AF%E7%94%A8%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">WSL的启用与安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSL%E7%9A%84%E5%88%9D%E6%AD%A5%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">WSL的初步配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSL%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">WSL的本地化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSL%E9%85%8D%E5%90%88Xming%E6%98%BE%E7%A4%BAGUI"><span class="toc-number">5.</span> <span class="toc-text">WSL配合Xming显示GUI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Ubuntu-Desktop-%E5%8F%AF%E9%80%89"><span class="toc-number">5.1.</span> <span class="toc-text">安装Ubuntu Desktop (可选)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Gnome-terminal"><span class="toc-number">5.2.</span> <span class="toc-text">安装Gnome-terminal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Geany"><span class="toc-number">5.3.</span> <span class="toc-text">安装Geany</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSL%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84"><span class="toc-number">6.</span> <span class="toc-text">WSL要知道的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">7.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});</script>
+</div></body></html>

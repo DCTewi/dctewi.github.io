@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>【笔记】在 Blazor WebAssembly Hosted 中使用 Identity - 冻葱Tewi</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="blog,冻葱,冻葱Tewi,DCTewi">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="记录了一些 Blazor WebAssembly 的基础知识和在其中使用 Identity 进行身份验证的知识点。好久不写博客了，手都生了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】在 Blazor WebAssembly Hosted 中使用 Identity">
+<meta property="og:url" content="https://blog.dctewi.com/2020/12/blazor-webassembly-hosted-with-identity/">
+<meta property="og:site_name" content="冻葱Tewi">
+<meta property="og:description" content="记录了一些 Blazor WebAssembly 的基础知识和在其中使用 Identity 进行身份验证的知识点。好久不写博客了，手都生了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.ax1x.com/2020/12/02/DoeYrR.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/12/02/Doezz4.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/12/02/DoKRXQ.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/12/02/DoQCan.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/12/02/DoQP5q.png">
+<meta property="article:published_time" content="2020-12-02T14:52:00.000Z">
+<meta property="article:modified_time" content="2024-01-26T19:43:25.077Z">
+<meta property="article:author" content="冻葱Tewi">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content=".NET">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="Blazor">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.ax1x.com/2020/12/02/DoeYrR.png">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1706298473204">
+
+<link rel="stylesheet" href="/css/style.css?v=1706298473204">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1706298473204">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1706298473204"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-152707655-1");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="冻葱Tewi" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/bg.jpg)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="冻葱Tewi"><img src="/images/avatar.png" alt="冻葱Tewi"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="冻葱Tewi">
+            <img src="/images/avatar.png" alt="冻葱Tewi" alt="冻葱Tewi">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>30</div>
+        <div><span>标签</span>39</div>
+        <div><span>分类</span>1</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive" title="归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/friends" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/goal" title="目标">
+            <i class="mdui-list-item-icon nexmoefont icon-areachart"></i>
+            <div class="mdui-list-item-content">
+                目标
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1706298473204"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/1427846"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/dctewi"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/DCTewi"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://blog.dctewi.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/旧站迁移/">旧站迁移</a>
+          <span class="category-list-count">30</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.addEventListener('load', function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  })
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/blog-reboot/">【杂谈】重振旗鼓</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/blazor-webassembly-hosted-with-identity/">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/my-unity-csharp-code-standard/">【总结】我的 Unity C# 编码规范</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cantor-basic/">【算法】正逆康托展开基础</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cycle-detection/">【算法】没啥用的判圈算法两则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/net/" style="font-size: 10px;">.NET</a> <a href="/tags/a/" style="font-size: 10px;">A*</a> <a href="/tags/blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/c/" style="font-size: 10px;">C#</a> <a href="/tags/kmp/" style="font-size: 10px;">KMP</a> <a href="/tags/spfa/" style="font-size: 10px;">SPFA</a> <a href="/tags/unity/" style="font-size: 13.33px;">Unity</a> <a href="/tags/unityevent/" style="font-size: 10px;">UnityEvent</a> <a href="/tags/wsl/" style="font-size: 10px;">WSL</a> <a href="/tags/gogs/" style="font-size: 10px;">gogs</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimrc/" style="font-size: 10px;">vimrc</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 10px;">差分约束</a> <a href="/tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/" style="font-size: 10px;">康托展开</a> <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 10px;">微积分</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" style="font-size: 10px;">快速乘</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 10px;">快速幂</a> <a href="/tags/%E6%8A%98%E8%85%BE/" style="font-size: 13.33px;">折腾</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 11.67px;">数论</a> <a href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" style="font-size: 20px;">旧文归档</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" style="font-size: 10px;">最大公因数</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 11.67px;">最短路</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 10px;">树状数组</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" style="font-size: 10px;">欧拉定理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 16.67px;">笔记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A0%E6%95%B0/" style="font-size: 10px;">素数</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" style="font-size: 10px;">组合数</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编码规范</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 18.33px;">随笔</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(39);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 冻葱Tewi
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br />
+<br />
+<img src="/images/logo.png" width="150px">
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 56.71874999999999%;"> 
+            <img src="https://s-sh-2563-tewi-box.oss.dogecdn.com/img/blog-header/anon-squat.jpg" alt="【笔记】在 Blazor WebAssembly Hosted 中使用 Identity" loading="lazy">
+            <h1>【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2020年12月02日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/">旧站迁移</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约19k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1:09分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <p>记录了一些 Blazor WebAssembly 的基础知识和在其中使用 Identity 进行身份验证的知识点。好久不写博客了，手都生了。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>注：本文中使用的 .NET 版本为 .NET 5.0（.NET Core 和 .NET Framework 合并的版本）</p>
+</blockquote>
+<h2 id="什么是-WebAssembly"><a href="#什么是-WebAssembly" class="headerlink" title="什么是 WebAssembly"></a>什么是 WebAssembly</h2><p>顾名思义，WebAssembly（wasm）是一种实验性的 Web 低级编程语言，应用于浏览器的客户端，以提供比 JavaScript 更快速的便宜和运行。并允许开发者将自己喜欢的编程语言编译成 wasm 后在客户浏览器内以接近原生的性能运行。打破前端只有 JavaScript 的桎梏，让各种“后端”语言走上前台，走进用户的浏览器。</p>
+<p>WebAssembly 由 W3C 发起，由 Mozilla，Google，Microsoft，Apple 分别代表四大浏览器牵头，从2017年起开始实验性支持。最终在 2019 年 12 月被 W3C 推荐，成为 Web 的第四种语言。</p>
+<h2 id="什么是-Blazor"><a href="#什么是-Blazor" class="headerlink" title="什么是 Blazor"></a>什么是 Blazor</h2><p>Blazor 是 .NET 社区的 Web 应用解决方案，名字取自 Browser + Razor 之意，以 C# 和 HTML 创建 Web 应用。</p>
+<p>Blazor 分为 Blazor Server 和 Blazor WebAssembly。Blazor Server 指托管于 Asp.Net Core 的服务器上的瘦客户端。绝大多数操作在服务器端进行，客户端指挥下载所需要的最小化的页面，并通过 SignalR 的连接更新浏览器中的界面。Blazor WebAssembly 是基于 wasm 的单页应用。初始加载内容远大于 Blazor Server，但之后的处理过程将在客户端硬件内完成，所以它具有更快的响应速度。</p>
+<p>Blazor WebAssembly Hosted 是 Blazor WebAssembly with Asp.Net Core Hosted 架构的简称。他是由交给客户的 Blazor WebAssembly 作为前端应用，同时后端由 Asp.Net Core Api 进行数据交换的一种结构。</p>
+<h2 id="使用-Identity-进行身份验证"><a href="#使用-Identity-进行身份验证" class="headerlink" title="使用 Identity 进行身份验证"></a>使用 Identity 进行身份验证</h2><h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><p>.NET 官方推荐的身份验证方法是通过 <code>Microsoft.AspNetCore.Identity</code> 和 Identity Server 4 配合 Jwt 来进行用户身份的验证。</p>
+<p>新建工程时，将身份验证和 Asp.Net Core Hosted 正确配置：</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://s3.ax1x.com/2020/12/02/DoeYrR.png" alt="DoeYrR.png" data-caption="DoeYrR.png" loading="lazy"></p>
+<h3 id="重建数据库上下文"><a href="#重建数据库上下文" class="headerlink" title="重建数据库上下文"></a>重建数据库上下文</h3><p>等待示例工程创建完毕之后，可以看到 Solution 中被分成了三个项目。分别是盛放 Blazor WebAssembly 的 Client 项目，盛放 Asp.Net Core 服务器的 Server 项目以及两个项目之间互相通信的共享项目 Shared。</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://s3.ax1x.com/2020/12/02/Doezz4.png" alt="Doezz4.png" data-caption="Doezz4.png" loading="lazy"></p>
+<p>其中，Server 项目中已经写好了默认的用户类、数据库上下文类以及数据库初始化 Migration。默认情况下，Entity Framewok Core 使用的数据库是 SQL Server LocalDB。虽然我更偏好 SQLite，但其实只是换一个 NuGet 包和连接字符串的事，所以等到下次杂项的时候在提，这次先用 LocalDB 凑合。</p>
+<p>删除<code>Server/Data/Migrations</code>文件夹，在选中 Server 项目的情况下打开 工具 - NuGet 包管理器 - 程序包管理器控制台（或使用 Ctrl + &#96;打开），使用以下指令重新建立 Migration 和数据库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">Add-Migration InitCreate -o Data/Migrations<br>Update-Database<br></code></pre></td></tr></table></figure>
+
+<p>或者，如果你使用的是 .NET Core CLI：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">dotnet ef migrations add InitCreate -o Data/Migrations<br>dotnet ef database update<br></code></pre></td></tr></table></figure>
+
+<h3 id="通过基架创建-Identity-所需的-Remote-Pages"><a href="#通过基架创建-Identity-所需的-Remote-Pages" class="headerlink" title="通过基架创建 Identity 所需的 Remote Pages"></a>通过基架创建 Identity 所需的 Remote Pages</h3><p>如果不创建基架，Identity 模块的 <code>&lt;RemoteAuthenticatorView&gt;</code> 控件连接到的界面都会使用默认的页面。通过基架将所有的页面创建后，就可以通过修改<code>cshtml</code>文件来对逻辑和界面进行自定义。</p>
+<p>从 Server 项目的新建菜单中新建基架项目，选择 Identity 并指定数据库上下文类，接着替换全部（不得不说巨硬的这个机翻属实不行，Identity 都能翻译成标识）。</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://s3.ax1x.com/2020/12/02/DoKRXQ.png" alt="DoKRXQ.png" data-caption="DoKRXQ.png" loading="lazy"><br><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://s3.ax1x.com/2020/12/02/DoQCan.png" alt="DoQCan.png" data-caption="DoQCan.png" loading="lazy"><br><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://s3.ax1x.com/2020/12/02/DoQP5q.png" alt="DoQP5q.png" data-caption="DoQP5q.png" loading="lazy"></p>
+<h3 id="使用基于-Role-的身份验证"><a href="#使用基于-Role-的身份验证" class="headerlink" title="使用基于 Role 的身份验证"></a>使用基于 Role 的身份验证</h3><p>基于默认设置，Jwt 口令中是没有 Role 相关信息的。我们需要让服务器发出的 Jwt 口令中带上 Role 信息：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment"><span class="hljs-doctag">///</span> Server/Startup.cs</span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> Startup.ConfigureServices(IServiceCollection)</span><br><br>services.AddDefaultIdentity&lt;ApplicationUser&gt;()<br>    .AddRoles&lt;IdentityRole&gt;() <span class="hljs-comment">// 指定Role的类</span><br>    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;();<br><br>services.AddIdentityServer(options =&gt; options.IssuerUri = Configuration.GetValue&lt;<span class="hljs-built_in">string</span>&gt;(Literal.Domain))<br>    <span class="hljs-comment">// 在JWT中添加Role信息</span><br>    .AddApiAuthorization&lt;AppUser, ApplicationDbContext&gt;(options =&gt;<br>    &#123;<br>        options.IdentityResources[<span class="hljs-string">&quot;openid&quot;</span>].UserClaims.Add(<span class="hljs-string">&quot;role&quot;</span>);<br>        options.ApiResources.Single().UserClaims.Add(<span class="hljs-string">&quot;role&quot;</span>);<br>    &#125;);<br>JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove(<span class="hljs-string">&quot;role&quot;</span>);<br><br>services.AddAuthentication()<br>    .AddIdentityServerJwt();<br></code></pre></td></tr></table></figure>
+
+<p>坑爹的一点是，当用户只有一个 Role 的时候，Claims 中的信息为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Admin&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>当用户有不止一个 Role 的时候，Claims 中的信息为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;Admin&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;Operator&quot;</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>但！我们亲爱的 Blazor 端的 <code>ClaimsPrincipal.IsInRole()</code>函数和<code>[Authorize(Roles = &quot;&quot;)]</code>属性以及<code>&lt;AuthorizeView Roles=&quot;&quot;&gt;</code>控件都是通过<strong>直接判断字符串是否相等</strong>来判断用户是否在 Role 内。</p>
+<p>我暴怒，这个问题困扰了我好几天的时间。但在 Github Issue 中，Blazor 的 Contributor 竟然说这是 <strong>a Feature</strong> ！</p>
+<p>对此，我们需要手动 Hack 一下客户端内的 <code>AccountClaimsPrincipalFactory</code>，创建如下子类：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment"><span class="hljs-doctag">///</span> Client.Service.RolesAccountClaimsPrincipalFactory.cs</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">RolesAccountClaimsPrincipalFactory</span><br>    : <span class="hljs-title">AccountClaimsPrincipalFactory</span>&lt;<span class="hljs-title">RemoteUserAccount</span>&gt;<br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RolesAccountClaimsPrincipalFactory</span>(<span class="hljs-params">IAccessTokenProviderAccessor accessor</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">accessor</span>)</span> &#123; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> ValueTask&lt;ClaimsPrincipal&gt; <span class="hljs-title">CreateUserAsync</span>(<span class="hljs-params">RemoteUserAccount account, </span></span><br><span class="hljs-params"><span class="hljs-function">                                                               RemoteAuthenticationUserOptions options</span>)</span><br>    &#123;<br>        <span class="hljs-comment">// 提取</span><br>        <span class="hljs-keyword">var</span> roles = account?.AdditionalProperties[<span class="hljs-string">&quot;role&quot;</span>] <span class="hljs-keyword">as</span> JsonElement?;<br>        <span class="hljs-comment">// 是数组的情况，分割</span><br>        <span class="hljs-keyword">if</span> (roles?.ValueKind == JsonValueKind.Array)<br>        &#123;<br>            account.AdditionalProperties.Remove(<span class="hljs-string">&quot;role&quot;</span>);<br>            <span class="hljs-keyword">var</span> claimsPrincipal = <span class="hljs-keyword">base</span>.CreateUserAsync(account, options).Result;<br><br>            <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> ele <span class="hljs-keyword">in</span> roles.Value.EnumerateArray())<br>            &#123;<br>                (claimsPrincipal.Identity <span class="hljs-keyword">as</span> ClaimsIdentity)<br>                    .AddClaim(<span class="hljs-keyword">new</span> Claim(<span class="hljs-string">&quot;role&quot;</span>, ele.GetString()));<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ValueTask&lt;ClaimsPrincipal&gt;(claimsPrincipal);<br>        &#125;<br>        <span class="hljs-comment">// 返回给基类处理</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">base</span>.CreateUserAsync(account, options);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>并在 Client 端的 <code>Program.cs</code> 注册中间件：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment"><span class="hljs-doctag">///</span> Client/Program.cs</span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> Program.Main</span><br><br>builder.Services.AddScoped(<span class="hljs-keyword">typeof</span>(AccountClaimsPrincipalFactory&lt;RemoteUserAccount&gt;),<br>                           <span class="hljs-keyword">typeof</span>(RolesAccountClaimsPrincipalFactory));<br>builder.Services.AddApiAuthorization();<br></code></pre></td></tr></table></figure>
+
+<p>只能说，希望这个 Feature 能早日被定性成 Bug。</p>
+<h3 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h3><p>然后就是自由发挥的时刻了。</p>
+<p>通过中间件自定义账户规则：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment"><span class="hljs-doctag">///</span> Server/Startup.cs</span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> Startup.ConfigureServices(IServiceCollection)</span><br><br>services<br>    .AddDefaultIdentity&lt;ApplicationUser&gt;(options =&gt;<br>    &#123;<br>        options.SignIn.RequireConfirmedAccount = <span class="hljs-literal">false</span>;<br>        options.Password.RequiredLength = <span class="hljs-number">6</span>;<br>        options.Password.RequiredUniqueChars = <span class="hljs-number">2</span>;<br>        options.Password.RequireNonAlphanumeric = <span class="hljs-literal">false</span>;<br>        options.User.AllowedUserNameCharacters = <span class="hljs-built_in">string</span>.Empty;<br>        options.User.RequireUniqueEmail = <span class="hljs-literal">true</span>; <br>    &#125;)<br>    .AddUserValidator&lt;UserNameValidator&lt;ApplicationUser&gt;&gt;()<br>    .AddRoles&lt;IdentityRole&gt;()<br>    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;();<br><br></code></pre></td></tr></table></figure>
+
+<p>自定义登录加载页面（通过提供 Render Fragment 参数）：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment"><span class="hljs-doctag">///</span> Client/Pages/Authentication.razor</span><br><br>@page <span class="hljs-string">&quot;/authentication/&#123;Action&#125;&quot;</span><br>@using Microsoft.AspNetCore.Components.WebAssembly.Authentication<br><br>&lt;RemoteAuthenticatorView Action=<span class="hljs-string">&quot;@Action&quot;</span> &gt;<br>    &lt;CompletingLoggingIn&gt;<br>        &lt;Loading LoadingMessage=<span class="hljs-string">&quot;@LocalStrings.LoadMessage.CompletingLogin&quot;</span>&gt;&lt;/Loading&gt;<br>    &lt;/CompletingLoggingIn&gt;<br>    &lt;CompletingLogOut&gt;<br>        &lt;Loading LoadingMessage=<span class="hljs-string">&quot;@LocalStrings.LoadMessage.CompletingLogout&quot;</span>&gt;&lt;/Loading&gt;<br>    &lt;/CompletingLogOut&gt;<br>    &lt;LoggingIn&gt;<br>        &lt;Loading LoadingMessage=<span class="hljs-string">&quot;@LocalStrings.LoadMessage.LoggingIn&quot;</span>&gt;&lt;/Loading&gt;<br>    &lt;/LoggingIn&gt;<br>    &lt;LogInFailed&gt;<br>        &lt;ErrorComponent ErrorTitle=<span class="hljs-string">&quot;@LocalStrings.Error.BadRequest400&quot;</span> ErrorContent=<span class="hljs-string">&quot;@LocalStrings.Error.LoginFailed&quot;</span>&gt;&lt;/ErrorComponent&gt;<br>    &lt;/LogInFailed&gt;<br>    &lt;LogOut&gt;<br>        &lt;Loading LoadingMessage=<span class="hljs-string">&quot;@LocalStrings.LoadMessage.LogOut&quot;</span>&gt;&lt;/Loading&gt;<br>    &lt;/LogOut&gt;<br>    &lt;LogOutFailed&gt;<br>        &lt;ErrorComponent ErrorTitle=<span class="hljs-string">&quot;@LocalStrings.Error.BadRequest400&quot;</span> ErrorContent=<span class="hljs-string">&quot;@LocalStrings.Error.LogOutFailed&quot;</span>&gt;&lt;/ErrorComponent&gt;<br>    &lt;/LogOutFailed&gt;<br>    &lt;LogOutSucceeded&gt;<br>        &lt;RedirectToHome&gt;&lt;/RedirectToHome&gt;<br>    &lt;/LogOutSucceeded&gt;<br>    &lt;Registering&gt;<br>        &lt;Loading LoadingMessage=<span class="hljs-string">&quot;@LocalStrings.LoadMessage.Registering&quot;</span>&gt;&lt;/Loading&gt;<br>    &lt;/Registering&gt;<br>    &lt;UserProfile&gt;<br>        &lt;Loading LoadingMessage=<span class="hljs-string">&quot;@LocalStrings.LoadMessage.LoadingUserProfile&quot;</span>&gt;&lt;/Loading&gt;<br>    &lt;/UserProfile&gt;<br>&lt;/RemoteAuthenticatorView&gt;<br><br>@code<br>&#123;<br>    [<span class="hljs-meta">Parameter</span>] <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Action &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/WebAssembly">WebAssembly | MDN (mozilla.org)</a></li>
+<li><a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">Blazor | Build client web apps with C# | .NET (microsoft.com)</a></li>
+<li>[<a target="_blank" rel="noopener" href="https://github.com/dotnet/AspNetCore.Docs/issues/17649">Blazor][Wasm] Using roles with ApiAuthorization + Blazor · Issue #17649 · dotnet&#x2F;AspNetCore.Docs (github.com)</a></li>
+</ul>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>冻葱Tewi<br>
+        <strong>本文链接：</strong><a href="https://blog.dctewi.com/2020/12/blazor-webassembly-hosted-with-identity/" title="https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2020&#x2F;12&#x2F;blazor-webassembly-hosted-with-identity&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2020&#x2F;12&#x2F;blazor-webassembly-hosted-with-identity&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/net/" rel="tag">.NET</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/blazor/" rel="tag">Blazor</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/c/" rel="tag">C#</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1706298473145"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          这里将会显示评论栏
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-WebAssembly"><span class="toc-number">1.</span> <span class="toc-text">什么是 WebAssembly</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Blazor"><span class="toc-number">2.</span> <span class="toc-text">什么是 Blazor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Identity-%E8%BF%9B%E8%A1%8C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81"><span class="toc-number">3.</span> <span class="toc-text">使用 Identity 进行身份验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.1.</span> <span class="toc-text">新建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">3.2.</span> <span class="toc-text">重建数据库上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%9F%BA%E6%9E%B6%E5%88%9B%E5%BB%BA-Identity-%E6%89%80%E9%9C%80%E7%9A%84-Remote-Pages"><span class="toc-number">3.3.</span> <span class="toc-text">通过基架创建 Identity 所需的 Remote Pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9F%BA%E4%BA%8E-Role-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81"><span class="toc-number">3.4.</span> <span class="toc-text">使用基于 Role 的身份验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-number">3.5.</span> <span class="toc-text">自定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});</script>
+</div></body></html>

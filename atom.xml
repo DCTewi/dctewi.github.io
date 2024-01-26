@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>冻葱Tewi</title>
+  <icon>https://blog.dctewi.com/icon.png</icon>
+  <subtitle>一个蒟蒻的博客</subtitle>
+  <link href="https://blog.dctewi.com/atom.xml" rel="self"/>
+  
+  <link href="https://blog.dctewi.com/"/>
+  <updated>2024-01-26T19:43:25.077Z</updated>
+  <id>https://blog.dctewi.com/</id>
+  
+  <author>
+    <name>冻葱Tewi</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【杂谈】重振旗鼓</title>
+    <link href="https://blog.dctewi.com/2022/03/blog-reboot/"/>
+    <id>https://blog.dctewi.com/2022/03/blog-reboot/</id>
+    <published>2022-03-09T08:11:43.000Z</published>
+    <updated>2024-01-26T19:43:25.077Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;咕着咕着，已经两年没有写过新博客了（草）。生活方面、技术方面和其他的种种方面都发生了翻天覆地的变化，是时候重新把博客拿起来了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="随笔" scheme="https://blog.dctewi.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</title>
+    <link href="https://blog.dctewi.com/2020/12/blazor-webassembly-hosted-with-identity/"/>
+    <id>https://blog.dctewi.com/2020/12/blazor-webassembly-hosted-with-identity/</id>
+    <published>2020-12-02T14:52:00.000Z</published>
+    <updated>2024-01-26T19:43:25.077Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;记录了一些 Blazor WebAssembly 的基础知识和在其中使用 Identity 进行身份验证的知识点。好久不写博客了，手都生了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="笔记" scheme="https://blog.dctewi.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term=".NET" scheme="https://blog.dctewi.com/tags/net/"/>
+    
+    <category term="C#" scheme="https://blog.dctewi.com/tags/c/"/>
+    
+    <category term="Blazor" scheme="https://blog.dctewi.com/tags/blazor/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【总结】我的 Unity C# 编码规范</title>
+    <link href="https://blog.dctewi.com/2020/09/my-unity-csharp-code-standard/"/>
+    <id>https://blog.dctewi.com/2020/09/my-unity-csharp-code-standard/</id>
+    <published>2020-09-04T14:05:50.000Z</published>
+    <updated>2024-01-26T19:43:25.078Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;好久没水文章了。所以在这个考试过去了一半了的时间里发点东西，算是起个头，之后又要肝起来咯。&lt;/p&gt;
+&lt;p&gt;本套编码规范只代表个人习惯，符合习惯的规范就是好规范。有观点欢迎讨论，但谢绝人身攻击哦。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="笔记" scheme="https://blog.dctewi.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Unity" scheme="https://blog.dctewi.com/tags/unity/"/>
+    
+    <category term="编码规范" scheme="https://blog.dctewi.com/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【算法】正逆康托展开基础</title>
+    <link href="https://blog.dctewi.com/2020/03/cantor-basic/"/>
+    <id>https://blog.dctewi.com/2020/03/cantor-basic/</id>
+    <published>2020-03-23T15:35:50.000Z</published>
+    <updated>2024-01-26T19:43:25.077Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;康托展开和逆康托展开是全排列和他的字典序序号相互转化的两种算法。在有关排列方案的问题中可以作为枚举的哈希函数，在允许枚举的数据范围内具有优良的复杂度。但是一般允许枚举的数据范围大概是20以内，因为21！爆int64，所以这也是种图一乐算法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="算法" scheme="https://blog.dctewi.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="数论" scheme="https://blog.dctewi.com/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+    <category term="康托展开" scheme="https://blog.dctewi.com/tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【算法】没啥用的判圈算法两则</title>
+    <link href="https://blog.dctewi.com/2020/03/cycle-detection/"/>
+    <id>https://blog.dctewi.com/2020/03/cycle-detection/</id>
+    <published>2020-03-15T15:37:04.000Z</published>
+    <updated>2024-01-26T19:43:25.077Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;如题，这里记录了两则没啥用的判圈算法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="笔记" scheme="https://blog.dctewi.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="算法" scheme="https://blog.dctewi.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="图论" scheme="https://blog.dctewi.com/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【总结】A*搜索算法小结</title>
+    <link href="https://blog.dctewi.com/2020/03/a-star/"/>
+    <id>https://blog.dctewi.com/2020/03/a-star/</id>
+    <published>2020-03-13T12:41:09.000Z</published>
+    <updated>2024-01-26T19:43:25.076Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;A* 搜索是一种使用了 Dijkstra 思想的启发式搜索，是一种在图形平面上，有多个节点的路径，求出最低通过成本的算法。把之前进行的总结整理了一下发了上来。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="最短路" scheme="https://blog.dctewi.com/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/"/>
+    
+    <category term="笔记" scheme="https://blog.dctewi.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="算法" scheme="https://blog.dctewi.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="A*" scheme="https://blog.dctewi.com/tags/a/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【折腾】Gridea Enchant 总结</title>
+    <link href="https://blog.dctewi.com/2020/03/gridea-enchant/"/>
+    <id>https://blog.dctewi.com/2020/03/gridea-enchant/</id>
+    <published>2020-03-13T10:13:32.000Z</published>
+    <updated>2024-01-26T19:43:25.078Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Gridea 是一个类似于 Hexo 的静态博客管理框架。看中了它的颜值，但相比于 Hexo，有些功能不够全面。所以凑今天进行了一波魔改，将过程记录了下来。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="折腾" scheme="https://blog.dctewi.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+    <category term="前端" scheme="https://blog.dctewi.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【总结】Unity Input System 使用简要</title>
+    <link href="https://blog.dctewi.com/2020/02/unity-new-input-system/"/>
+    <id>https://blog.dctewi.com/2020/02/unity-new-input-system/</id>
+    <published>2020-02-10T10:36:02.000Z</published>
+    <updated>2024-01-26T19:43:25.079Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;有关 Unity 新输入系统 Input System 的一些简单介绍和基础总结。目前关于新输入系统的中文资料略少，在 Unity 官方文档中学习了一番之后，我将一些基本的知识记录了下来。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="笔记" scheme="https://blog.dctewi.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Unity" scheme="https://blog.dctewi.com/tags/unity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【总结】UnityEvent 和 C# event 的差异与选择</title>
+    <link href="https://blog.dctewi.com/2020/02/unityevent-vs-csharpevent/"/>
+    <id>https://blog.dctewi.com/2020/02/unityevent-vs-csharpevent/</id>
+    <published>2020-02-03T05:54:04.000Z</published>
+    <updated>2024-01-26T19:43:25.079Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Event 是一种十分方便的机制。一个 Event 就好像是一个 Youtuber，而他的粉丝 Subscribers&amp;#x2F;Listeners 会在这个 Event 发生的时候进行响应（观看）。许多现代语言都有类似的订阅机制，比如 Java 中的 EventBus 类。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="笔记" scheme="https://blog.dctewi.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Unity" scheme="https://blog.dctewi.com/tags/unity/"/>
+    
+    <category term="UnityEvent" scheme="https://blog.dctewi.com/tags/unityevent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【总结】2019南京网络赛小结</title>
+    <link href="https://blog.dctewi.com/2019/09/2019-icpc-online-nanjing/"/>
+    <id>https://blog.dctewi.com/2019/09/2019-icpc-online-nanjing/</id>
+    <published>2019-09-06T03:45:12.000Z</published>
+    <updated>2024-01-26T19:43:25.076Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;The Preliminary Contest for ICPC Asia Nanjing 2019 （即 ICPC2019 南京网络赛）部分总结&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="题解" scheme="https://blog.dctewi.com/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="动态规划" scheme="https://blog.dctewi.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="最短路" scheme="https://blog.dctewi.com/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/"/>
+    
+    <category term="树状数组" scheme="https://blog.dctewi.com/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="欧拉定理" scheme="https://blog.dctewi.com/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/"/>
+    
+    <category term="离散化" scheme="https://blog.dctewi.com/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【折腾】一个小时用树莓派搭建私有Git站</title>
+    <link href="https://blog.dctewi.com/2019/08/gogs/"/>
+    <id>https://blog.dctewi.com/2019/08/gogs/</id>
+    <published>2019-08-09T14:23:26.000Z</published>
+    <updated>2024-01-26T19:43:25.078Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;将吃灰的树莓派改造成一个属于自己的 Git 站点。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
+    
+    <category term="gogs" scheme="https://blog.dctewi.com/tags/gogs/"/>
+    
+    <category term="nginx" scheme="https://blog.dctewi.com/tags/nginx/"/>
+    
+    <category term="树莓派" scheme="https://blog.dctewi.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【杂项】竞赛向 vimrc 配置小结</title>
+    <link href="https://blog.dctewi.com/2019/08/vimrc/"/>
+    <id>https://blog.dctewi.com/2019/08/vimrc/</id>
+    <published>2019-08-06T04:15:47.000Z</published>
+    <updated>2024-01-26T19:43:25.079Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;竞赛向简洁风 vim 配置。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="vim" scheme="https://blog.dctewi.com/tags/vim/"/>
+    
+    <category term="vimrc" scheme="https://blog.dctewi.com/tags/vimrc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【算法】差分约束小结</title>
+    <link href="https://blog.dctewi.com/2019/07/difference-constraints/"/>
+    <id>https://blog.dctewi.com/2019/07/difference-constraints/</id>
+    <published>2019-07-19T09:00:01.000Z</published>
+    <updated>2024-01-26T19:43:25.077Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;差分约束系统(System of Difference Constraints)的基本概念，思路和用法以及例题总结。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="差分约束" scheme="https://blog.dctewi.com/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/"/>
+    
+    <category term="SPFA" scheme="https://blog.dctewi.com/tags/spfa/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【数学】微积分A2小结</title>
+    <link href="https://blog.dctewi.com/2019/06/calculus-a2/"/>
+    <id>https://blog.dctewi.com/2019/06/calculus-a2/</id>
+    <published>2019-06-22T06:22:47.000Z</published>
+    <updated>2024-01-26T19:43:25.077Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;考前复习总结——微积分A2篇。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
+    
+    <category term="微积分" scheme="https://blog.dctewi.com/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【捣鼓】WSL部署总结</title>
+    <link href="https://blog.dctewi.com/2019/04/wsl-setup/"/>
+    <id>https://blog.dctewi.com/2019/04/wsl-setup/</id>
+    <published>2019-04-07T04:04:52.000Z</published>
+    <updated>2024-01-26T19:43:25.080Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Windows Subsystem for Linux 是微软在Windows 10和 Windows  Server 2019上添加的能够原生运行Linux二进制可执行文件的兼容层。&lt;/p&gt;
+&lt;p&gt;简单的记录了一下部署的过程。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
+    
+    <category term="折腾" scheme="https://blog.dctewi.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+    <category term="WSL" scheme="https://blog.dctewi.com/tags/wsl/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【开发】Unity的类MVC架构总结</title>
+    <link href="https://blog.dctewi.com/2019/03/unity-mvc/"/>
+    <id>https://blog.dctewi.com/2019/03/unity-mvc/</id>
+    <published>2019-03-27T15:00:35.000Z</published>
+    <updated>2024-01-26T19:43:25.079Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;画UI画的头疼，想水一篇文章。本来想总结一下DP，但是发现东西实在是太多了，准备多写一些东西再放上来。所以先总结一下最近学到的Unity架构知识。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
+    
+    <category term="Unity" scheme="https://blog.dctewi.com/tags/unity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【算法】数论基础小结</title>
+    <link href="https://blog.dctewi.com/2019/02/number-theory-base/"/>
+    <id>https://blog.dctewi.com/2019/02/number-theory-base/</id>
+    <published>2019-02-19T03:48:31.000Z</published>
+    <updated>2024-01-26T19:43:25.078Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;数论是纯粹数学的分支之一，主要研究整数的性质。被誉为“最纯”的数学领域。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="算法" scheme="https://blog.dctewi.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="数论" scheme="https://blog.dctewi.com/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+    <category term="最大公因数" scheme="https://blog.dctewi.com/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/"/>
+    
+    <category term="素数" scheme="https://blog.dctewi.com/tags/%E7%B4%A0%E6%95%B0/"/>
+    
+    <category term="组合数" scheme="https://blog.dctewi.com/tags/%E7%BB%84%E5%90%88%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【算法】KMP学习小结</title>
+    <link href="https://blog.dctewi.com/2019/02/kmp/"/>
+    <id>https://blog.dctewi.com/2019/02/kmp/</id>
+    <published>2019-02-15T16:53:31.000Z</published>
+    <updated>2024-01-26T19:43:25.078Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;学习kmp算法后的一些总结。本来没打算熬夜的结果搞到零点多。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
+    
+    <category term="算法" scheme="https://blog.dctewi.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="KMP" scheme="https://blog.dctewi.com/tags/kmp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【数据结构】线段树基础小结</title>
+    <link href="https://blog.dctewi.com/2019/02/segment-tree-base/"/>
+    <id>https://blog.dctewi.com/2019/02/segment-tree-base/</id>
+    <published>2019-02-11T15:02:23.000Z</published>
+    <updated>2024-01-26T19:43:25.079Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;学习两种线段树后的总结。&lt;br&gt;  可能并不适合完全不了解线段树的人入门？但是可能会对稍微知道线段树的人有一些帮助。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
+    
+    <category term="数据结构" scheme="https://blog.dctewi.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="线段树" scheme="https://blog.dctewi.com/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【旧文归档/捣鼓】更换主题小记</title>
+    <link href="https://blog.dctewi.com/2019/01/theme-changing-note/"/>
+    <id>https://blog.dctewi.com/2019/01/theme-changing-note/</id>
+    <published>2019-01-10T15:03:49.000Z</published>
+    <updated>2024-01-26T19:43:25.079Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;用&lt;a href=&quot;https://www.cssplus.org/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; aria-label=&quot;（在新窗口打开）&quot;&gt;路易大佬&lt;/a&gt;的&lt;a rel=&quot;noreferrer noopener&quot; aria-label=&quot;（在新窗口打开）&quot; href=&quot;https://www.cssplus.org/wordpress-theme-inspire.html&quot; target=&quot;_blank&quot;&gt;inspire&lt;/a&gt;好几个月了，于是就闲得发慌脑子一抽没事找事想要换一个主题——&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
+    
+    
+    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
+    
+    <category term="折腾" scheme="https://blog.dctewi.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+  </entry>
+  
+</feed>

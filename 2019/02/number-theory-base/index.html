@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>【算法】数论基础小结 - 冻葱Tewi</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="blog,冻葱,冻葱Tewi,DCTewi">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="数论是纯粹数学的分支之一，主要研究整数的性质。被誉为“最纯”的数学领域。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【算法】数论基础小结">
+<meta property="og:url" content="https://blog.dctewi.com/2019/02/number-theory-base/">
+<meta property="og:site_name" content="冻葱Tewi">
+<meta property="og:description" content="数论是纯粹数学的分支之一，主要研究整数的性质。被誉为“最纯”的数学领域。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-19T03:48:31.000Z">
+<meta property="article:modified_time" content="2024-01-26T19:43:25.078Z">
+<meta property="article:author" content="冻葱Tewi">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="最大公因数">
+<meta property="article:tag" content="素数">
+<meta property="article:tag" content="组合数">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1706298473246">
+
+<link rel="stylesheet" href="/css/style.css?v=1706298473246">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1706298473246">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1706298473246"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-152707655-1");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="冻葱Tewi" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/bg.jpg)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="冻葱Tewi"><img src="/images/avatar.png" alt="冻葱Tewi"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="冻葱Tewi">
+            <img src="/images/avatar.png" alt="冻葱Tewi" alt="冻葱Tewi">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>30</div>
+        <div><span>标签</span>39</div>
+        <div><span>分类</span>1</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive" title="归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/friends" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/goal" title="目标">
+            <i class="mdui-list-item-icon nexmoefont icon-areachart"></i>
+            <div class="mdui-list-item-content">
+                目标
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1706298473246"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/1427846"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/dctewi"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/DCTewi"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://blog.dctewi.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/旧站迁移/">旧站迁移</a>
+          <span class="category-list-count">30</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.addEventListener('load', function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  })
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/blog-reboot/">【杂谈】重振旗鼓</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/blazor-webassembly-hosted-with-identity/">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/my-unity-csharp-code-standard/">【总结】我的 Unity C# 编码规范</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cantor-basic/">【算法】正逆康托展开基础</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cycle-detection/">【算法】没啥用的判圈算法两则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/net/" style="font-size: 10px;">.NET</a> <a href="/tags/a/" style="font-size: 10px;">A*</a> <a href="/tags/blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/c/" style="font-size: 10px;">C#</a> <a href="/tags/kmp/" style="font-size: 10px;">KMP</a> <a href="/tags/spfa/" style="font-size: 10px;">SPFA</a> <a href="/tags/unity/" style="font-size: 13.33px;">Unity</a> <a href="/tags/unityevent/" style="font-size: 10px;">UnityEvent</a> <a href="/tags/wsl/" style="font-size: 10px;">WSL</a> <a href="/tags/gogs/" style="font-size: 10px;">gogs</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimrc/" style="font-size: 10px;">vimrc</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 10px;">差分约束</a> <a href="/tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/" style="font-size: 10px;">康托展开</a> <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 10px;">微积分</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" style="font-size: 10px;">快速乘</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 10px;">快速幂</a> <a href="/tags/%E6%8A%98%E8%85%BE/" style="font-size: 13.33px;">折腾</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 11.67px;">数论</a> <a href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" style="font-size: 20px;">旧文归档</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" style="font-size: 10px;">最大公因数</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 11.67px;">最短路</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 10px;">树状数组</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" style="font-size: 10px;">欧拉定理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 16.67px;">笔记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A0%E6%95%B0/" style="font-size: 10px;">素数</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" style="font-size: 10px;">组合数</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编码规范</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 18.33px;">随笔</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(39);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 冻葱Tewi
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br />
+<br />
+<img src="/images/logo.png" width="150px">
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 56.71874999999999%;"> 
+            <img src="https://s2.ax1x.com/2019/02/19/kgpPIO.jpg" alt="【算法】数论基础小结" loading="lazy">
+            <h1>【算法】数论基础小结</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2019年02月19日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/">旧站迁移</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约24k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1:26分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <blockquote>
+<p>数论是纯粹数学的分支之一，主要研究整数的性质。被誉为“最纯”的数学领域。</p>
+</blockquote>
+<span id="more"></span>
+
+<p>总结了一些在寒假集训的时候学到的数论知识，不按难度排序。</p>
+<h2 id="关于素数"><a href="#关于素数" class="headerlink" title="关于素数"></a>关于素数</h2><p>素数，指除了1和它本身没有其他因数的正整数。</p>
+<h3 id="朴素素数判定"><a href="#朴素素数判定" class="headerlink" title="朴素素数判定"></a>朴素素数判定</h3><p>即从定义出发，遍历从2到根号n所有数。如果存在一个数字是他的因数，则这个数不是素数。</p>
+<p>实现代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">checkPrime</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt; <span class="hljs-built_in">sqrt</span>(n); i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (n % i == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>这种方法太过朴实，一般情况下不会用到。时间复杂度<code>O(√n)</code>。</p>
+<h3 id="埃氏素数筛法"><a href="#埃氏素数筛法" class="headerlink" title="埃氏素数筛法"></a>埃氏素数筛法</h3><p>一种较为高效的判断素数的方法。能够一次性地筛选出某个区间的素数。</p>
+<p>其中心思想是：如果某个数x是a的倍数，那么x一定不是素数。每次得到一个素数，则把他在这个区间内的所有素数都标记为合数。</p>
+<p>实现代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">1e4</span> + <span class="hljs-number">5</span>;<br><span class="hljs-type">bool</span> notPrime[MAXN];<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">checkPrimeTo</span><span class="hljs-params">(<span class="hljs-type">int</span> uplimit)</span></span><br><span class="hljs-function"></span>&#123;<br>    notPrime[<span class="hljs-number">0</span>] = notPrime[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= uplimit; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (!notPrime[i])<br>        &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">2</span> * i; j &lt;= uplimit; j += i)<br>            &#123;<br>                notPrime[j] = <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs notPrime[n]"><br>### 线性欧拉筛法<br><br>在埃氏筛法的基础上，通过巧妙地限制每次筛去的数字数量，保证了**每个合数只会被它的最小质因数筛去**，因此每个数只会被标记一次。<br><br>实现代码如下：<br><br>```cpp<br>const int MAXN = 1e7 + 5;<br>int notPrime[MAXN], primes[MAXN], top = 0;<br>void checkPrimeTo(int uplimit)<br>&#123;<br>    notPrime[0] = notPrime[1] = 1;<br>    for (int i = 2; i &lt;= uplimit; i++)<br>    &#123;<br>        if (!notPrime[i]) primes[top++] = i;<br>        for (int j = 0; j &lt; top; j++)<br>        &#123;<br>            if (i * primes[j] &gt; uplimit) break;<br>            check[i * primes[j]] = 1;<br>            if (i % primes[j] == 0) break;<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs primes[]```记录的是筛出的素数们，通过遍记录素数，来保证每个数只会被便利一次。时间复杂度```O(n)```。"><br>### Miller-Rabin素性测试<br><br>首先需要了解**费马小定理**：<br><br>```yaml<br>对于素数 p 和任意整数 a ，若gcd(a, p) == 1，<br>则有 a ^ p ≡ a (mod p)，<br>即 a ^ (p - 1) ≡ 1 (mod p)。<br></code></pre></td></tr></table></figure>
+
+<p>那么，是否可以反过来利用这个定理来判断素数呢？基本可以。</p>
+<p>但是有一类合数，用任何小于他们的质数为底进行判定，都满足这个定理。这种合数叫做伪素数，最小的伪素数是341。为了排除伪素数，我们引入了<strong>二次探测定理</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">对于素数</span> <span class="hljs-string">p</span> <span class="hljs-string">，则</span> <span class="hljs-string">x</span> <span class="hljs-string">^</span> <span class="hljs-number">2</span> <span class="hljs-string">≡</span> <span class="hljs-number">1</span> <span class="hljs-string">(mod</span> <span class="hljs-string">p)</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">(</span> <span class="hljs-string">x</span> <span class="hljs-string">==</span> <span class="hljs-number">1</span> <span class="hljs-string">||</span> <span class="hljs-string">x</span> <span class="hljs-string">==</span> <span class="hljs-string">p</span> <span class="hljs-bullet">-</span> <span class="hljs-number">1</span> <span class="hljs-string">)</span><br></code></pre></td></tr></table></figure>
+
+<p>则对于<code>a ^ (x - 1) = 1 (mod p)</code>成立，若<code>x - 1</code>是奇数，则不再继续判断。否则继续判断是否<code>a ^ ((x - 1) / 2) = 1 或 -1 (mod p)</code>成立。如果不等于1或者-1则返回<code>false</code>，如果等于-1则返回<code>true</code>，如果等于1则继续向下判断。</p>
+<p>选择前7个素数作为a，在<code>[2, 1e18]</code>内也就只有两三个可以通过Miller-Rabin测试的强伪素数了。</p>
+<p>实现代码：（<code>q_exp()</code>为快速幂，<code>q_mul()</code>为快速乘）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> TIMES = <span class="hljs-number">20</span>; <span class="hljs-comment">// 测试轮数</span><br><br><span class="hljs-function">ll <span class="hljs-title">q_exp</span><span class="hljs-params">(ll a, ll k, ll mod)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">if</span> (!k) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	ll ans = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">while</span> (k)<br>	&#123;<br>		<span class="hljs-keyword">if</span> (k &amp; <span class="hljs-number">1</span>) ans = ans * a % mod;<br>		a = a * a % mod; k &gt;&gt;= <span class="hljs-number">1</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><span class="hljs-function">ll <span class="hljs-title">q_mul</span><span class="hljs-params">(ll a, ll b, ll mod)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">if</span> (!b) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	ll ans = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (b)<br>	&#123;<br>		<span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>) ans = (ans + a) % mod;<br>		a = (a + a) % mod; b &gt;&gt;= <span class="hljs-number">1</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> ll <span class="hljs-title">random</span><span class="hljs-params">(ll n)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> ((<span class="hljs-type">double</span>)<span class="hljs-built_in">rand</span>() / RAND_MAX * n + <span class="hljs-number">0.5</span>); <span class="hljs-comment">// RAND_MAX 定义于头文件</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">witness</span><span class="hljs-params">(ll a, ll n)</span> <span class="hljs-comment">// 二次探测</span></span><br><span class="hljs-function"></span>&#123;<br>    ll tem = n - <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (!(tem &amp; <span class="hljs-number">1</span>))<br>    &#123;<br>        tem /= <span class="hljs-number">2</span>; j++;<br>    &#125;<br><br>    ll x = <span class="hljs-built_in">q_exp</span>(a, tem, n);<br>    <span class="hljs-keyword">if</span> (x == <span class="hljs-number">1</span> || x == n - <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <br>    <span class="hljs-keyword">while</span> (j--)<br>    &#123;<br>        x = <span class="hljs-built_in">q_mul</span>(x, x, n);<br>        <span class="hljs-keyword">if</span> (x == n - <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">miller_rabin</span><span class="hljs-params">(ll p)</span> <span class="hljs-comment">// 随机生成a来二次探测</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">if</span> (p &lt; <span class="hljs-number">2</span> || !(p &amp; <span class="hljs-number">1</span>)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// 剪枝</span><br>    <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; TIMES; i++)<br>    &#123;<br>        ll a = <span class="hljs-built_in">random</span>(p - <span class="hljs-number">1</span>) + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">witness</span>(a, p))<br>        &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    ll n; cin&gt;&gt;n;<br>    <span class="hljs-built_in">miller_rabin</span>(n)? <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;It&#x27;s a prime.&quot;</span>): <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;It&#x27;s not a prime&quot;</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>Miller-Rabin的时间主要花在了计算<code>a ^ (p - 1) mod p</code>上，总体时间复杂度是<code>O(logn)</code>。</p>
+<h2 id="关于最大公因数"><a href="#关于最大公因数" class="headerlink" title="关于最大公因数"></a>关于最大公因数</h2><p>对于最大的整数n，使得n同时是a和b的因子，则称n是a和b的最大公因数(Greatest common divisor)。</p>
+<p>性质：<code>gcd(a, b) * lcm(a, b) = a * b</code>。</p>
+<h3 id="递归求gcd"><a href="#递归求gcd" class="headerlink" title="递归求gcd"></a>递归求gcd</h3><p>辗转相除法，直接上代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> ll <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> b? <span class="hljs-built_in">gcd</span>(b, a % b): a;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="扩展欧几里德算法-exgcd"><a href="#扩展欧几里德算法-exgcd" class="headerlink" title="扩展欧几里德算法(exgcd)"></a>扩展欧几里德算法(exgcd)</h3><p>扩展欧几里德算法是用来解决<code>已知a, b求解一组x, y,使它们满足: ax + by = gcd(a, b) = d</code>的算法。</p>
+<p>代码（接上部分代码）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">ll <span class="hljs-title">exgcd</span><span class="hljs-params">(ll a, ll b, ll &amp;x, ll &amp;y)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (!b)<br>    &#123;<br>        x = <span class="hljs-number">1</span>; y = <span class="hljs-number">0</span>; <span class="hljs-keyword">return</span> a;<br>    &#125;<br>    ll r = <span class="hljs-built_in">exgcd</span>(b, a % b, x, y);<br>    ll tem = y;<br>    y = x - a / b * y;<br>    x = tem;<br>    <span class="hljs-keyword">return</span> r;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="关于组合数"><a href="#关于组合数" class="headerlink" title="关于组合数"></a>关于组合数</h2><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BB%84%E5%90%88%E6%95%B0">组合数的定义</a></p>
+<h3 id="杨辉三角求组合数"><a href="#杨辉三角求组合数" class="headerlink" title="杨辉三角求组合数"></a>杨辉三角求组合数</h3><p>根据推论：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">C(m, n) = C(m, n - 1) + C(m - 1, n - 1)<br></code></pre></td></tr></table></figure>
+
+<p>可以预处理打表一个杨辉三角来求组合数。</p>
+<p>代码大致为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">1e4</span> + <span class="hljs-number">5</span>;<br>ll c[MAXN][MAXN];<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getC</span><span class="hljs-params">(<span class="hljs-type">int</span> uplimit)</span></span><br><span class="hljs-function"></span>&#123;<br>    c[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = c[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] = c[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= uplimit; i++)<br>    &#123;<br>        c[i][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= i; i++)<br>        &#123;<br>            c[i][j] = c[i][j - <span class="hljs-number">1</span>] + c[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>];<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>没啥注意的要点，时间复杂度<code>O(n ^ 2)</code>。</p>
+<h3 id="逆元打表求组合数"><a href="#逆元打表求组合数" class="headerlink" title="逆元打表求组合数"></a>逆元打表求组合数</h3><p>步骤大概如下：</p>
+<ol>
+<li>打表出<code>1! ~ n!</code> - <code>O(n)</code>。</li>
+<li>求每个阶乘的逆元 - <code>O(nlogn)</code>。</li>
+<li>直接得：<code>C(m, n) = n! / (m! * (n - m)!)</code> - <code>O(1)</code>。</li>
+</ol>
+<p>总体复杂度是<code>O(nlogn)</code>。</p>
+<h3 id="Lucas定理"><a href="#Lucas定理" class="headerlink" title="Lucas定理"></a>Lucas定理</h3><blockquote>
+<p>在数论中，Lucas定理用于计算二项式系数(m, n)被质数 p 除的所得的余数。</p>
+</blockquote>
+<p>定理内容：对于非负整数 m 和 n 以及素数 p ，同余式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">(m, n) ≡ Π(i = 0 -&gt; k) (m[i], n[i]) (mod p)<br></code></pre></td></tr></table></figure>
+
+<p>其中，<code>m[i]</code>，<code>n[i]</code>是 <code>m</code> 和 <code>n</code> 的 p 进制展开，当<code>m &lt; n</code> 时，二项式系数<code>(m, n) = 0</code>。</p>
+<p>以后我学会Latex之后可能会重新写一下这里……这样平摊有点抽象_(:3。</p>
+<p>这个方法使用递归，用于n和m巨大，但是p不太大且p为质数的时候。可直接求得：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">C(m, n) ≡ C(m % p, n % p) * C(m / p, n / p)<br></code></pre></td></tr></table></figure>
+
+<p>代码就不写了。</p>
+<h3 id="分块打表求组合数"><a href="#分块打表求组合数" class="headerlink" title="分块打表求组合数"></a>分块打表求组合数</h3><p>玄学操作，大概知道有这么一种方法就可以了。时间复杂度<code>O(玄学)</code>。</p>
+<h2 id="零散的知识点"><a href="#零散的知识点" class="headerlink" title="零散的知识点"></a>零散的知识点</h2><h3 id="唯一分解定理"><a href="#唯一分解定理" class="headerlink" title="唯一分解定理"></a>唯一分解定理</h3><p>任何一个大于1的自然数 N,如果N不为质数，那么N可以唯一分解成有限个质数的乘积<code>N = P1 ^ a1 * P2 ^ a2 * P3 ^ a3 ... Pn ^ an</code>，这里<code>P1 &lt; P2 &lt; P3 &lt;...&lt; Pn</code>且均为质数，其中指数<code>ai</code>是正整数。这样的分解称为 N 的标准分解式。</p>
+<h3 id="同余定理"><a href="#同余定理" class="headerlink" title="同余定理"></a>同余定理</h3><h4 id="加减乘同余"><a href="#加减乘同余" class="headerlink" title="加减乘同余"></a>加减乘同余</h4><p>模意义下，加减乘都不变，即：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">(a % c + b % c) % c == (a + b) % c<br></code></pre></td></tr></table></figure>
+
+<p>减法、乘法同理。</p>
+<h4 id="逆元同余"><a href="#逆元同余" class="headerlink" title="逆元同余"></a>逆元同余</h4><p>逆元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">任意 x ∈ (1, p - 1)，存在 y 使 x * y % p == 1，称 y 是 x 在 mod p 意义下的逆元<br></code></pre></td></tr></table></figure>
+
+<p>则：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">(a % c) / (x % c) != (a / x) % c <br></code></pre></td></tr></table></figure>
+
+<p>但是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">(a % c) * (y % c) % c == (a / x) % c<br></code></pre></td></tr></table></figure>
+
+<h3 id="欧拉函数-欧拉降幂"><a href="#欧拉函数-欧拉降幂" class="headerlink" title="欧拉函数&#x2F;欧拉降幂"></a>欧拉函数&#x2F;欧拉降幂</h3><p>略（逃）</p>
+<p>以上就是寒假集训中学到的一些数论知识点。</p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>冻葱Tewi<br>
+        <strong>本文链接：</strong><a href="https://blog.dctewi.com/2019/02/number-theory-base/" title="https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;02&#x2F;number-theory-base&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;02&#x2F;number-theory-base&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" rel="tag">最大公因数</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%B4%A0%E6%95%B0/" rel="tag">素数</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" rel="tag">组合数</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1706298473149"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          这里将会显示评论栏
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%B4%A0%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">关于素数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E7%B4%A0%E6%95%B0%E5%88%A4%E5%AE%9A"><span class="toc-number">1.1.</span> <span class="toc-text">朴素素数判定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%83%E6%B0%8F%E7%B4%A0%E6%95%B0%E7%AD%9B%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">埃氏素数筛法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">关于最大公因数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E6%B1%82gcd"><span class="toc-number">2.1.</span> <span class="toc-text">递归求gcd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E7%AE%97%E6%B3%95-exgcd"><span class="toc-number">2.2.</span> <span class="toc-text">扩展欧几里德算法(exgcd)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%BB%84%E5%90%88%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">关于组合数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92%E6%B1%82%E7%BB%84%E5%90%88%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">杨辉三角求组合数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%86%E5%85%83%E6%89%93%E8%A1%A8%E6%B1%82%E7%BB%84%E5%90%88%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">逆元打表求组合数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lucas%E5%AE%9A%E7%90%86"><span class="toc-number">3.3.</span> <span class="toc-text">Lucas定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%9D%97%E6%89%93%E8%A1%A8%E6%B1%82%E7%BB%84%E5%90%88%E6%95%B0"><span class="toc-number">3.4.</span> <span class="toc-text">分块打表求组合数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E6%95%A3%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">零散的知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86"><span class="toc-number">4.1.</span> <span class="toc-text">唯一分解定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E4%BD%99%E5%AE%9A%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text">同余定理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E5%87%8F%E4%B9%98%E5%90%8C%E4%BD%99"><span class="toc-number">4.2.1.</span> <span class="toc-text">加减乘同余</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%86%E5%85%83%E5%90%8C%E4%BD%99"><span class="toc-number">4.2.2.</span> <span class="toc-text">逆元同余</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%E6%AC%A7%E6%8B%89%E9%99%8D%E5%B9%82"><span class="toc-number">4.3.</span> <span class="toc-text">欧拉函数&#x2F;欧拉降幂</span></a></li></ol></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});</script>
+</div></body></html>

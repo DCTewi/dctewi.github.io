@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>【总结】2019南京网络赛小结 - 冻葱Tewi</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="blog,冻葱,冻葱Tewi,DCTewi">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="The Preliminary Contest for ICPC Asia Nanjing 2019 （即 ICPC2019 南京网络赛）部分总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【总结】2019南京网络赛小结">
+<meta property="og:url" content="https://blog.dctewi.com/2019/09/2019-icpc-online-nanjing/">
+<meta property="og:site_name" content="冻葱Tewi">
+<meta property="og:description" content="The Preliminary Contest for ICPC Asia Nanjing 2019 （即 ICPC2019 南京网络赛）部分总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-06T03:45:12.000Z">
+<meta property="article:modified_time" content="2024-01-26T19:43:25.076Z">
+<meta property="article:author" content="冻葱Tewi">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="最短路">
+<meta property="article:tag" content="树状数组">
+<meta property="article:tag" content="欧拉定理">
+<meta property="article:tag" content="离散化">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1706298473227">
+
+<link rel="stylesheet" href="/css/style.css?v=1706298473227">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1706298473227">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1706298473227"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-152707655-1");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="冻葱Tewi" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/bg.jpg)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="冻葱Tewi"><img src="/images/avatar.png" alt="冻葱Tewi"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="冻葱Tewi">
+            <img src="/images/avatar.png" alt="冻葱Tewi" alt="冻葱Tewi">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>30</div>
+        <div><span>标签</span>39</div>
+        <div><span>分类</span>1</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive" title="归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/friends" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/goal" title="目标">
+            <i class="mdui-list-item-icon nexmoefont icon-areachart"></i>
+            <div class="mdui-list-item-content">
+                目标
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1706298473227"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/1427846"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/dctewi"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/DCTewi"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://blog.dctewi.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/旧站迁移/">旧站迁移</a>
+          <span class="category-list-count">30</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.addEventListener('load', function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  })
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/blog-reboot/">【杂谈】重振旗鼓</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/blazor-webassembly-hosted-with-identity/">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/my-unity-csharp-code-standard/">【总结】我的 Unity C# 编码规范</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cantor-basic/">【算法】正逆康托展开基础</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/cycle-detection/">【算法】没啥用的判圈算法两则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/net/" style="font-size: 10px;">.NET</a> <a href="/tags/a/" style="font-size: 10px;">A*</a> <a href="/tags/blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/c/" style="font-size: 10px;">C#</a> <a href="/tags/kmp/" style="font-size: 10px;">KMP</a> <a href="/tags/spfa/" style="font-size: 10px;">SPFA</a> <a href="/tags/unity/" style="font-size: 13.33px;">Unity</a> <a href="/tags/unityevent/" style="font-size: 10px;">UnityEvent</a> <a href="/tags/wsl/" style="font-size: 10px;">WSL</a> <a href="/tags/gogs/" style="font-size: 10px;">gogs</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimrc/" style="font-size: 10px;">vimrc</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 10px;">差分约束</a> <a href="/tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/" style="font-size: 10px;">康托展开</a> <a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 10px;">微积分</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" style="font-size: 10px;">快速乘</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 10px;">快速幂</a> <a href="/tags/%E6%8A%98%E8%85%BE/" style="font-size: 13.33px;">折腾</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 11.67px;">数论</a> <a href="/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" style="font-size: 20px;">旧文归档</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" style="font-size: 10px;">最大公因数</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 11.67px;">最短路</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 10px;">树状数组</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" style="font-size: 10px;">欧拉定理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 16.67px;">笔记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%B4%A0%E6%95%B0/" style="font-size: 10px;">素数</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" style="font-size: 10px;">组合数</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编码规范</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 18.33px;">随笔</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(39);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 冻葱Tewi
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br />
+<br />
+<img src="/images/logo.png" width="150px">
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 56.71874999999999%;"> 
+            <img src="https://s-sh-2563-tewi-box.oss.dogecdn.com/img/blog-header/kaf-hand-light.jpg" alt="【总结】2019南京网络赛小结" loading="lazy">
+            <h1>【总结】2019南京网络赛小结</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2019年09月06日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/">旧站迁移</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约37k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要2:15分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <p>The Preliminary Contest for ICPC Asia Nanjing 2019 （即 ICPC2019 南京网络赛）部分总结</p>
+<span id="more"></span>
+
+<h2 id="A-The-beautiful-values-of-the-palace"><a href="#A-The-beautiful-values-of-the-palace" class="headerlink" title="A - The beautiful values of the palace"></a>A - The beautiful values of the palace</h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>整块 n * n 的地区，每个坐标都有自己的权值。权数值由中间到外围螺旋状减小（如下例），权值等于权数值的<strong>数位</strong>总和。在这片地区有 m 座城堡，对于 q 次询问，询问一个矩形范围内的城堡占点的权值和。</p>
+<p>对于 n &#x3D; 3 和 n &#x3D; 5 的情况，点权分布情况为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml">7 8 1           13 14 15 16 01<br>6 9 2           12 23 24 17 02<br>5 4 3           11 22 25 18 03<br>                10 21 20 19 04<br>                09 08 07 06 05<br></code></pre></td></tr></table></figure>
+
+<p>其中，左下角为<code>(1, 1)</code>，右上角为<code>(n, n)</code>。T 组数据。</p>
+<p>数据范围：<code>T &lt;= 5; n &lt;= 1e6; m, p &lt;= 1e5</code>。</p>
+<h3 id="题目思路"><a href="#题目思路" class="headerlink" title="题目思路"></a>题目思路</h3><p>将数据离散化后仍然需要 1e5 * 1e5 的大小来存储数据，不可行。</p>
+<p>将二维问题化为一维问题，将所有数据存储到同一个结构体中，按 x 轴排序后根据 y 轴大小维护一个树状数组。</p>
+<p>其中地图信息和询问信息全部离线到数组中统一处理，对于坐标重合的数据，将地图信息排在询问的前边。最后扫描统一处理。</p>
+<h3 id="参考写法"><a href="#参考写法" class="headerlink" title="参考写法"></a>参考写法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">1e6</span> + <span class="hljs-number">5</span>;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Node</span> <span class="hljs-comment">// 存储信息的结构体</span><br>&#123;<br>    <span class="hljs-type">int</span> x, y; <span class="hljs-comment">// 坐标</span><br>    <span class="hljs-type">int</span> mark, id; <span class="hljs-comment">// 标记，数值</span><br><br>    <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>&lt; (<span class="hljs-type">const</span> Node &amp;o) <span class="hljs-type">const</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> (x != o.x)? x &lt; o.x:<br>            (y != o.y)? y &lt; o.y:<br>            mark &gt; o.mark;<br>    &#125;<br>&#125; tile[MAXN] ;<br><span class="hljs-type">int</span> num; <span class="hljs-comment">// 离线的信息总大小</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addtile</span><span class="hljs-params">(<span class="hljs-type">int</span> X, <span class="hljs-type">int</span> Y, <span class="hljs-type">int</span> M, <span class="hljs-type">int</span> I)</span></span><br><span class="hljs-function"></span>&#123;<br>    num++;<br>    tile[num].x = X;<br>    tile[num].y = Y;<br>    tile[num].mark = M;<br>    tile[num].id = I;<br>&#125;<br><br><span class="hljs-comment">// 树状数组</span><br>ll c[MAXN], top;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">lowbit</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> x &amp; (-x);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> pos, <span class="hljs-type">int</span> val)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">while</span> (pos &lt;= top)<br>    &#123;<br>        c[pos] += val;<br>        pos += <span class="hljs-built_in">lowbit</span>(pos);<br>    &#125;<br>&#125;<br><span class="hljs-function">ll <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> pos)</span></span><br><span class="hljs-function"></span>&#123;<br>    ll res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (pos &gt; <span class="hljs-number">0</span>)<br>    &#123;<br>        res += c[pos];<br>        pos -= <span class="hljs-built_in">lowbit</span>(pos);<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-comment">// 计算 (x, y) 在一个长宽为 len 的地图中的权值</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getxy</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> len)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> wid = <span class="hljs-built_in">min</span>(<span class="hljs-built_in">min</span>(x - <span class="hljs-number">1</span>, y - <span class="hljs-number">1</span>), <span class="hljs-built_in">min</span>(len - x, len - y)); <span class="hljs-comment">// 差值</span><br>    ll val = <span class="hljs-number">2ll</span> * (<span class="hljs-number">2</span> * len - <span class="hljs-number">2</span> - <span class="hljs-number">2</span> * (wid - <span class="hljs-number">1</span>)) * wid; <span class="hljs-comment">// 数值</span><br>    len -= wid * <span class="hljs-number">2</span>;<br>    x -= wid; y -= wid;<br><br>    <span class="hljs-keyword">if</span> (x == len &amp;&amp; y &gt; <span class="hljs-number">1</span>) val += (len - y + <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (y == <span class="hljs-number">1</span> &amp;&amp; x &gt; <span class="hljs-number">1</span>) val += (len - <span class="hljs-number">1</span> + len - x + <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x == <span class="hljs-number">1</span> &amp;&amp; y &lt; len) val += (<span class="hljs-number">2</span> * (len - <span class="hljs-number">1</span>) + y);<br>    <span class="hljs-keyword">else</span> val += (<span class="hljs-number">3</span> * (len - <span class="hljs-number">1</span>) + x);<br>    <br>    <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>; <span class="hljs-comment">// 分解数值</span><br>    <span class="hljs-keyword">while</span> (val)<br>    &#123;<br>        res += val % <span class="hljs-number">10</span>;<br>        val /= <span class="hljs-number">10</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-comment">// 模板</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-function">T <span class="hljs-title">read</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    T x = <span class="hljs-number">0</span>; <span class="hljs-type">int</span> w = <span class="hljs-number">0</span>, ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(ch)) w |= ch == <span class="hljs-string">&#x27;-&#x27;</span>, ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(ch)) x = (x &lt;&lt; <span class="hljs-number">3</span>) + (x &lt;&lt; <span class="hljs-number">1</span>) + (ch ^ <span class="hljs-number">48</span>), ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">return</span> w? -x: x;<br>&#125;<br><br><span class="hljs-type">int</span> n, m, q;<br>ll ans[MAXN];<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> T = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();<br>    <span class="hljs-keyword">while</span> (T--)<br>    &#123;<br>        n = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), m = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), q = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();<br>        <span class="hljs-comment">// 初始化</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++) c[i] = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">memset</span>(ans, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(ans)); <br>        top = n;<br>        num = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 读入地图数据，标记类型为 2</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++)<br>        &#123;<br>            <span class="hljs-type">int</span> a = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), b = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();<br>            <span class="hljs-built_in">addtile</span>(a, b, <span class="hljs-number">2</span>, <span class="hljs-built_in">getxy</span>(a, b, n));<br>        &#125;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= q; i++)<br>        &#123;<br>            <span class="hljs-type">int</span> a = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), b = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), c = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), d = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();            <br>            <span class="hljs-built_in">addtile</span>(c, d, <span class="hljs-number">1</span>, i); <span class="hljs-comment">// 进入询问区间，加上相关大小</span><br>            <span class="hljs-built_in">addtile</span>(a - <span class="hljs-number">1</span>, b - <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, i); <br>            <span class="hljs-built_in">addtile</span>(a - <span class="hljs-number">1</span>, d, <span class="hljs-number">-1</span>, i); <span class="hljs-comment">// 离开询问区间，还原</span><br>            <span class="hljs-built_in">addtile</span>(c, b - <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>, i);<br>        &#125;<br><br>        <span class="hljs-built_in">sort</span>(tile + <span class="hljs-number">1</span>, tile + <span class="hljs-number">1</span> + num); <span class="hljs-comment">// 排序</span><br><br>        <span class="hljs-comment">// 扫描处理问题</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= num; i++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (tile[i].mark == <span class="hljs-number">2</span>) <span class="hljs-built_in">add</span>(tile[i].y, tile[i].id); <span class="hljs-comment">// 城堡进入</span><br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                ans[tile[i].id] += <span class="hljs-built_in">query</span>(tile[i].y) * tile[i].mark; <span class="hljs-comment">// 处理</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= q; i++)<br>        &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%I64d\n&quot;</span>, ans[i]); <span class="hljs-comment">// 输出</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="B-super-log"><a href="#B-super-log" class="headerlink" title="B - super_log"></a>B - super_log</h2><h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>求 a 的 b 个 a 次幂模 m 的值，即：<br>$$<br>\begin{equation}<br>\underbrace{a^{a^{a^{…}}}}_{b\ times} (mod\ m)<br>\end{equation}<br>$$</p>
+<h3 id="题目思路-1"><a href="#题目思路-1" class="headerlink" title="题目思路"></a>题目思路</h3><p>使用欧拉定理递归降幂，需要特判 a 和 m 不互质的情况。</p>
+<p>欧拉函数会很快迭代到 1，可以提前退出，速度很快。</p>
+<p>扩展欧拉定理：<br><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msup><mi>a</mi><mi>b</mi></msup><mo>≡</mo><mrow data-mjx-texclass="INNER"><mo data-mjx-texclass="OPEN">{</mo><mtable columnalign="left left" columnspacing="1em" rowspacing=".2em"><mtr><mtd><msup><mi>a</mi><mi>b</mi></msup></mtd><mtd><mi>g</mi><mi>c</mi><mi>d</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>p</mi><mo>≠</mo><mn>1</mn><mo>,</mo><mi>b</mi><mo>&lt;</mo><mi>ϕ</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr><mtr><mtd><msup><mi>a</mi><mrow><mi>b</mi><mi mathvariant="normal">%</mi><mi>ϕ</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>+</mo><mi>ϕ</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></msup></mtd></mtr></mtable><mo data-mjx-texclass="CLOSE" fence="true" stretchy="true" symmetric="true"></mo></mrow><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mtext>&nbsp;</mtext><mi>p</mi><mo stretchy="false">)</mo></math></p>
+<h2 id="F-Greedy-Sequence"><a href="#F-Greedy-Sequence" class="headerlink" title="F - Greedy Sequence"></a>F - Greedy Sequence</h2><h3 id="题目大意-2"><a href="#题目大意-2" class="headerlink" title="题目大意"></a>题目大意</h3><p>对于 n 个数字，k 的搜索半径，一个长度为 n 的字典池。要求以 1 到 n 为序列首位，构造 n 个序列。</p>
+<p>对于每个序列，每次以当前最后一位为原点，选择字典池中半径为 k 的最大值，直到无法选择。</p>
+<p>如对于 <code>n = 7, k = 2, dic[] = &#123;3, 1, 4, 6, 2, 5, 7&#125;</code>，构造的七个序列分别为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml">1<br>2<br>3, 1<br>4, 3, 1<br>5, 2<br>6, 5, 2<br>7, 5, 2<br></code></pre></td></tr></table></figure>
+
+<p>求构造的 n 个序列的长度，如上述样例，输出为<code>1 1 2 3 2 3 3 </code>。</p>
+<h3 id="题目思路-2"><a href="#题目思路-2" class="headerlink" title="题目思路"></a>题目思路</h3><p>简单的 DP，字典序最大，则每次只选择能选择的最大值，找到后 break 即可。</p>
+<h3 id="参考写法-1"><a href="#参考写法-1" class="headerlink" title="参考写法"></a>参考写法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">1e5</span> + <span class="hljs-number">5</span>;<br><br><span class="hljs-type">int</span> n, k;<br>map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; plc; <span class="hljs-comment">// 每个字符的位置</span><br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-function">T <span class="hljs-title">read</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    T x = <span class="hljs-number">0</span>; <span class="hljs-type">int</span> w = <span class="hljs-number">0</span>, ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(ch)) w |= ch == <span class="hljs-string">&#x27;-&#x27;</span>, ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(ch)) x = (x &lt;&lt; <span class="hljs-number">3</span>) + (x &lt;&lt; <span class="hljs-number">1</span>) + (ch ^ <span class="hljs-number">48</span>), ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">return</span> w? -x: x;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> T = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();<br>    <span class="hljs-keyword">while</span> (T--)<br>    &#123;<br>        n = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), k = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)</span></span>; <span class="hljs-comment">// 初始化，每个序列最小长度为 1</span><br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>        &#123;<br>            <span class="hljs-type">int</span> u = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();<br>            plc[u] = i;<br>        &#125;<br><br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>; <span class="hljs-comment">// 以 1 开头长度一定为 1</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++)<br>        &#123;            <br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i - <span class="hljs-number">1</span>; j &gt; <span class="hljs-number">0</span>; j--)<br>            &#123;<br>                <span class="hljs-type">int</span> len = <span class="hljs-built_in">abs</span>(plc[j] - plc[i]);<br>                <span class="hljs-keyword">if</span> (len &gt; k) <span class="hljs-keyword">continue</span>;<br><br>                dp[i] = dp[j] + <span class="hljs-number">1</span>; <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>        &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d%c&quot;</span>, dp[i], <span class="hljs-string">&quot; \n&quot;</span>[i == n]);<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="H-Holy-Grail"><a href="#H-Holy-Grail" class="headerlink" title="H - Holy Grail"></a>H - Holy Grail</h2><h3 id="题目大意-3"><a href="#题目大意-3" class="headerlink" title="题目大意"></a>题目大意</h3><p>你的英灵的宝具是一个带负权有向图（？）。你需要在指定的六个位置依次连接六条此位置允许的最小边，使不出现负权环，否则你会被圣杯吞噬（？）。数据保证答案存在。</p>
+<h3 id="题目思路-3"><a href="#题目思路-3" class="headerlink" title="题目思路"></a>题目思路</h3><p>要使不出现负权环，则需要在指定位置创建零权环。要在 x -&gt; y 连边创建零权环，则所需权值为 y -&gt; x 最短路的相反数。每次跑一下最短路并连接新边即可。</p>
+<h3 id="参考写法-2"><a href="#参考写法-2" class="headerlink" title="参考写法"></a>参考写法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">305</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXM = <span class="hljs-number">505</span>;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-function">T <span class="hljs-title">read</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    T x = <span class="hljs-number">0</span>; <span class="hljs-type">int</span> w = <span class="hljs-number">0</span>, ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(ch)) w |= ch == <span class="hljs-string">&#x27;-&#x27;</span>, ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(ch)) x = (x &lt;&lt; <span class="hljs-number">3</span>) + (x &lt;&lt; <span class="hljs-number">1</span>) + (ch ^ <span class="hljs-number">48</span>), ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">return</span> w? -x: x;<br>&#125;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Edge</span> <span class="hljs-comment">// 链式前向星</span><br>&#123;<br>    <span class="hljs-type">int</span> to;<br>    ll cost;<br>    <span class="hljs-type">int</span> next;<br>    <br>    <span class="hljs-built_in">Edge</span>(<span class="hljs-type">int</span> t = <span class="hljs-number">0</span>, ll c = <span class="hljs-number">0</span>, <span class="hljs-type">int</span> ne = <span class="hljs-number">0</span>)<br>    &#123;<br>        to = t; cost = c; next = ne;<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Spfa</span> <span class="hljs-comment">// SPFA</span><br>&#123;<br>    vector&lt;<span class="hljs-type">int</span>&gt; head;<br>    queue&lt;<span class="hljs-type">int</span>&gt; q;<br>    vector&lt;Edge&gt; edges;<br>    ll dis[MAXN];<br>    <span class="hljs-type">int</span> vis[MAXN];<br><br>    <span class="hljs-built_in">Spfa</span>(<span class="hljs-type">int</span> maxn)<br>    &#123; <span class="hljs-comment">// 构造时初始化</span><br>        head = <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(maxn, <span class="hljs-number">0</span>);<br>        edges = <span class="hljs-built_in">vector</span>&lt;Edge&gt;(<span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addedge</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v, ll w)</span></span><br><span class="hljs-function">    </span>&#123;<br>        edges.<span class="hljs-built_in">emplace_back</span>(<span class="hljs-built_in">Edge</span>(v, w, head[u]));<br>        head[u] = edges.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-function">ll <span class="hljs-title">run</span><span class="hljs-params">(<span class="hljs-type">int</span> start, <span class="hljs-type">int</span> fin)</span> <span class="hljs-comment">// 开跑</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">memset</span>(vis, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(vis));<br>        <span class="hljs-built_in">memset</span>(dis, <span class="hljs-number">0x3f</span>, <span class="hljs-built_in">sizeof</span>(dis));<br><br>        dis[start] = <span class="hljs-number">0</span>; vis[start] = <span class="hljs-number">1</span>; q.<span class="hljs-built_in">push</span>(start);<br><br>        <span class="hljs-keyword">while</span> (q.<span class="hljs-built_in">size</span>())<br>        &#123;<br>            <span class="hljs-type">int</span> u = q.<span class="hljs-built_in">front</span>();<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = head[u]; i; i = edges[i].next)<br>            &#123;<br>                <span class="hljs-type">int</span> v = edges[i].to, w = edges[i].cost;<br>                <span class="hljs-keyword">if</span> (dis[v] &gt; dis[u] + w)<br>                &#123;<br>                    dis[v] = dis[u] + w;<br>                    <span class="hljs-keyword">if</span> (!vis[v])<br>                    &#123;<br>                        q.<span class="hljs-built_in">push</span>(v); vis[v] = <span class="hljs-number">1</span>;<br>                    &#125;<br>                &#125;<br>            &#125;<br>            q.<span class="hljs-built_in">pop</span>(); vis[u] = <span class="hljs-number">0</span>;<br>        &#125;<br>        <br>        <span class="hljs-keyword">return</span> dis[fin];<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> T = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();<br>    <span class="hljs-keyword">while</span> (T--)<br>    &#123;<br>        <span class="hljs-type">int</span> n = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), m = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();<br>        <span class="hljs-function">Spfa <span class="hljs-title">spfa</span><span class="hljs-params">(n)</span></span>;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++)<br>        &#123;<br>            <span class="hljs-type">int</span> u = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), v = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(); ll w = <span class="hljs-built_in">read</span>&lt;ll&gt;();<br>            spfa.<span class="hljs-built_in">addedge</span>(u, v, w);<br>        &#125;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">6</span>; i++)<br>        &#123;<br>            <span class="hljs-type">int</span> x = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;(), y = <span class="hljs-built_in">read</span>&lt;<span class="hljs-type">int</span>&gt;();<br><br>            ll now = spfa.<span class="hljs-built_in">run</span>(y, x); <span class="hljs-comment">// 反向最短路</span><br><br>            spfa.<span class="hljs-built_in">addedge</span>(x, y, -now); <span class="hljs-comment">// 连边</span><br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%I64d\n&quot;</span>, -now); <span class="hljs-comment">// 输出</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>冻葱Tewi<br>
+        <strong>本文链接：</strong><a href="https://blog.dctewi.com/2019/09/2019-icpc-online-nanjing/" title="https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;09&#x2F;2019-icpc-online-nanjing&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2019&#x2F;09&#x2F;2019-icpc-online-nanjing&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" rel="tag">最短路</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" rel="tag">树状数组</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" rel="tag">欧拉定理</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" rel="tag">离散化</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1706298473147"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          这里将会显示评论栏
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-The-beautiful-values-of-the-palace"><span class="toc-number">1.</span> <span class="toc-text">A - The beautiful values of the palace</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="toc-number">1.1.</span> <span class="toc-text">题目大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">题目思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%86%99%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">参考写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-super-log"><span class="toc-number">2.</span> <span class="toc-text">B - super_log</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-1"><span class="toc-number">2.1.</span> <span class="toc-text">题目大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%80%9D%E8%B7%AF-1"><span class="toc-number">2.2.</span> <span class="toc-text">题目思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F-Greedy-Sequence"><span class="toc-number">3.</span> <span class="toc-text">F - Greedy Sequence</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-2"><span class="toc-number">3.1.</span> <span class="toc-text">题目大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%80%9D%E8%B7%AF-2"><span class="toc-number">3.2.</span> <span class="toc-text">题目思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%86%99%E6%B3%95-1"><span class="toc-number">3.3.</span> <span class="toc-text">参考写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#H-Holy-Grail"><span class="toc-number">4.</span> <span class="toc-text">H - Holy Grail</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-3"><span class="toc-number">4.1.</span> <span class="toc-text">题目大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%80%9D%E8%B7%AF-3"><span class="toc-number">4.2.</span> <span class="toc-text">题目思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%86%99%E6%B3%95-2"><span class="toc-number">4.3.</span> <span class="toc-text">参考写法</span></a></li></ol></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});</script>
+</div></body></html>
