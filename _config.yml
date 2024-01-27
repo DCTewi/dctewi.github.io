@@ -101,10 +101,13 @@ theme: nexmoe
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
+- type: git
   repo: https://github.com/DCTewi/dctewi.github.io
   branch: hexo
   message: '[update] hexo updated at {{ now(''yyyy-MM-dd HH:mm:ss'') }}'
+- type: git
+  repo: https://gitee.com/dctewi/dctewi.gitee.io
+  branch: hexo-mirror
 
 # hexo-generator-feed
 feed:

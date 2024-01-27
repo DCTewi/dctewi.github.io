@@ -131,7 +131,22 @@ slotSidebar: |
 
 # 评论框插槽
 slotComment: | 
-  这里将会显示评论栏
+  <script src="https://giscus.app/client.js"
+          data-repo="DCTewi/dctewi.github.io"
+          data-repo-id="MDEwOlJlcG9zaXRvcnkxNzEwODQzNDA="
+          data-category="Giscus"
+          data-category-id="DIC_kwDOCjKKNM4Ccuh-"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="noborder_light"
+          data-lang="zh-CN"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
 
 slotCopyright: | 
   <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
