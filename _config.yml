@@ -41,7 +41,7 @@ external_link:
 filename_case: 1
 render_drafts: false
 post_asset_folder: false
-relative_link: false
+relative_link: true
 future: true
 syntax_highlighter: highlight.js
 highlight:

@@ -13,9 +13,9 @@ function: # 功能开关，可选值（true,false）
   copyCode: true # 是否允许复制代码块
 
 imageCDN: # 图片 CDN 功能
-  enable: false # 开启该功能  
-  origin: /../../images/ # 图片原始目录
-  to: https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/ # 图片 CDN 域名
+  enable: true # 开启该功能  
+  origin: (?<=<img.*?src=")../../images/ # 图片原始目录
+  to: https://cdn.jsdelivr.net/gh/DCTewi/dctewi.github.io@hexo/images/ # 图片 CDN 域名
 
 # 自定义样式，启用后可在站点的source文件夹下新建custom.css自定义站点样式
 customStyles:
@@ -108,7 +108,7 @@ slotHead: |
   </script>
 
 slotFooter: |
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script>MathJax.Hub.Config({
       tex2jax: {
           inlineMath: [ ['$','$'], ["\\(","\\)"] ],
@@ -143,7 +143,6 @@ slotComment: |
           data-input-position="top"
           data-theme="noborder_light"
           data-lang="zh-CN"
-          data-loading="lazy"
           crossorigin="anonymous"
           async>
   </script>
