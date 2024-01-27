@@ -6,7 +6,7 @@
   <link href="https://blog.dctewi.com/atom.xml" rel="self"/>
   
   <link href="https://blog.dctewi.com/"/>
-  <updated>2024-01-27T05:41:57.740Z</updated>
+  <updated>2024-01-27T09:04:56.742Z</updated>
   <id>https://blog.dctewi.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo迁移小结</title>
+    <link href="https://blog.dctewi.com/2024/01/summary-hexo-migration/"/>
+    <id>https://blog.dctewi.com/2024/01/summary-hexo-migration/</id>
+    <published>2024-01-27T07:39:19.000Z</published>
+    <updated>2024-01-27T09:04:56.742Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;转眼间又很久很久很久（三年）没有管博客了，为了不再荒废，痛定思痛，把博客迁移到了Hexo。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="折腾小结" scheme="https://blog.dctewi.com/categories/%E6%8A%98%E8%85%BE%E5%B0%8F%E7%BB%93/"/>
+    
+    
+    <category term="折腾" scheme="https://blog.dctewi.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+    <category term="Hexo" scheme="https://blog.dctewi.com/tags/hexo/"/>
+    
+    <category term="博客" scheme="https://blog.dctewi.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>【杂谈】重振旗鼓</title>
@@ -353,9 +376,9 @@
     <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
     
     
-    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
-    
     <category term="折腾" scheme="https://blog.dctewi.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
     
     <category term="WSL" scheme="https://blog.dctewi.com/tags/wsl/"/>
     
@@ -456,27 +479,6 @@
     <category term="数据结构" scheme="https://blog.dctewi.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     <category term="线段树" scheme="https://blog.dctewi.com/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【旧文归档/捣鼓】更换主题小记</title>
-    <link href="https://blog.dctewi.com/2019/01/theme-changing-note/"/>
-    <id>https://blog.dctewi.com/2019/01/theme-changing-note/</id>
-    <published>2019-01-10T15:03:49.000Z</published>
-    <updated>2024-01-27T05:41:57.749Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;用&lt;a href=&quot;https://www.cssplus.org/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; aria-label=&quot;（在新窗口打开）&quot;&gt;路易大佬&lt;/a&gt;的&lt;a rel=&quot;noreferrer noopener&quot; aria-label=&quot;（在新窗口打开）&quot; href=&quot;https://www.cssplus.org/wordpress-theme-inspire.html&quot; target=&quot;_blank&quot;&gt;inspire&lt;/a&gt;好几个月了，于是就闲得发慌脑子一抽没事找事想要换一个主题——&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
-    
-    
-    <category term="旧文归档" scheme="https://blog.dctewi.com/tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/"/>
-    
-    <category term="折腾" scheme="https://blog.dctewi.com/tags/%E6%8A%98%E8%85%BE/"/>
     
   </entry>
   

@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>Hexo迁移小结 - 冻葱Tewi</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="blog,冻葱,冻葱Tewi,DCTewi">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="转眼间又很久很久很久（三年）没有管博客了，为了不再荒废，痛定思痛，把博客迁移到了Hexo。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo迁移小结">
+<meta property="og:url" content="https://blog.dctewi.com/2024/01/summary-hexo-migration/">
+<meta property="og:site_name" content="冻葱Tewi">
+<meta property="og:description" content="转眼间又很久很久很久（三年）没有管博客了，为了不再荒废，痛定思痛，把博客迁移到了Hexo。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-27T07:39:19.000Z">
+<meta property="article:modified_time" content="2024-01-27T09:04:56.742Z">
+<meta property="article:author" content="冻葱Tewi">
+<meta property="article:tag" content="折腾">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../../../lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="../../../lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="../../../lib/iconfont/iconfont.css?v=1706346370169">
+
+<link rel="stylesheet" href="../../../css/style.css?v=1706346370169">
+
+
+
+
+    
+        <link rel="stylesheet" href="../../../custom.css?v=1706346370169">
+    
+
+
+
+<script src="../../../lib/mdui_043tiny/mdui.js" async></script>
+<script src="../../../lib/fancybox/fancybox.umd.js" async></script>
+<script src="../../../lib/lax.min.js" async></script>
+
+
+<script async src="../../../js/app.js?v=1706346370169"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152707655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-152707655-1");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="atom.xml" title="冻葱Tewi" type="application/atom+xml">
+</head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/bg.jpg)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="../../../index.html" title="冻葱Tewi"><img src="/images/avatar.png" alt="冻葱Tewi"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="../../../index.html" title="冻葱Tewi">
+            <img src="/images/avatar.png" alt="冻葱Tewi" alt="冻葱Tewi">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>31</div>
+        <div><span>标签</span>41</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="../../../index.html" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="../../../archive" title="归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="../../../friends" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="../../../goal" title="目标">
+            <i class="mdui-list-item-icon nexmoefont icon-areachart"></i>
+            <div class="mdui-list-item-content">
+                目标
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="../../../about" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="../../../js/search.js?v=1706346370170"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/1427846"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/dctewi"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/DCTewi"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://blog.dctewi.com/atom.xml"
+			target="_blank"
+			mdui-tooltip="{content: 'RSS'}"
+			style="
+				color: rgb(247, 132, 34);
+				background-color: rgba(247, 132, 34, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-rss"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/折腾小结/">折腾小结</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/旧站迁移/">旧站迁移</a>
+          <span class="category-list-count">30</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.addEventListener('load', function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  })
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="">Hexo迁移小结</a>
+          </li>
+        
+          <li>
+            <a href="../../../2022/03/blog-reboot/">【杂谈】重振旗鼓</a>
+          </li>
+        
+          <li>
+            <a href="../../../2020/12/blazor-webassembly-hosted-with-identity/">【笔记】在 Blazor WebAssembly Hosted 中使用 Identity</a>
+          </li>
+        
+          <li>
+            <a href="../../../2020/09/my-unity-csharp-code-standard/">【总结】我的 Unity C# 编码规范</a>
+          </li>
+        
+          <li>
+            <a href="../../../2020/03/cantor-basic/">【算法】正逆康托展开基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="../../../tags/net/" style="font-size: 10px;">.NET</a> <a href="../../../tags/a/" style="font-size: 10px;">A*</a> <a href="../../../tags/blazor/" style="font-size: 10px;">Blazor</a> <a href="../../../tags/c/" style="font-size: 10px;">C#</a> <a href="../../../tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="../../../tags/kmp/" style="font-size: 10px;">KMP</a> <a href="../../../tags/spfa/" style="font-size: 10px;">SPFA</a> <a href="../../../tags/unity/" style="font-size: 12.86px;">Unity</a> <a href="../../../tags/unityevent/" style="font-size: 10px;">UnityEvent</a> <a href="../../../tags/wsl/" style="font-size: 10px;">WSL</a> <a href="../../../tags/gogs/" style="font-size: 10px;">gogs</a> <a href="../../../tags/nginx/" style="font-size: 10px;">nginx</a> <a href="../../../tags/vim/" style="font-size: 10px;">vim</a> <a href="../../../tags/vimrc/" style="font-size: 10px;">vimrc</a> <a href="../../../tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="../../../tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="../../../tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="../../../tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="../../../tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 10px;">差分约束</a> <a href="../../../tags/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/" style="font-size: 10px;">康托展开</a> <a href="../../../tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 10px;">微积分</a> <a href="../../../tags/%E5%BF%AB%E9%80%9F%E4%B9%98/" style="font-size: 10px;">快速乘</a> <a href="../../../tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 10px;">快速幂</a> <a href="../../../tags/%E6%8A%98%E8%85%BE/" style="font-size: 14.29px;">折腾</a> <a href="../../../tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="../../../tags/%E6%95%B0%E8%AE%BA/" style="font-size: 11.43px;">数论</a> <a href="../../../tags/%E6%97%A7%E6%96%87%E5%BD%92%E6%A1%A3/" style="font-size: 20px;">旧文归档</a> <a href="../../../tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0/" style="font-size: 10px;">最大公因数</a> <a href="../../../tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 11.43px;">最短路</a> <a href="../../../tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 10px;">树状数组</a> <a href="../../../tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="../../../tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/" style="font-size: 10px;">欧拉定理</a> <a href="../../../tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="../../../tags/%E7%AC%94%E8%AE%B0/" style="font-size: 17.14px;">笔记</a> <a href="../../../tags/%E7%AE%97%E6%B3%95/" style="font-size: 15.71px;">算法</a> <a href="../../../tags/%E7%B4%A0%E6%95%B0/" style="font-size: 10px;">素数</a> <a href="../../../tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="../../../tags/%E7%BB%84%E5%90%88%E6%95%B0/" style="font-size: 10px;">组合数</a> <a href="../../../tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编码规范</a> <a href="../../../tags/%E9%9A%8F%E7%AC%94/" style="font-size: 18.57px;">随笔</a> <a href="../../../tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(41);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2019/02/">二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 冻葱Tewi
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br />
+<br />
+<img src="/images/logo.png" width="150px">
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 56.71874999999999%;"> 
+            <img src="/images/bg.jpg" alt="Hexo迁移小结" loading="lazy">
+            <h1>Hexo迁移小结</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2024年01月27日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="../../../categories/%E6%8A%98%E8%85%BE%E5%B0%8F%E7%BB%93/">折腾小结</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约21k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1:16分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <p>转眼间又很久很久很久（三年）没有管博客了，为了不再荒废，痛定思痛，把博客迁移到了Hexo。</p>
+<span id="more"></span>
+
+
+<p>这么多年过去了，博客也是转来转去折腾了好几次了。从一开始的Wordpress到静态博客，从Gridea到现在的Hexo。俺寻思，好久不写博客一定是因为Gridea的图形界面不好用（心虚）！另外，Gridea把各种密钥也一起放在了配置、文章目录下，使得前端和后端的仓库必须分离而且保持private，实在不方便我这种很多台设备不断切换的玩法。所以，把整个博客迁移到了Hexo。</p>
+<p>为了庆祝迁移完工，也是给恢复更新开个头，简单记录一下这次的折腾过程。</p>
+<h2 id="安装和配置Hexo"><a href="#安装和配置Hexo" class="headerlink" title="安装和配置Hexo"></a>安装和配置Hexo</h2><p>安装Hexo其实挺傻瓜式的，基本按着<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">官方教程</a>走下来就ok了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">HEXO_PATH=~/Applications/Hexo<br>mkdir $HEXO_PATH &amp;&amp; cd $HEXO_PATH<br><br>npm install -g hexo-cli<br>hexo init<br>npm install<br></code></pre></td></tr></table></figure>
+
+<p>就万事大吉了，就非常的傻瓜式。</p>
+<p>接下来就是配置一下_config.yml和package.json了，根据需求照着改就OK。我的一些自定义：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># 为了让_post文件夹内用于分类的子文件夹不影响URL的生成, 换成了:name</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">&#x27;:year/:month/:name/&#x27;</span><br><br><span class="hljs-comment"># 想了下, Github Page在国内某些运营商网络下可能比较慢, 所以镜像了Gitee Page</span><br><span class="hljs-comment"># 这就需要生成相对路径而不是绝对路径</span><br><span class="hljs-attr">relative_link:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># 和主题配合设置代码高亮</span><br><span class="hljs-attr">syntax_highlighter:</span> <span class="hljs-string">highlight.js</span><br><span class="hljs-attr">highlight:</span><br>  <span class="hljs-attr">line_number:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">auto_detect:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">tab_replace:</span> <span class="hljs-string">&#x27;&#x27;</span><br>  <span class="hljs-attr">wrap:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">hljs:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">prismjs:</span><br>  <span class="hljs-attr">preprocess:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">line_number:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">tab_replace:</span> <span class="hljs-string">&#x27;&#x27;</span><br><br><span class="hljs-comment"># 部署相关配置</span><br><span class="hljs-attr">deploy:</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/DCTewi/dctewi.github.io</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">hexo</span><br>  <span class="hljs-attr">message:</span> <span class="hljs-string">&#x27;[update] hexo updated at <span class="hljs-template-variable">&#123;&#123; now(&#x27;&#x27;yyyy-MM-dd HH:mm:ss&#x27;&#x27;) &#125;&#125;</span>&#x27;</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://gitee.com/dctewi/dctewi.gitee.io</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">hexo-mirror</span><br></code></pre></td></tr></table></figure>
+
+<p>配置好之后直接<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s --debug</code>就可以在本地4000端口预览了。</p>
+<h2 id="更换主题、配置插件"><a href="#更换主题、配置插件" class="headerlink" title="更换主题、配置插件"></a>更换主题、配置插件</h2><p>原版主题有种2016年Wordpress默认主题的味道，在<a target="_blank" rel="noopener" href="https://hexo.io/themes/">主题商店</a>翻了半天，找到了这个叫做<a target="_blank" rel="noopener" href="https://github.com/theme-nexmoe/hexo-theme-nexmoe">NexMoe</a>的主题，感觉还不错。</p>
+<p>依旧是傻瓜式安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install hexo-theme-nexmoe hexo-renderer-inferno<br>hexo config theme nexmoe<br>hexo g &amp;&amp; hexo s<br></code></pre></td></tr></table></figure>
+
+<p>进行一次hexo gen之后，会在根目录生成一个_config.nexmoe.yml，这就是主题的配置文件了。这个主题的配置还挺多的，配置了半天。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># 直接使用了source/images/下的文件，毕竟都上传到Github了，什么图床也没有本地靠谱</span><br><span class="hljs-attr">avatar:</span> <span class="hljs-string">/images/avatar.png</span> <span class="hljs-comment"># 网站 Logo</span><br><br><span class="hljs-comment"># 使用jsdelivr的开源CDN功能缓存文章内的图片</span><br><span class="hljs-attr">imageCDN:</span> <span class="hljs-comment"># 图片 CDN 功能</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 开启该功能  </span><br>  <span class="hljs-comment"># 查看源码发现这里其实是一个在文章渲染后进行全局匹配的正则</span><br>  <span class="hljs-comment"># 使用前向匹配来避免匹配到不应该匹配的东西</span><br>  <span class="hljs-comment"># 比如默认的../../images就会把非img标签内的字符串匹配掉</span><br>  <span class="hljs-comment"># 这样，md内的![]()图片就会被替换到cdn去，达到编辑时和部署后的路径同步</span><br>  <span class="hljs-attr">origin:</span> <span class="hljs-string">(?&lt;=&lt;img.*?src=&quot;)../../images/</span> <br>  <span class="hljs-attr">to:</span> <span class="hljs-string">https://cdn.jsdelivr.net/gh/DCTewi/dctewi.github.io@hexo/images/</span><br><br><span class="hljs-comment"># 在文章底部添加MathJax来提供Latex支持</span><br><span class="hljs-attr">slotFooter:</span> <span class="hljs-string">|</span><br><span class="hljs-string">  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/mathjax@latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;</span><br><span class="hljs-string">  &lt;script&gt;MathJax.Hub.Config(&#123;</span><br><span class="hljs-string">      tex2jax: &#123;</span><br><span class="hljs-string">          inlineMath: [ [&#x27;$&#x27;,&#x27;$&#x27;], [&quot;\\(&quot;,&quot;\\)&quot;] ],</span><br><span class="hljs-string">          processEscapes: true,</span><br><span class="hljs-string">          skipTags: [&#x27;script&#x27;, &#x27;noscript&#x27;, &#x27;style&#x27;, &#x27;textarea&#x27;, &#x27;pre&#x27;, &#x27;code&#x27;]</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">  &#125;);</span><br><span class="hljs-string">  MathJax.Hub.Queue(function() &#123;</span><br><span class="hljs-string">      var all = MathJax.Hub.getAllJax(), i;</span><br><span class="hljs-string">      for(i=0; i &lt; all.length; i += 1) &#123;</span><br><span class="hljs-string">          all[i].SourceElement().parentNode.className += &#x27; has-jax&#x27;;</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">  &#125;);&lt;/script&gt;</span><br><span class="hljs-string"></span><br><span class="hljs-comment"># Giscus配置</span><br><span class="hljs-attr">slotComment:</span> <span class="hljs-string">| </span><br><span class="hljs-string">  &lt;script src=&quot;https://giscus.app/client.js&quot;</span><br><span class="hljs-string">          data-repo=&quot;DCTewi/dctewi.github.io&quot;</span><br><span class="hljs-string">          data-repo-id=&quot;你的Giscus配置&quot;</span><br><span class="hljs-string">          data-category=&quot;Giscus&quot;</span><br><span class="hljs-string">          data-category-id=&quot;你的Giscus配置&quot;</span><br><span class="hljs-string">          data-mapping=&quot;pathname&quot;</span><br><span class="hljs-string">          data-strict=&quot;0&quot;</span><br><span class="hljs-string">          data-reactions-enabled=&quot;1&quot;</span><br><span class="hljs-string">          data-emit-metadata=&quot;0&quot;</span><br><span class="hljs-string">          data-input-position=&quot;top&quot;</span><br><span class="hljs-string">          data-theme=&quot;noborder_light&quot;</span><br><span class="hljs-string">          data-lang=&quot;zh-CN&quot;</span><br><span class="hljs-string">          crossorigin=&quot;anonymous&quot;</span><br><span class="hljs-string">          async&gt;</span><br><span class="hljs-string">  &lt;/script&gt;</span><br></code></pre></td></tr></table></figure>
+<p>之后把所需要的几个插件安装一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install hexo-generator-feed<br>npm install hexo-generator-json-content<br>npm install hexo-generator-sitemap<br>npm install hexo-word-counter<br></code></pre></td></tr></table></figure>
+
+<p>并且在_config.yml中进行配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># hexo-generator-feed</span><br><span class="hljs-attr">feed:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">atom</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">atom.xml</span><br>  <span class="hljs-attr">limit:</span> <span class="hljs-number">20</span><br>  <span class="hljs-attr">hub:</span> <span class="hljs-literal">null</span><br>  <span class="hljs-attr">content:</span> <span class="hljs-literal">null</span><br>  <span class="hljs-attr">content_limit:</span> <span class="hljs-number">140</span><br>  <span class="hljs-attr">content_limit_delim:</span> <span class="hljs-string">&#x27; &#x27;</span><br>  <span class="hljs-attr">order_by:</span> <span class="hljs-string">&#x27;-date&#x27;</span><br>  <span class="hljs-attr">icon:</span> <span class="hljs-string">icon.png</span><br>  <span class="hljs-attr">autodiscovery:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">template:</span> <span class="hljs-literal">null</span><br><br><span class="hljs-comment"># hexo-generator-json-content</span><br><span class="hljs-attr">jsonContent:</span><br>  <span class="hljs-attr">meta:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">pages:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">posts:</span><br>    <span class="hljs-attr">title:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">date:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">path:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">text:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">raw:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">content:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">slug:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">updated:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">comments:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">link:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">permalink:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">excerpt:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">categories:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">tags:</span> <span class="hljs-literal">false</span><br><br><span class="hljs-comment"># hexo-word-counter</span><br><span class="hljs-attr">symbols_count_time:</span><br>  <span class="hljs-attr">symbols:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">time:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">total_symbols:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">total_time:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">exclude_codeblock:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">awl:</span> <span class="hljs-number">4</span><br>  <span class="hljs-attr">wpm:</span> <span class="hljs-number">275</span><br>  <span class="hljs-attr">suffix:</span> <span class="hljs-string">&#x27;&#x27;</span><br><br><span class="hljs-comment"># hexo-generator-sitemap</span><br><span class="hljs-attr">sitemap:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">sitemap.xml</span><br>  <span class="hljs-comment"># template: ./sitemap_template.xml</span><br>  <span class="hljs-attr">rel:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">tags:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">categories:</span> <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<p>到这里就大功告成了，剩下的就是迁移内容。因为都是Markdown，只需要把两个博客框架的front-matters统一一下就可以直接使用了。整体把文章移过去，收拾了一下关于、友链等几个页面，博客终于焕然一新了。之后最重要的还是保持更新吧，经常写点博客也确实是个好习惯。</p>
+<h2 id="其他的一些配置"><a href="#其他的一些配置" class="headerlink" title="其他的一些配置"></a>其他的一些配置</h2><h3 id="配置Giscus"><a href="#配置Giscus" class="headerlink" title="配置Giscus"></a>配置<a target="_blank" rel="noopener" href="https://giscus.app/zh-CN">Giscus</a></h3><p>按照官网配下来就可以，本地配置在上方有写。</p>
+<h3 id="友链增强"><a href="#友链增强" class="headerlink" title="友链增强"></a>友链增强</h3><p>原版主题其实就带友情链接的模板，但是是静态随机的。简单的搞了下动态随机。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!--https://github.com/DCTewi/dctewi.github.io/blob/hexo-backend/source/friends.md?plain=1--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-comment">// 这里注入了一个Fisher–Yates Shuffle算法用来洗牌</span></span><br><span class="language-javascript">jQuery.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">shuffle</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> res = <span class="hljs-variable language_">this</span>;</span><br><span class="language-javascript">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = res.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;</span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> rnd = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (i + <span class="hljs-number">1</span>));</span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> ind = res[rnd]; res[rnd] = res[i]; res[i] = ind;</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">    <span class="hljs-keyword">return</span> res;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"><span class="hljs-comment">// 打乱一下顺序</span></span><br><span class="language-javascript"><span class="hljs-keyword">var</span> items = $(<span class="hljs-string">&quot;.nexmoe-py &gt; ul &gt; li&quot;</span>).<span class="hljs-title function_">shuffle</span>(); $(<span class="hljs-string">&quot;.nexmoe-py &gt; ul&quot;</span>).<span class="hljs-title function_">empty</span>().<span class="hljs-title function_">append</span>(items);</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>冻葱Tewi<br>
+        <strong>本文链接：</strong><a href="https://blog.dctewi.com/2024/01/summary-hexo-migration/" title="https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2024&#x2F;01&#x2F;summary-hexo-migration&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dctewi.com&#x2F;2024&#x2F;01&#x2F;summary-hexo-migration&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="../../../tags/hexo/" rel="tag">Hexo</a> <a class="nexmoefont icon-tag-fill -none-link" href="../../../tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a> <a class="nexmoefont icon-tag-fill -none-link" href="../../../tags/%E6%8A%98%E8%85%BE/" rel="tag">折腾</a>
+    
+</div>
+  
+  
+    <script async src="../../../js/copy-codeblock.js?v=1706346370113"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          <script src="https://giscus.app/client.js"
+        data-repo="DCTewi/dctewi.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNzEwODQzNDA="
+        data-category="Giscus"
+        data-category-id="DIC_kwDOCjKKNM4Ccuh-"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="noborder_light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEHexo"><span class="toc-number">1.</span> <span class="toc-text">安装和配置Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98%E3%80%81%E9%85%8D%E7%BD%AE%E6%8F%92%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">更换主题、配置插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">其他的一些配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEGiscus"><span class="toc-number">3.1.</span> <span class="toc-text">配置Giscus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8B%E9%93%BE%E5%A2%9E%E5%BC%BA"><span class="toc-number">3.2.</span> <span class="toc-text">友链增强</span></a></li></ol></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});</script>
+</div></body></html>
