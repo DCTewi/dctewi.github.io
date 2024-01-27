@@ -22,7 +22,7 @@ customStyles:
   - custom.css
   
 # 附加图标库 使用说明：https://docs.nexmoe.com/config/icon
-iconlib: # //at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css
+iconlib: //at.alicdn.com/t/c/font_4425465_bp309wfw9r.css
 
 menu:
     首页:
@@ -33,6 +33,9 @@ menu:
         - icon-container
     友链:
         - /friends
+    开往:
+        - https://www.travellings.cn/go.html
+        - icon-a-subway1
     目标:
         - /goal
         - icon-areachart
