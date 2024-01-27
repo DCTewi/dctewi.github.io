@@ -144,6 +144,12 @@ date: 2024-01-26 01:35:04
         "link": "https://www.lihouse.xyz/",
         "img": "https://q.qlogo.cn/headimg_dl?dst_uin=3463448740&spec=640",
         "title": "青柠博客"
+    },
+    {
+        "description": "从未敢想自己能走到何处,只是一直在走罢了",
+        "link": "https://blog.hicosor.top/",
+        "img": "http://blog.hicosor.top/favicon.ico",
+        "title": "365云栈"
     }
 ]
 {% endlinks %}
