@@ -6,7 +6,7 @@
   <link href="https://blog.dctewi.com/atom.xml" rel="self"/>
   
   <link href="https://blog.dctewi.com/"/>
-  <updated>2024-01-27T09:04:56.742Z</updated>
+  <updated>2024-01-27T09:07:49.272Z</updated>
   <id>https://blog.dctewi.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.dctewi.com/2024/01/summary-hexo-migration/"/>
     <id>https://blog.dctewi.com/2024/01/summary-hexo-migration/</id>
     <published>2024-01-27T07:39:19.000Z</published>
-    <updated>2024-01-27T09:04:56.742Z</updated>
+    <updated>2024-01-27T09:07:49.272Z</updated>
     
     
     <summary type="html">&lt;p&gt;转眼间又很久很久很久（三年）没有管博客了，为了不再荒废，痛定思痛，把博客迁移到了Hexo。&lt;/p&gt;</summary>
@@ -44,7 +44,7 @@
     <link href="https://blog.dctewi.com/2022/03/blog-reboot/"/>
     <id>https://blog.dctewi.com/2022/03/blog-reboot/</id>
     <published>2022-03-09T08:11:43.000Z</published>
-    <updated>2024-01-27T05:41:57.740Z</updated>
+    <updated>2024-01-27T09:07:49.273Z</updated>
     
     
     <summary type="html">&lt;p&gt;咕着咕着，已经两年没有写过新博客了（草）。生活方面、技术方面和其他的种种方面都发生了翻天覆地的变化，是时候重新把博客拿起来了。&lt;/p&gt;</summary>
@@ -63,7 +63,7 @@
     <link href="https://blog.dctewi.com/2020/12/blazor-webassembly-hosted-with-identity/"/>
     <id>https://blog.dctewi.com/2020/12/blazor-webassembly-hosted-with-identity/</id>
     <published>2020-12-02T14:52:00.000Z</published>
-    <updated>2024-01-27T05:41:57.740Z</updated>
+    <updated>2024-01-27T09:07:49.272Z</updated>
     
     
     <summary type="html">&lt;p&gt;记录了一些 Blazor WebAssembly 的基础知识和在其中使用 Identity 进行身份验证的知识点。好久不写博客了，手都生了。&lt;/p&gt;</summary>
@@ -88,7 +88,7 @@
     <link href="https://blog.dctewi.com/2020/09/my-unity-csharp-code-standard/"/>
     <id>https://blog.dctewi.com/2020/09/my-unity-csharp-code-standard/</id>
     <published>2020-09-04T14:05:50.000Z</published>
-    <updated>2024-01-27T05:41:57.748Z</updated>
+    <updated>2024-01-27T09:07:49.274Z</updated>
     
     
     <summary type="html">&lt;p&gt;好久没水文章了。所以在这个考试过去了一半了的时间里发点东西，算是起个头，之后又要肝起来咯。&lt;/p&gt;
@@ -112,7 +112,7 @@
     <link href="https://blog.dctewi.com/2020/03/cantor-basic/"/>
     <id>https://blog.dctewi.com/2020/03/cantor-basic/</id>
     <published>2020-03-23T15:35:50.000Z</published>
-    <updated>2024-01-27T05:41:57.747Z</updated>
+    <updated>2024-01-27T09:07:49.273Z</updated>
     
     
     <summary type="html">&lt;p&gt;康托展开和逆康托展开是全排列和他的字典序序号相互转化的两种算法。在有关排列方案的问题中可以作为枚举的哈希函数，在允许枚举的数据范围内具有优良的复杂度。但是一般允许枚举的数据范围大概是20以内，因为21！爆int64，所以这也是种图一乐算法。&lt;/p&gt;</summary>
@@ -135,7 +135,7 @@
     <link href="https://blog.dctewi.com/2020/03/cycle-detection/"/>
     <id>https://blog.dctewi.com/2020/03/cycle-detection/</id>
     <published>2020-03-15T15:37:04.000Z</published>
-    <updated>2024-01-27T05:41:57.747Z</updated>
+    <updated>2024-01-27T09:07:49.273Z</updated>
     
     
     <summary type="html">&lt;p&gt;如题，这里记录了两则没啥用的判圈算法。&lt;/p&gt;</summary>
@@ -158,7 +158,7 @@
     <link href="https://blog.dctewi.com/2020/03/a-star/"/>
     <id>https://blog.dctewi.com/2020/03/a-star/</id>
     <published>2020-03-13T12:41:09.000Z</published>
-    <updated>2024-01-27T05:41:57.739Z</updated>
+    <updated>2024-01-27T09:07:49.272Z</updated>
     
     
     <summary type="html">&lt;p&gt;A* 搜索是一种使用了 Dijkstra 思想的启发式搜索，是一种在图形平面上，有多个节点的路径，求出最低通过成本的算法。把之前进行的总结整理了一下发了上来。&lt;/p&gt;</summary>
@@ -168,13 +168,13 @@
     <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
     
     
-    <category term="最短路" scheme="https://blog.dctewi.com/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/"/>
-    
     <category term="笔记" scheme="https://blog.dctewi.com/tags/%E7%AC%94%E8%AE%B0/"/>
     
     <category term="算法" scheme="https://blog.dctewi.com/tags/%E7%AE%97%E6%B3%95/"/>
     
     <category term="A*" scheme="https://blog.dctewi.com/tags/a/"/>
+    
+    <category term="最短路" scheme="https://blog.dctewi.com/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/"/>
     
   </entry>
   
@@ -183,7 +183,7 @@
     <link href="https://blog.dctewi.com/2020/03/gridea-enchant/"/>
     <id>https://blog.dctewi.com/2020/03/gridea-enchant/</id>
     <published>2020-03-13T10:13:32.000Z</published>
-    <updated>2024-01-27T05:41:57.748Z</updated>
+    <updated>2024-01-27T09:07:49.274Z</updated>
     
     
     <summary type="html">&lt;p&gt;Gridea 是一个类似于 Hexo 的静态博客管理框架。看中了它的颜值，但相比于 Hexo，有些功能不够全面。所以凑今天进行了一波魔改，将过程记录了下来。&lt;/p&gt;</summary>
@@ -204,7 +204,7 @@
     <link href="https://blog.dctewi.com/2020/02/unity-new-input-system/"/>
     <id>https://blog.dctewi.com/2020/02/unity-new-input-system/</id>
     <published>2020-02-10T10:36:02.000Z</published>
-    <updated>2024-01-27T05:41:57.750Z</updated>
+    <updated>2024-01-27T09:07:49.276Z</updated>
     
     
     <summary type="html">&lt;p&gt;有关 Unity 新输入系统 Input System 的一些简单介绍和基础总结。目前关于新输入系统的中文资料略少，在 Unity 官方文档中学习了一番之后，我将一些基本的知识记录了下来。&lt;/p&gt;</summary>
@@ -225,7 +225,7 @@
     <link href="https://blog.dctewi.com/2020/02/unityevent-vs-csharpevent/"/>
     <id>https://blog.dctewi.com/2020/02/unityevent-vs-csharpevent/</id>
     <published>2020-02-03T05:54:04.000Z</published>
-    <updated>2024-01-27T05:41:57.750Z</updated>
+    <updated>2024-01-27T09:07:49.276Z</updated>
     
     
     <summary type="html">&lt;p&gt;Event 是一种十分方便的机制。一个 Event 就好像是一个 Youtuber，而他的粉丝 Subscribers&amp;#x2F;Listeners 会在这个 Event 发生的时候进行响应（观看）。许多现代语言都有类似的订阅机制，比如 Java 中的 EventBus 类。&lt;/p&gt;</summary>
@@ -248,7 +248,7 @@
     <link href="https://blog.dctewi.com/2019/09/2019-icpc-online-nanjing/"/>
     <id>https://blog.dctewi.com/2019/09/2019-icpc-online-nanjing/</id>
     <published>2019-09-06T03:45:12.000Z</published>
-    <updated>2024-01-27T05:41:57.739Z</updated>
+    <updated>2024-01-27T09:07:49.272Z</updated>
     
     
     <summary type="html">&lt;p&gt;The Preliminary Contest for ICPC Asia Nanjing 2019 （即 ICPC2019 南京网络赛）部分总结&lt;/p&gt;</summary>
@@ -258,11 +258,11 @@
     <category term="旧站迁移" scheme="https://blog.dctewi.com/categories/%E6%97%A7%E7%AB%99%E8%BF%81%E7%A7%BB/"/>
     
     
+    <category term="最短路" scheme="https://blog.dctewi.com/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/"/>
+    
     <category term="题解" scheme="https://blog.dctewi.com/tags/%E9%A2%98%E8%A7%A3/"/>
     
     <category term="动态规划" scheme="https://blog.dctewi.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    <category term="最短路" scheme="https://blog.dctewi.com/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/"/>
     
     <category term="树状数组" scheme="https://blog.dctewi.com/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
     
@@ -277,7 +277,7 @@
     <link href="https://blog.dctewi.com/2019/08/gogs/"/>
     <id>https://blog.dctewi.com/2019/08/gogs/</id>
     <published>2019-08-09T14:23:26.000Z</published>
-    <updated>2024-01-27T05:41:57.747Z</updated>
+    <updated>2024-01-27T09:07:49.274Z</updated>
     
     
     <summary type="html">&lt;p&gt;将吃灰的树莓派改造成一个属于自己的 Git 站点。&lt;/p&gt;</summary>
@@ -302,7 +302,7 @@
     <link href="https://blog.dctewi.com/2019/08/vimrc/"/>
     <id>https://blog.dctewi.com/2019/08/vimrc/</id>
     <published>2019-08-06T04:15:47.000Z</published>
-    <updated>2024-01-27T05:41:57.750Z</updated>
+    <updated>2024-01-27T09:07:49.276Z</updated>
     
     
     <summary type="html">&lt;p&gt;竞赛向简洁风 vim 配置。&lt;/p&gt;</summary>
@@ -323,7 +323,7 @@
     <link href="https://blog.dctewi.com/2019/07/difference-constraints/"/>
     <id>https://blog.dctewi.com/2019/07/difference-constraints/</id>
     <published>2019-07-19T09:00:01.000Z</published>
-    <updated>2024-01-27T05:41:57.747Z</updated>
+    <updated>2024-01-27T09:07:49.274Z</updated>
     
     
     <summary type="html">&lt;p&gt;差分约束系统(System of Difference Constraints)的基本概念，思路和用法以及例题总结。&lt;/p&gt;</summary>
@@ -344,7 +344,7 @@
     <link href="https://blog.dctewi.com/2019/06/calculus-a2/"/>
     <id>https://blog.dctewi.com/2019/06/calculus-a2/</id>
     <published>2019-06-22T06:22:47.000Z</published>
-    <updated>2024-01-27T05:41:57.747Z</updated>
+    <updated>2024-01-27T09:07:49.273Z</updated>
     
     
     <summary type="html">&lt;p&gt;考前复习总结——微积分A2篇。&lt;/p&gt;</summary>
@@ -365,7 +365,7 @@
     <link href="https://blog.dctewi.com/2019/04/wsl-setup/"/>
     <id>https://blog.dctewi.com/2019/04/wsl-setup/</id>
     <published>2019-04-07T04:04:52.000Z</published>
-    <updated>2024-01-27T05:41:57.750Z</updated>
+    <updated>2024-01-27T09:07:49.276Z</updated>
     
     
     <summary type="html">&lt;p&gt;Windows Subsystem for Linux 是微软在Windows 10和 Windows  Server 2019上添加的能够原生运行Linux二进制可执行文件的兼容层。&lt;/p&gt;
@@ -389,7 +389,7 @@
     <link href="https://blog.dctewi.com/2019/03/unity-mvc/"/>
     <id>https://blog.dctewi.com/2019/03/unity-mvc/</id>
     <published>2019-03-27T15:00:35.000Z</published>
-    <updated>2024-01-27T05:41:57.750Z</updated>
+    <updated>2024-01-27T09:07:49.276Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -412,7 +412,7 @@
     <link href="https://blog.dctewi.com/2019/02/number-theory-base/"/>
     <id>https://blog.dctewi.com/2019/02/number-theory-base/</id>
     <published>2019-02-19T03:48:31.000Z</published>
-    <updated>2024-01-27T05:41:57.748Z</updated>
+    <updated>2024-01-27T09:07:49.274Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -441,7 +441,7 @@
     <link href="https://blog.dctewi.com/2019/02/kmp/"/>
     <id>https://blog.dctewi.com/2019/02/kmp/</id>
     <published>2019-02-15T16:53:31.000Z</published>
-    <updated>2024-01-27T05:41:57.748Z</updated>
+    <updated>2024-01-27T09:07:49.274Z</updated>
     
     
     <summary type="html">&lt;p&gt;学习kmp算法后的一些总结。本来没打算熬夜的结果搞到零点多。&lt;/p&gt;</summary>
@@ -464,7 +464,7 @@
     <link href="https://blog.dctewi.com/2019/02/segment-tree-base/"/>
     <id>https://blog.dctewi.com/2019/02/segment-tree-base/</id>
     <published>2019-02-11T15:02:23.000Z</published>
-    <updated>2024-01-27T05:41:57.749Z</updated>
+    <updated>2024-01-27T09:07:49.275Z</updated>
     
     
     <summary type="html">&lt;p&gt;学习两种线段树后的总结。&lt;br&gt;  可能并不适合完全不了解线段树的人入门？但是可能会对稍微知道线段树的人有一些帮助。&lt;/p&gt;</summary>
